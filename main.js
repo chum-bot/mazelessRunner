@@ -1,19 +1,15 @@
 var myBoard = [];
 
 //board creation
-for (var x = 0; x < 15; x++) {
+for (var x = 0; x < 20; x++) {
   myBoard[x] = [];
 
-  for (var y = 0; y < 15; y++) {
+  for (var y = 0; y < 20; y++) {
     myBoard[x][y] = "🔲";
   }
 }
 
-function displayTitle() {
-  document.getElementById('title_screen').innerHTML = '';
-  var introString = "Welcome to Mazeless Runner! Press any key to start."
-  document.getElementById('title_screen').innerHTML = introString;
-}
+
 
 function displayBoard() {
   document.getElementById('output_holder').innerHTML = '';
@@ -23,7 +19,7 @@ function displayBoard() {
     for (var x = 0; x < myBoard[y].length; x++) {
       outputString = outputString + myBoard[x][y];
     }
-    outputString = outputString + '<br/>';
+    outputString = outputString + "</br>";
   }
   document.getElementById('output_holder').innerHTML = outputString;
 }
@@ -40,8 +36,8 @@ spiderX = 3;
 spiderY = 3;
 snakeX = 11;
 snakeY = 3;
-shadowX = 14;
-shadowY = 14;
+shadowX = 19;
+shadowY = 19;
 sharkX = 8;
 sharkY = 13;
 cherryX = 5;
@@ -99,7 +95,7 @@ class Mine {
 
 //ded function lol
 function ded() {
-  document.body.style.background = "rgb(220,35,0)";
+  document.body.style.background = "rgb(225,35,0)";
   document.getElementById("lives").style.color = "black";
   document.getElementById("game_over").style.display = "block";
   document.getElementById("ur_dead").style.display = "block";
@@ -109,7 +105,6 @@ function ded() {
   
 }
 
-displayTitle();
 
 //element removal
 function removeElement() {
@@ -126,7 +121,7 @@ function removeElement() {
 }
 
 //actions on key press
-document.body.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function(e) {
 
   if (event.keycode == 13) {
     displayBoard();
@@ -154,7 +149,7 @@ document.body.addEventListener('keydown', function(e) {
       sharkY++;
       myBoard[sharkX][sharkY] = "🦈";
 
-    } else if (sharkY == 14) {
+    } else if (sharkY == 19) {
       myBoard[sharkX][sharkY] = "🔲";
       sharkY--;
       myBoard[sharkX][sharkY] = "🦈";
@@ -162,7 +157,7 @@ document.body.addEventListener('keydown', function(e) {
       myBoard[sharkX][sharkY] = "🔲";
       sharkX++;
       myBoard[sharkX][sharkY] = "🦈";
-    } else if (sharkX == 14) {
+    } else if (sharkX == 19) {
       myBoard[sharkX][sharkY] = "🔲";
       sharkX--;
       myBoard[sharkX][sharkY] = "🦈";
@@ -210,7 +205,7 @@ document.body.addEventListener('keydown', function(e) {
 
   if (event.keyCode == 38 && myCharacterY > 0) {
 
-    if (spiderY == 14) {
+    if (spiderY == 19) {
       myBoard[spiderX][spiderY] = "🐸";
       if (myCharacterY == 0) {
         myBoard[myCharacterX][myCharacterY] = "👾";
@@ -222,7 +217,7 @@ document.body.addEventListener('keydown', function(e) {
     } else if (myCharacterY == 0) {
       myBoard[myCharacterX][myCharacterY] = "👾";
     }
-    if (spiderY != 14 && myCharacterY != 0) {
+    if (spiderY != 19 && myCharacterY != 0) {
       myBoard[spiderX][spiderY] = "🔲";
       spiderY++;
       myBoard[spiderX][spiderY] = "🐸";
@@ -234,21 +229,21 @@ document.body.addEventListener('keydown', function(e) {
     }
 
   }
-  if (event.keyCode == 40 && myCharacterY < 14) {
+  if (event.keyCode == 40 && myCharacterY < 19) {
 
     if (spiderY == 0) {
       myBoard[spiderX][spiderY] = "🐸";
-      if (myCharacterY == 14) {
+      if (myCharacterY == 19) {
         myBoard[myCharacterX][myCharacterY] = "👾";
       } else {
         myBoard[myCharacterX][myCharacterY] = "🔲";
         myCharacterY++;
         myBoard[myCharacterX][myCharacterY] = "👾";
       }
-    } else if (myCharacterY == 14) {
+    } else if (myCharacterY == 19) {
       myBoard[myCharacterX][myCharacterY] = "👾";
     }
-    if (spiderY != 0 && myCharacterY != 14) {
+    if (spiderY != 0 && myCharacterY != 19) {
       myBoard[spiderX][spiderY] = "🔲";
       spiderY--;
       myBoard[spiderX][spiderY] = "🐸";
@@ -260,21 +255,21 @@ document.body.addEventListener('keydown', function(e) {
     }
 
   }
-  if (event.keyCode == 39 && myCharacterX < 14) {
+  if (event.keyCode == 39 && myCharacterX < 19) {
 
     if (spiderX == 0) {
       myBoard[spiderX][spiderY] = "🐸";
-      if (myCharacterX == 14) {
+      if (myCharacterX == 19) {
         myBoard[myCharacterX][myCharacterY] = "👾";
       } else {
         myBoard[myCharacterX][myCharacterY] = "🔲";
         myCharacterX++;
         myBoard[myCharacterX][myCharacterY] = "👾";
       }
-    } else if (myCharacterX == 14) {
+    } else if (myCharacterX == 19) {
       myBoard[myCharacterX][myCharacterY] = "👾";
     }
-    if (spiderX != 0 && myCharacterX != 14) {
+    if (spiderX != 0 && myCharacterX != 19) {
       myBoard[spiderX][spiderY] = "🔲";
       spiderX--;
       myBoard[spiderX][spiderY] = "🐸";
@@ -288,7 +283,7 @@ document.body.addEventListener('keydown', function(e) {
   }
   if (event.keyCode == 37 && myCharacterX > 0) {
 
-    if (spiderX == 14) {
+    if (spiderX == 19) {
       myBoard[spiderX][spiderY] = "🐸";
       if (myCharacterX == 0) {
         myBoard[myCharacterX][myCharacterY] = "👾";
@@ -300,7 +295,7 @@ document.body.addEventListener('keydown', function(e) {
     } else if (myCharacterX == 0) {
       myBoard[myCharacterX][myCharacterY] = "👾";
     }
-    if (spiderX != 14 && myCharacterX != 0) {
+    if (spiderX != 19 && myCharacterX != 0) {
       myBoard[spiderX][spiderY] = "🔲";
       spiderX++;
       myBoard[spiderX][spiderY] = "🐸";
@@ -315,22 +310,22 @@ document.body.addEventListener('keydown', function(e) {
   //croc teleport and cherry pickup
   if (myBoard[myCharacterX][myCharacterY] == myBoard[cherryX][cherryY]) {
     score = score + 250;
-    cherryX = Math.floor((Math.random() * 15));
-    cherryY = Math.floor((Math.random() * 15));
+    cherryX = Math.floor((Math.random() * 20));
+    cherryY = Math.floor((Math.random() * 20));
     if (myBoard[cherryX][cherryY] == myBoard[shadowX][shadowY]) {
-      cherryX = Math.floor((Math.random() * 15));
-      cherryY = Math.floor((Math.random() * 15));
+      cherryX = Math.floor((Math.random() * 20));
+      cherryY = Math.floor((Math.random() * 20));
     }
     for(var objectOfMine of minePositions){
     if (myBoard[cherryX][cherryY] == myBoard[objectOfMine.
     xPos][objectOfMine.yPos]) {
-      cherryX = Math.floor((Math.random() * 15));
-      cherryY = Math.floor((Math.random() * 15));
+      cherryX = Math.floor((Math.random() * 20));
+      cherryY = Math.floor((Math.random() * 20));
     }
     }
     if (myBoard[cherryX][cherryY] == myBoard[sharkX][sharkY]) {
-      cherryX = Math.floor((Math.random() * 15));
-      cherryY = Math.floor((Math.random() * 15));
+      cherryX = Math.floor((Math.random() * 20));
+      cherryY = Math.floor((Math.random() * 20));
     }
     myBoard[cherryX][cherryY] = "⚡"
     cherryTLEY = cherryY - 2;
@@ -354,7 +349,7 @@ document.body.addEventListener('keydown', function(e) {
     cherryBLTLY = cherryY;
     cherryTLYm1 = cherryY - 1;
 
-    if (cherryX <= 1 || cherryX >= 13 || cherryY <= 1 || cherryY >= 13) {
+    if (cherryX <= 1 || cherryX >= 18 || cherryY <= 1 || cherryY >= 18) {
       myBoard[crocX][crocY] = "🐊";
     } else {
 
@@ -566,7 +561,7 @@ function snakeMovement() {
       }
     }
     if (snake1stMove == 2) {
-      if (snakeY == 14 || snakeY == 13) {
+      if (snakeY == 19 || snakeY == 18) {
         snake1stMove = 1;
         snake2ndMove = 1;
       } else {
@@ -586,7 +581,7 @@ function snakeMovement() {
       }
     }
     if (snake1stMove == 4) {
-      if (snakeX == 14 || snakeX == 13) {
+      if (snakeX == 19 || snakeX == 18) {
         snake1stMove = 3;
         snake2ndMove = 3;
       } else {
@@ -599,7 +594,7 @@ function snakeMovement() {
       snake1stMove = 2;
       snake2ndMove = 2;
     }
-    if (snakeY == 14 || snakeY == 13) {
+    if (snakeY == 19 || snakeY == 18) {
       snake1stMove = 1;
       snake2ndMove = 1;
     }
@@ -607,7 +602,7 @@ function snakeMovement() {
       snake1stMove = 4;
       snake2ndMove = 4;
     }
-    if (snakeX == 14 || snakeX == 13) {
+    if (snakeX == 19 || snakeX == 18) {
       snake1stMove = 3;
       snake2ndMove = 3;
     }
@@ -647,11 +642,11 @@ function shadowMovement() {
   if (score >= 3000) {
     myBoard[mine.xPos][mine.yPos] = mine.img;
     minePositions.push(mine);
-    shadowX = Math.floor((Math.random() * 15));
-    shadowY = Math.floor((Math.random() * 15));
+    shadowX = Math.floor((Math.random() * 20));
+    shadowY = Math.floor((Math.random() * 20));
     if(myBoard[shadowX][shadowY] == myBoard[cherryX][cherryY]){
-    shadowX = Math.floor((Math.random() * 15));
-    shadowY = Math.floor((Math.random() * 15));
+    shadowX = Math.floor((Math.random() * 20));
+    shadowY = Math.floor((Math.random() * 20));
     }
     myBoard[shadowX][shadowY] = "🌚";
     mineCap++;
