@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="title_screen"></div>
+<button onclick="instructions()" id="infobutton">How to play</button>
+<button onclick="patchNotes()" id="patchNoteButton">
+  View latest patch notes
+</button>
+<script>
+  function instructions() {
+  document.getElementById("info").innerHTML = "You control the alien in this game." + "</br>" + "Use the arrow keys to move around." + '</br>' + "Your goal is to keep collecting energy for as long as possible without dying." + "</br>" + "The game will get harder as you progress." + "</br>" + "Everything that isn't the energy kills you." 
+  }
+
+  function patchNotes() {
+    document.getElementById("patch_notes").innerHTML =
+      "Mazeless Runner 2.0 Patch Notes" +
+      '</br>' +
+      '</br>' +
+      "<b>General</b>" +
+      "<ul>" +
+      "<li>Added color to the game</li>" +
+      "<li>Changed the robot into a space invader</li>" +
+      "<li>Centered and increased the size of the game board(The grid size is still the same)</li>" +
+      "<li>Changed the cherry to lightning</li>" +
+      "<li>The cherry no longer spawns on enemies to make it unobtainable</li>" +
+      "<li>Added a game over screen to make it clearer when the game is over</li>" +
+      "<li>Made the instructions clearer</li>" +
+      "<li>Decreased score per pickup from 500 to 250</li>" +
+      "</ul>" +
+      "</br>" +
+      "<b>Enemies</b>" +
+      "<ul>" +
+      "<li>Fixed the mines that the shadow drops so they apply the correct amount of damage</li>" +
+      "<li>Fixed an issue that caused the snake to not register damage</li>" +
+      "<li>The shadow now spawns 25 additional mines when the player's score is above 5000</li>" +
+      "<li>Removed the skull</li>" +
+      "<li>The shark now has a softlock mechanic(The softlock issue is now an intentional mechanic)</li>" +
+      "<li>Increased croc speed from 1 tile/50ms to 1 tile/40ms</li>"
+  }
+
+</script>
+<p id="info"></p>
+<p id="patch_notes"></p>
+<div id="everything">
+  <div id="game_over">Game Over</div>
+  <div id="ur_dead">ur dead m8.</div>
+  <div id="softlocked">Softlocked</div>
+  <div id="beCareful">be careful next time.</div>
+  <div id="output_holder"></div>
+  <div id="score"></div>
+  <div id="lives"></div>
+</div>
+
+</body>
+</html>
+
