@@ -309,16 +309,19 @@ document.addEventListener('keydown', function(e) {
 
   //croc teleport and cherry pickup
   if (myBoard[myCharacterX][myCharacterY] == myBoard[cherryX][cherryY]) {
-    score = score + 250;
+    score += 250;
     cherryX = Math.floor((Math.random() * 20));
     cherryY = Math.floor((Math.random() * 20));
     if (myBoard[cherryX][cherryY] == myBoard[shadowX][shadowY]) {
       cherryX = Math.floor((Math.random() * 20));
       cherryY = Math.floor((Math.random() * 20));
     }
+    if (myBoard[cherryX][cherryY] == myBoard[snakeX][snakeY]) {
+      cherryX = Math.floor((Math.random() * 20));
+      cherryY = Math.floor((Math.random() * 20));
+    }
     for(var objectOfMine of minePositions){
-    if (myBoard[cherryX][cherryY] == myBoard[objectOfMine.
-    xPos][objectOfMine.yPos]) {
+    if (myBoard[cherryX][cherryY] == myBoard[objectOfMine.xPos][objectOfMine.yPos]) {
       cherryX = Math.floor((Math.random() * 20));
       cherryY = Math.floor((Math.random() * 20));
     }
