@@ -70,6 +70,13 @@ body {
   color: yellow;
   display: none;
 }
+#godMode{
+  font-family: "Righteous", cursive;
+  text-align: center;
+  font-size: 25px;
+  color: gold;
+  display: none;
+}
 
 button {
   border-radius: 20px;
