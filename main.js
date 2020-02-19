@@ -108,9 +108,9 @@ function ded() {
   document.getElementById("lives").style.color = "black";
   document.getElementById("game_over").style.display = "block";
   document.getElementById("ur_dead").style.display = "block";
-  document.body.style.backgroundImage = "url(https://i.imgur.com/knQZJCq.jpg)";
-  document.body.style.backgroundSize = "100%";
+  document.body.style.backgroundImage = "./pressRToRestart.png";
   document.getElementById("output_holder").style.opacity = "0";
+  document.getElementById("output_holder").style.fontSize = "90%";
   
 }
 
@@ -573,7 +573,6 @@ function pulsingLifeColor(){
     }
   }
   if(lives == 1){
-    pulseSpeed = 250;
     if(dontKnowSetTimeoutLol == 0){
       document.getElementById("lives").style.color = "red";
       dontKnowSetTimeoutLol = 1;
@@ -587,9 +586,10 @@ function pulsingLifeColor(){
 
   }
 
-
+var jeezJustWORK = 0;
 //snake
 function snakeMovement() {
+
 
   if (score >= 1500) {
 
@@ -680,9 +680,7 @@ setInterval(snakeMovement, 750);
 //shadow
 mineCap = 0;
 var moveyBoi = setInterval(shadowMovement, 500);
-if(score >= 5000){
-  var aVeryMoveyBoi = setInterval(shadowMovement, 500);
-}
+
 
 
 
@@ -711,23 +709,34 @@ function shadowMovement() {
     lives = 0;
     document.getElementById("lives").innerHTML = " Lives: " + lives;
   }
-  if (mineCap == 25) {
+  if (mineCap == 40) {
     clearInterval(moveyBoi);
   }
-  if (mineCap == 50) {
-    clearInterval(aVeryMoveyBoi);
+  if(score >= 5000){
+    mineCap == 41;
+    moveyBoi = setInterval(shadowMovement, 500);
+  }
+  if (mineCap == 200) {
+    clearInterval(moveyBoi);
   }
 
 }
 
 //croc
 setInterval(crocMovement, 40);
-let initPulse = setInterval(pulsingLifeColor, pulseSpeed);
-if(lives == 1){
-  clearInterval(initPulse);
-  let finalPulse = setInterval(pulsingLifeColor, pulseSpeed);
-}
+var initPulse = setInterval(pulsingLifeColor, pulseSpeed);
+
 function crocMovement() {
+
+  if(jeezJustWORK == 0){
+    if(lives == 1){
+      clearInterval(initPulse);
+      let pulseSpeed = 250;
+      setInterval(pulsingLifeColor, pulseSpeed);
+      jeezJustWORK = 1;
+    }
+    
+  }
 
   if (lives > 0) {
     myBoard[myCharacterX][myCharacterY] = player;
