@@ -108,7 +108,11 @@ function ded() {
   document.getElementById("lives").style.color = "black";
   document.getElementById("game_over").style.display = "block";
   document.getElementById("ur_dead").style.display = "block";
-  document.body.style.backgroundImage = "./pressRToRestart.png";
+  document.getElementById("everything").style.backgroundImage = "url(https://i.imgur.com/knQZJCq.jpg)";
+  document.getElementById("everything").style.backgroundSize = "100% 100%";
+  document.getElementById("everything").style.backgroundRepeat = "no-repeat";
+  document.getElementById("everything").style.backgroundSize = "100% 100%";
+  document.getElementById("everything").style.backgroundAttachment = "fixed";
   document.getElementById("output_holder").style.opacity = "0";
   document.getElementById("output_holder").style.fontSize = "90%";
   
