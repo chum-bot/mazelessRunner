@@ -140,7 +140,7 @@ document.addEventListener('keydown', function(event) {
   if (event.keycode == 13) {
     displayBoard();
   }
-  if(event.keyCode == 71){
+  if(event.keyCode == 186){
     lives = 99999;
     document.getElementById("lives").style.color = "gold";
     document.getElementById("godMode").style.display = "block";
@@ -515,13 +515,12 @@ document.addEventListener('keydown', function(event) {
     }
   }
 
+
   document.getElementById("score").innerHTML = "Score: " + score;
   document.getElementById("lives").innerHTML = " Lives: " + lives;
 
   if (respawn == 1) {
-    if (score >= 3000) {
 
-    }
     myBoard[cherryX][cherryY] = energy;
     myBoard[crocX][crocY] = croc
     myBoard[sharkX][sharkY] = shark;
@@ -595,7 +594,7 @@ var jeezJustWORK = 0;
 function snakeMovement() {
 
 
-  if (score >= 1500) {
+  if (score >= 1000) {
 
     var snake1stMove = Math.floor((Math.random() * 4) + 1);
     var snake2ndMove = Math.floor((Math.random() * 4) + 1);
@@ -682,7 +681,7 @@ function snakeMovement() {
 setInterval(snakeMovement, 750);
 
 //shadow
-mineCap = 0;
+var mineCap = 0;
 var moveyBoi = setInterval(shadowMovement, 500);
 
 
@@ -692,7 +691,7 @@ let minePositions = [];
 
 function shadowMovement() {
 
-  var mine = new Mine(shadowX, shadowY, 1, "☣️");
+  var mine = new Mine(shadowX, shadowY, 1, "🌑");
   if (score >= 3000) {
     myBoard[mine.xPos][mine.yPos] = mine.img;
     minePositions.push(mine);
@@ -706,9 +705,6 @@ function shadowMovement() {
     mineCap++;
   }
 
-
-
-
   if (lives < 0) {
     lives = 0;
     document.getElementById("lives").innerHTML = " Lives: " + lives;
@@ -716,21 +712,27 @@ function shadowMovement() {
   if (mineCap == 40) {
     clearInterval(moveyBoi);
   }
-  if(score >= 5000){
-    mineCap == 41;
-    moveyBoi = setInterval(shadowMovement, 500);
-  }
-  if (mineCap == 200) {
-    clearInterval(moveyBoi);
-  }
 
-}
+}  
+var theBrokenCounter = 0;
 
 //croc
 setInterval(crocMovement, 40);
+
+
 var initPulse = setInterval(pulsingLifeColor, pulseSpeed);
 
 function crocMovement() {
+if(score >= 2000){
+  if(score >= 5000){
+    if(theBrokenCounter == 0){
+      theBrokenCounter = 1;
+      var thisMAYbeBroken = setInterval(shadowMovement, 500);
+    }
+    }
+    if (mineCap == 200) {
+      clearInterval(thisMAYbeBroken);
+    }
 
   if(jeezJustWORK == 0){
     if(lives == 1){
@@ -780,7 +782,9 @@ function crocMovement() {
       lives--;
       document.getElementById("lives").innerHTML = " Lives: " + lives;
     }
-    displayBoard();
+    
   }
   myBoard[crocX][crocY] = croc;
+}
+displayBoard();
 }
