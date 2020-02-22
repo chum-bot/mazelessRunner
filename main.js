@@ -50,11 +50,11 @@ crocY = 9;
 croc = "🐊";
 moon = "🌚";
 energy = "⚡";
-player = "👾";
+player1 = "👾";
 frog = "🐸";
 shark = "🦈";
 myBoard[crocX][crocY] = croc;
-myBoard[myCharacterX][myCharacterY] = player;
+myBoard[myCharacterX][myCharacterY] = player1;
 myBoard[spiderX][spiderY] = frog;
 myBoard[sharkX][sharkY] = shark;
 myBoard[cherryX][cherryY] = energy;
@@ -144,7 +144,7 @@ document.addEventListener('keydown', function(event) {
     lives = 99999;
     document.getElementById("lives").style.color = "gold";
     document.getElementById("godMode").style.display = "block";
-    player = "🌞";
+    player1 = "🌞";
   }
   if (work == 1) {
     work = 0;
@@ -232,14 +232,14 @@ document.addEventListener('keydown', function(event) {
     if (spiderY == 19) {
       myBoard[spiderX][spiderY] = frog;
       if (myCharacterY == 0) {
-        myBoard[myCharacterX][myCharacterY] = player;
+        myBoard[myCharacterX][myCharacterY] = player1;
       } else {
         myBoard[myCharacterX][myCharacterY] = "🔲";
         myCharacterY--;
-        myBoard[myCharacterX][myCharacterY] = player;
+        myBoard[myCharacterX][myCharacterY] = player1;
       }
     } else if (myCharacterY == 0) {
-      myBoard[myCharacterX][myCharacterY] = player;
+      myBoard[myCharacterX][myCharacterY] = player1;
     }
     if (spiderY != 19 && myCharacterY != 0) {
       myBoard[spiderX][spiderY] = "🔲";
@@ -247,7 +247,7 @@ document.addEventListener('keydown', function(event) {
       myBoard[spiderX][spiderY] = frog;
       myBoard[myCharacterX][myCharacterY] = "🔲";
       myCharacterY--;
-      myBoard[myCharacterX][myCharacterY] = player;
+      myBoard[myCharacterX][myCharacterY] = player1;
       myBoard[spiderX][spiderY] = frog;
 
     }
@@ -258,14 +258,14 @@ document.addEventListener('keydown', function(event) {
     if (spiderY == 0) {
       myBoard[spiderX][spiderY] = frog;
       if (myCharacterY == 19) {
-        myBoard[myCharacterX][myCharacterY] = player;
+        myBoard[myCharacterX][myCharacterY] = player1;
       } else {
         myBoard[myCharacterX][myCharacterY] = "🔲";
         myCharacterY++;
-        myBoard[myCharacterX][myCharacterY] = player;
+        myBoard[myCharacterX][myCharacterY] = player1;
       }
     } else if (myCharacterY == 19) {
-      myBoard[myCharacterX][myCharacterY] = player;
+      myBoard[myCharacterX][myCharacterY] = player1;
     }
     if (spiderY != 0 && myCharacterY != 19) {
       myBoard[spiderX][spiderY] = "🔲";
@@ -273,7 +273,7 @@ document.addEventListener('keydown', function(event) {
       myBoard[spiderX][spiderY] = frog;
       myBoard[myCharacterX][myCharacterY] = "🔲";
       myCharacterY++;
-      myBoard[myCharacterX][myCharacterY] = player;
+      myBoard[myCharacterX][myCharacterY] = player1;
       myBoard[spiderX][spiderY] = frog;
 
     }
@@ -284,14 +284,14 @@ document.addEventListener('keydown', function(event) {
     if (spiderX == 0) {
       myBoard[spiderX][spiderY] = frog;
       if (myCharacterX == 19) {
-        myBoard[myCharacterX][myCharacterY] = player;
+        myBoard[myCharacterX][myCharacterY] = player1;
       } else {
         myBoard[myCharacterX][myCharacterY] = "🔲";
         myCharacterX++;
-        myBoard[myCharacterX][myCharacterY] = player;
+        myBoard[myCharacterX][myCharacterY] = player1;
       }
     } else if (myCharacterX == 19) {
-      myBoard[myCharacterX][myCharacterY] = player;
+      myBoard[myCharacterX][myCharacterY] = player1;
     }
     if (spiderX != 0 && myCharacterX != 19) {
       myBoard[spiderX][spiderY] = "🔲";
@@ -299,7 +299,7 @@ document.addEventListener('keydown', function(event) {
       myBoard[spiderX][spiderY] = frog;
       myBoard[myCharacterX][myCharacterY] = "🔲";
       myCharacterX++;
-      myBoard[myCharacterX][myCharacterY] = player;
+      myBoard[myCharacterX][myCharacterY] = player1;
       myBoard[spiderX][spiderY] = frog;
 
     }
@@ -310,14 +310,14 @@ document.addEventListener('keydown', function(event) {
     if (spiderX == 19) {
       myBoard[spiderX][spiderY] = frog;
       if (myCharacterX == 0) {
-        myBoard[myCharacterX][myCharacterY] = player;
+        myBoard[myCharacterX][myCharacterY] = player1;
       } else {
         myBoard[myCharacterX][myCharacterY] = "🔲";
         myCharacterX--;
-        myBoard[myCharacterX][myCharacterY] = player;
+        myBoard[myCharacterX][myCharacterY] = player1;
       }
     } else if (myCharacterX == 0) {
-      myBoard[myCharacterX][myCharacterY] = player;
+      myBoard[myCharacterX][myCharacterY] = player1;
     }
     if (spiderX != 19 && myCharacterX != 0) {
       myBoard[spiderX][spiderY] = "🔲";
@@ -325,7 +325,7 @@ document.addEventListener('keydown', function(event) {
       myBoard[spiderX][spiderY] = frog;
       myBoard[myCharacterX][myCharacterY] = "🔲";
       myCharacterX--;
-      myBoard[myCharacterX][myCharacterY] = player;
+      myBoard[myCharacterX][myCharacterY] = player1;
 
     }
 
@@ -684,9 +684,6 @@ setInterval(snakeMovement, 750);
 var mineCap = 0;
 var moveyBoi = setInterval(shadowMovement, 500);
 
-
-
-
 let minePositions = [];
 
 function shadowMovement() {
@@ -709,7 +706,7 @@ function shadowMovement() {
     lives = 0;
     document.getElementById("lives").innerHTML = " Lives: " + lives;
   }
-  if (mineCap == 40) {
+  if (mineCap == 50) {
     clearInterval(moveyBoi);
   }
 
@@ -724,13 +721,13 @@ var initPulse = setInterval(pulsingLifeColor, pulseSpeed);
 
 function crocMovement() {
 if(score >= 2000){
-  if(score >= 5000){
+  if(score >= 6000){
     if(theBrokenCounter == 0){
       theBrokenCounter = 1;
-      var thisMAYbeBroken = setInterval(shadowMovement, 500);
+      var thisMAYbeBroken = setInterval(shadowMovement, 250);
     }
     }
-    if (mineCap == 200) {
+    if (mineCap == 300) {
       clearInterval(thisMAYbeBroken);
     }
 
@@ -745,7 +742,7 @@ if(score >= 2000){
   }
 
   if (lives > 0) {
-    myBoard[myCharacterX][myCharacterY] = player;
+    myBoard[myCharacterX][myCharacterY] = player1;
     if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 0) {
       moveAmtTL = 4;
       moveAmtTR = 4;
