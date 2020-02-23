@@ -40,7 +40,7 @@ snakeY = 3;
 shadowX = 19;
 shadowY = 19;
 sharkX = 8;
-sharkY = 13;
+sharkY = 19;
 cherryX = 5;
 cherryY = 11;
 myCharacterX = 7;
@@ -550,14 +550,7 @@ document.addEventListener('keydown', function(event) {
   if (lives == 0) {
     ded();
   }
-  for (var mineObj of minePositions) {
-    myBoard[mineObj.xPos][mineObj.yPos] = mineObj.img;
-    if (myBoard[myCharacterX][myCharacterY] == myBoard[mineObj.xPos][mineObj.yPos]) {
-      lives -= mineObj.damage;
-      document.getElementById("lives").innerHTML = " Lives: " + lives;
-      break;
-    }
-  }
+
 
 
 
@@ -720,6 +713,14 @@ setInterval(crocMovement, 40);
 var initPulse = setInterval(pulsingLifeColor, pulseSpeed);
 
 function crocMovement() {
+  for (var mineObj of minePositions) {
+    myBoard[mineObj.xPos][mineObj.yPos] = mineObj.img;
+    if (myBoard[myCharacterX][myCharacterY] == myBoard[mineObj.xPos][mineObj.yPos]) {
+      lives -= mineObj.damage;
+      document.getElementById("lives").innerHTML = " Lives: " + lives;
+      break;
+    }
+  }
 if(score >= 2000){
   if(score >= 6000){
     if(theBrokenCounter == 0){
