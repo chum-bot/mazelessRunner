@@ -29,6 +29,8 @@ score = 0;
 lives = 3;
 //weird title screen thing
 work = 1;
+//monkey step count
+var stepCount = 10;
 //respawn of characters and elements
 var respawn = 1;
 //characters and elements
@@ -45,22 +47,27 @@ cherryX = 5;
 cherryY = 11;
 myCharacterX = 7;
 myCharacterY = 7;
+monkeyX = 12
+monkeyY = 5
 crocX = 3;
 crocY = 9;
 croc = "🐊";
 moon = "🌚";
-energy = "⚡";
+energy = "🔆";
 player1 = "👾";
 frog = "🐸";
 shark = "🦈";
+monkey = "🐒"
+banana = "🍌"
 myBoard[crocX][crocY] = croc;
 myBoard[myCharacterX][myCharacterY] = player1;
 myBoard[spiderX][spiderY] = frog;
 myBoard[sharkX][sharkY] = shark;
 myBoard[cherryX][cherryY] = energy;
 myBoard[shadowX][shadowY] = moon;
-//croc variables (the ones with cherry affect croc on cherry pickup)
+myBoard[monkeyX][monkeyY] = monkey;
 
+//croc variables (the ones with cherry affect croc on cherry pickup) (i feel like there's a better way to do this tho...)
 var dontKnowSetTimeoutLol = 0;
 var moveAmtTL = 4;
 var moveAmtTR = 4;
@@ -93,6 +100,7 @@ var disY = Math.abs(myCharacterY - sharkY);
 
 
 //mines(OPTIMIZING because it can and should be)
+//well now that im in vscode i COULD make a different file for this... nah
 class Mine {
   constructor(xPos, yPos, damage, img) {
     this.xPos = xPos;
@@ -105,7 +113,7 @@ class Mine {
 //ded function lol
 function ded() {
   document.body.style.background = "rgb(225,35,0)";
-  document.getElementById("lives").style.color = "black";
+  document.getElementById("lives").style.display = "none";
   document.getElementById("game_over").style.display = "block";
   document.getElementById("ur_dead").style.display = "block";
   document.getElementById("everything").style.backgroundImage = "url(https://i.imgur.com/knQZJCq.jpg)";
@@ -152,9 +160,6 @@ document.addEventListener('keydown', function(event) {
   }
   document.getElementById('output_holder').style.border = "thick double aquamarine";
 
- 
-
-
   //shark 
   try{
   if (lives < 3) {
@@ -197,7 +202,7 @@ document.addEventListener('keydown', function(event) {
 
   }
   }
- 
+ //i have the ability to fix the softlocking and i make it into a mechanic
   catch(error){
   		softlock();
   }
@@ -215,15 +220,6 @@ document.addEventListener('keydown', function(event) {
   }
   
   //character and frog movement
-  
-  //god mode
-  /*
-  if(event.keyCode == the semicolon){
-    lives = 9999;
-
-  }
-  */ 
-
 
   if(lives > 0){
 
@@ -350,7 +346,17 @@ document.addEventListener('keydown', function(event) {
       cherryY = Math.floor((Math.random() * 20));
     }
     }
+    for(var bananobject of bananaPositions){
+      if (myBoard[cherryX][cherryY] == myBoard[bananobject.xPos][bananobject.yPos]) {
+        cherryX = Math.floor((Math.random() * 20));
+        cherryY = Math.floor((Math.random() * 20));
+      }
+    }
     if (myBoard[cherryX][cherryY] == myBoard[sharkX][sharkY]) {
+      cherryX = Math.floor((Math.random() * 20));
+      cherryY = Math.floor((Math.random() * 20));
+    }
+    if (myBoard[cherryX][cherryY] == myBoard[monkeyX][monkeyY]) {
       cherryX = Math.floor((Math.random() * 20));
       cherryY = Math.floor((Math.random() * 20));
     }
@@ -526,6 +532,7 @@ document.addEventListener('keydown', function(event) {
     myBoard[sharkX][sharkY] = shark;
     myBoard[shadowX][shadowY] = moon;
     myBoard[snakeX][snakeY] = "🐍"
+    myBoard[monkeyX][monkeyY] = monkey;
   }
   }
 
@@ -547,13 +554,26 @@ document.addEventListener('keydown', function(event) {
     lives--;
     document.getElementById("lives").innerHTML = " Lives: " + lives;
   }
+  for (var mineObj of minePositions) {
+    myBoard[mineObj.xPos][mineObj.yPos] = mineObj.img;
+    if (myBoard[myCharacterX][myCharacterY] == myBoard[mineObj.xPos][mineObj.yPos]) {
+      lives -= mineObj.damage;
+      document.getElementById("lives").innerHTML = " Lives: " + lives;
+      break;
+    }
+  }
+  for (var bananaObj of bananaPositions) {
+    myBoard[bananaObj.xPos][bananaObj.yPos] = bananaObj.img;
+    if (myBoard[myCharacterX][myCharacterY] == myBoard[bananaObj.xPos][bananaObj.yPos]) {
+      lives -= bananaObj.damage;
+      document.getElementById("lives").innerHTML = " Lives: " + lives;
+      break;
+    }
+  }
   if (lives == 0) {
     ded();
   }
-
-
-
-
+ stepCount--;
 });
 displayBoard();
 
@@ -676,7 +696,6 @@ setInterval(snakeMovement, 750);
 //shadow
 var mineCap = 0;
 var moveyBoi = setInterval(shadowMovement, 500);
-
 let minePositions = [];
 
 function shadowMovement() {
@@ -702,27 +721,18 @@ function shadowMovement() {
   if (mineCap == 50) {
     clearInterval(moveyBoi);
   }
-
 }  
 var theBrokenCounter = 0;
 
 //croc
 setInterval(crocMovement, 40);
 
-
 var initPulse = setInterval(pulsingLifeColor, pulseSpeed);
 
 function crocMovement() {
-  for (var mineObj of minePositions) {
-    myBoard[mineObj.xPos][mineObj.yPos] = mineObj.img;
-    if (myBoard[myCharacterX][myCharacterY] == myBoard[mineObj.xPos][mineObj.yPos]) {
-      lives -= mineObj.damage;
-      document.getElementById("lives").innerHTML = " Lives: " + lives;
-      break;
-    }
-  }
+ 
 if(score >= 2000){
-  if(score >= 6000){
+  if(score >= 10000){
     if(theBrokenCounter == 0){
       theBrokenCounter = 1;
       var thisMAYbeBroken = setInterval(shadowMovement, 250);
@@ -739,9 +749,7 @@ if(score >= 2000){
       setInterval(pulsingLifeColor, pulseSpeed);
       jeezJustWORK = 1;
     }
-    
   }
-
   if (lives > 0) {
     myBoard[myCharacterX][myCharacterY] = player1;
     if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 0) {
@@ -786,3 +794,57 @@ if(score >= 2000){
 }
 displayBoard();
 }
+var blinker = 0;
+var bananaPositions = [];
+function monkeyMovement() {
+if(score >= 5000){
+  if(stepCount <= 0){
+  var midBanana = new Mine (monkeyX, monkeyY, 1, banana);
+  var tlBanana = new Mine(monkeyX - 1, monkeyY - 1, 1, banana);
+  var trBanana = new Mine(monkeyX + 1, monkeyY - 1, 1, banana);
+  var blBanana = new Mine(monkeyX - 1, monkeyY + 1, 1, banana);
+  var brBanana = new Mine(monkeyX + 1, monkeyY + 1, 1, banana);
+  bananaPositions.push(midBanana, tlBanana, trBanana, blBanana, brBanana);
+  if(blinker == 0){
+    blinker = 1;
+  myBoard[tlBanana.xPos][tlBanana.yPos] = tlBanana.img;
+  myBoard[trBanana.xPos][trBanana.yPos] = trBanana.img;
+  myBoard[blBanana.xPos][blBanana.yPos] = blBanana.img;
+  myBoard[brBanana.xPos][brBanana.yPos] = brBanana.img;
+  }
+  else if(blinker == 1){
+    blinker = 0;  
+    if(score >= 7500){
+      stepCount = 10;
+    }
+    else{
+      stepCount = 20;
+    }
+    
+  myBoard[monkeyX][monkeyY] = midBanana.img;
+  monkeyX = Math.floor(Math.random() * 18) + 1;
+  monkeyY = Math.floor(Math.random() * 18) + 1;
+  if(myBoard[monkeyX][monkeyY] == myBoard[cherryX][cherryY]){
+    monkeyX = Math.floor(Math.random() * 18) + 1;
+    monkeyY = Math.floor(Math.random() * 18) + 1;
+  }
+  for(objectOfBanana of bananaPositions){
+   if(myBoard[monkeyX][monkeyY] == myBoard[objectOfBanana.xPos][objectOfBanana.yPos]){
+    monkeyX = Math.floor(Math.random() * 18) + 1;
+    monkeyY = Math.floor(Math.random() * 18) + 1;
+  }
+}
+for(theMines of minePositions){
+  if(myBoard[monkeyX][monkeyY] == myBoard[theMines.xPos][theMines.yPos]){
+   monkeyX = Math.floor(Math.random() * 18) + 1;
+   monkeyY = Math.floor(Math.random() * 18) + 1;
+ }
+}
+  myBoard[monkeyX][monkeyY] = monkey;
+  }
+}
+myBoard[monkeyX][monkeyY] = monkey;
+displayBoard();
+}
+}
+setInterval(monkeyMovement, 450);

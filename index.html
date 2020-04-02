@@ -17,26 +17,20 @@
 </button>
 <script>
   function instructions() {
-  document.getElementById("info").innerHTML = "You control the alien in this game." + "</br>" + "Use the arrow keys to move around." + '</br>' + "Your goal is to keep collecting energy for as long as possible without dying." + "</br>" + "The game will get harder as you progress." + "</br>" + "Everything that isn't the energy kills you." 
+  document.getElementById("info").innerHTML = "You control the alien in this game." + "</br>" + "Use the arrow keys to move around." + '</br>' + "Your goal is to keep collecting the sun for as long as possible without dying." + "</br>" + "The game will get harder as you progress." + "</br>" + "Everything that isn't the sun kills you." 
   }
 
   function patchNotes() {
     document.getElementById("patch_notes").innerHTML =
-      "Mazeless Runner 2.0 Patch Notes" +
+      "Mazeless Runner 2.1 Patch Notes" +
       '</br>' +
       '</br>' +
       "<b>General</b>" +
       "<ul>" +
-      "<li>Added color to the game</li>" +
-      "<li>Changed the robot into a space invader</li>" +
-      "<li>Centered and increased the size of the game board to 20x20</li>" +
-      "<li>Changed the cherry to lightning</li>" +
-      "<li>The cherry no longer spawns on enemies to make it unobtainable(mostly)</li>" +
-      "<li>Added a game over screen to make it clearer when the game is over</li>" +
-      "<li>Made the lives change color when you lose lives to make it clear when a life has been lost</li>"+
-      "<li>Made the instructions clearer</li>" +
-      "<li>Decreased score per pickup from 500 to 250</li>" +
       "<li>Added god mode for easier testing (i'm not telling you what button it is tho ._.)</li>" +
+      "<li>Changed the lightning to an outlined sun (reference to god mode)</li>" +
+      "<li>The cherry no longer spawns on enemies to make it unobtainable(mostly)</li>" +
+      "<li>Made the lives change color when you lose lives to make it clear when a life has been lost</li>" +
       "<li>The score and lives are now visible when you lose w/o scrolling down</li>" +
       "<li>The arrow keys no longer scroll up and down on some screens</li>" + 
       "</ul>" +
@@ -44,15 +38,22 @@
       "<b>Enemies</b>" +
       "<ul>" +
       "<li>Changed when the snake and the croc start to move (snake starts at 1000 pts, croc starts at 2000 pts)</li>" +
-      "<li>Fixed the mines that the shadow drops so they apply the correct amount of damage</li>" +
-      "<li>Fixed an issue that caused the snake to not register damage</li>" +
-      "<li>Removed the skull</li>" +
-      "<li>The shark now has a softlock mechanic(The softlock issue is now an intentional mechanic)</li>" +
-      "<li>Increased croc speed from 1 tile/50ms to 1 tile/40ms</li>"+
-      "<li>The shadow now spawns 50 mines initially to compensate for the larger game board</li>"+
-      "<li>The shadow now spawns a LOT more mines at 6000 points, and TWICE as fast</li>" + 
-      "<li>The mines are now faceless moons</li>"
-  }
+      "<li>New enemy: The Monkey!</li>" +
+      "<ul>" +
+        "<li>Starts moving at 5000 pts</li>" +
+        "<li>Moves additional times based on the number of steps you take</li>" +
+        "<li>When it moves, it makes a cross of banana at its location and moves somewhere else</li>"+
+        "<li>Kind of an enhanced version of the moon for now</li>" + 
+      "</ul>"+
+      "<li>Changed the shadow's speed spawning point threshold to 10000 pts</li>" +
+      "</ul>" +
+      "</br>" +
+      "<b>Known Issues</b>" + 
+      "<ul>" + 
+      "<li>The sun will sometimes spawn on an enemy when it is redirected from another enemy that it would've spawned on otherwise. This is a rare occurrence.</li>"+
+      "<li>The mines and some other things disappear when things go over them. You can see them again when you move, but I'm working on a fix where you can see them all the time.</li>" +
+      "</ul>"
+      }
 
 </script>
 <p id="info"></p>
