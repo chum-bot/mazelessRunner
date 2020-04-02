@@ -1,3 +1,5 @@
+blank = "🔲";
+
 var myBoard = [];
 
 //board creation
@@ -5,7 +7,7 @@ for (var x = 0; x < 20; x++) {
   myBoard[x] = [];
 
   for (var y = 0; y < 20; y++) {
-    myBoard[x][y] = "🔲";
+    myBoard[x][y] = blank;
   }
 }
 
@@ -59,6 +61,7 @@ frog = "🐸";
 shark = "🦈";
 monkey = "🐒"
 banana = "🍌"
+bee = "🐝"
 myBoard[crocX][crocY] = croc;
 myBoard[myCharacterX][myCharacterY] = player1;
 myBoard[spiderX][spiderY] = frog;
@@ -165,34 +168,34 @@ document.addEventListener('keydown', function(event) {
   if (lives < 3) {
 
     if (sharkY == 0) {
-      myBoard[sharkX][sharkY] = "🔲";
+      myBoard[sharkX][sharkY] = blank;
       sharkY++;
       myBoard[sharkX][sharkY] = shark;
 
     } else if (sharkY == 19) {
-      myBoard[sharkX][sharkY] = "🔲";
+      myBoard[sharkX][sharkY] = blank;
       sharkY--;
       myBoard[sharkX][sharkY] = shark;
     } else if (sharkX == 0) {
-      myBoard[sharkX][sharkY] = "🔲";
+      myBoard[sharkX][sharkY] = blank;
       sharkX++;
       myBoard[sharkX][sharkY] = shark;
     } else if (sharkX == 19) {
-      myBoard[sharkX][sharkY] = "🔲";
+      myBoard[sharkX][sharkY] = blank;
       sharkX--;
       myBoard[sharkX][sharkY] = shark;
     } // x movement 
     else {
       if (sharkX < myCharacterX) {
-        myBoard[sharkX][sharkY] = "🔲";
+        myBoard[sharkX][sharkY] = blank;
         sharkX++;
         myBoard[sharkX][sharkY] = shark;
       } else if (sharkX == myCharacterX) {
-        myBoard[sharkX][sharkY] = "🔲";
+        myBoard[sharkX][sharkY] = blank;
         sharkY--;
         myBoard[sharkX][sharkY] = shark;
       } else {
-        myBoard[sharkX][sharkY] = "🔲";
+        myBoard[sharkX][sharkY] = blank;
         sharkX--;
         sharkX--;
         myBoard[sharkX][sharkY] = shark;
@@ -230,7 +233,7 @@ document.addEventListener('keydown', function(event) {
       if (myCharacterY == 0) {
         myBoard[myCharacterX][myCharacterY] = player1;
       } else {
-        myBoard[myCharacterX][myCharacterY] = "🔲";
+        myBoard[myCharacterX][myCharacterY] = blank;
         myCharacterY--;
         myBoard[myCharacterX][myCharacterY] = player1;
       }
@@ -238,10 +241,10 @@ document.addEventListener('keydown', function(event) {
       myBoard[myCharacterX][myCharacterY] = player1;
     }
     if (spiderY != 19 && myCharacterY != 0) {
-      myBoard[spiderX][spiderY] = "🔲";
+      myBoard[spiderX][spiderY] = blank;
       spiderY++;
       myBoard[spiderX][spiderY] = frog;
-      myBoard[myCharacterX][myCharacterY] = "🔲";
+      myBoard[myCharacterX][myCharacterY] = blank;
       myCharacterY--;
       myBoard[myCharacterX][myCharacterY] = player1;
       myBoard[spiderX][spiderY] = frog;
@@ -256,7 +259,7 @@ document.addEventListener('keydown', function(event) {
       if (myCharacterY == 19) {
         myBoard[myCharacterX][myCharacterY] = player1;
       } else {
-        myBoard[myCharacterX][myCharacterY] = "🔲";
+        myBoard[myCharacterX][myCharacterY] = blank;
         myCharacterY++;
         myBoard[myCharacterX][myCharacterY] = player1;
       }
@@ -264,10 +267,10 @@ document.addEventListener('keydown', function(event) {
       myBoard[myCharacterX][myCharacterY] = player1;
     }
     if (spiderY != 0 && myCharacterY != 19) {
-      myBoard[spiderX][spiderY] = "🔲";
+      myBoard[spiderX][spiderY] = blank;
       spiderY--;
       myBoard[spiderX][spiderY] = frog;
-      myBoard[myCharacterX][myCharacterY] = "🔲";
+      myBoard[myCharacterX][myCharacterY] = blank;
       myCharacterY++;
       myBoard[myCharacterX][myCharacterY] = player1;
       myBoard[spiderX][spiderY] = frog;
@@ -282,7 +285,7 @@ document.addEventListener('keydown', function(event) {
       if (myCharacterX == 19) {
         myBoard[myCharacterX][myCharacterY] = player1;
       } else {
-        myBoard[myCharacterX][myCharacterY] = "🔲";
+        myBoard[myCharacterX][myCharacterY] = blank;
         myCharacterX++;
         myBoard[myCharacterX][myCharacterY] = player1;
       }
@@ -290,10 +293,10 @@ document.addEventListener('keydown', function(event) {
       myBoard[myCharacterX][myCharacterY] = player1;
     }
     if (spiderX != 0 && myCharacterX != 19) {
-      myBoard[spiderX][spiderY] = "🔲";
+      myBoard[spiderX][spiderY] = blank;
       spiderX--;
       myBoard[spiderX][spiderY] = frog;
-      myBoard[myCharacterX][myCharacterY] = "🔲";
+      myBoard[myCharacterX][myCharacterY] = blank;
       myCharacterX++;
       myBoard[myCharacterX][myCharacterY] = player1;
       myBoard[spiderX][spiderY] = frog;
@@ -308,7 +311,7 @@ document.addEventListener('keydown', function(event) {
       if (myCharacterX == 0) {
         myBoard[myCharacterX][myCharacterY] = player1;
       } else {
-        myBoard[myCharacterX][myCharacterY] = "🔲";
+        myBoard[myCharacterX][myCharacterY] = blank;
         myCharacterX--;
         myBoard[myCharacterX][myCharacterY] = player1;
       }
@@ -316,10 +319,10 @@ document.addEventListener('keydown', function(event) {
       myBoard[myCharacterX][myCharacterY] = player1;
     }
     if (spiderX != 19 && myCharacterX != 0) {
-      myBoard[spiderX][spiderY] = "🔲";
+      myBoard[spiderX][spiderY] = blank;
       spiderX++;
       myBoard[spiderX][spiderY] = frog;
-      myBoard[myCharacterX][myCharacterY] = "🔲";
+      myBoard[myCharacterX][myCharacterY] = blank;
       myCharacterX--;
       myBoard[myCharacterX][myCharacterY] = player1;
 
@@ -341,10 +344,10 @@ document.addEventListener('keydown', function(event) {
       cherryY = Math.floor((Math.random() * 20));
     }
     for(var objectOfMine of minePositions){
-    if (myBoard[cherryX][cherryY] == myBoard[objectOfMine.xPos][objectOfMine.yPos]) {
-      cherryX = Math.floor((Math.random() * 20));
-      cherryY = Math.floor((Math.random() * 20));
-    }
+      if (myBoard[cherryX][cherryY] == myBoard[objectOfMine.xPos][objectOfMine.yPos]) {
+        cherryX = Math.floor((Math.random() * 20));
+        cherryY = Math.floor((Math.random() * 20));
+      }
     }
     for(var bananobject of bananaPositions){
       if (myBoard[cherryX][cherryY] == myBoard[bananobject.xPos][bananobject.yPos]) {
@@ -389,7 +392,7 @@ document.addEventListener('keydown', function(event) {
       //top left side
       if (moveAmtTL == 4) {
         if (myBoard[crocX][crocY] != myBoard[cherryTLXc][cherryTLEY]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryTLXc;
           crocY = cherryTLEY;
           myBoard[crocX][crocY] = croc;
@@ -397,7 +400,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 3) {
         if (myBoard[crocX][crocY] != myBoard[cherryTLXm2][cherryTLEY]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryTLXm2;
           crocY = cherryTLEY;
           myBoard[crocX][crocY] = croc;
@@ -405,7 +408,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 2) {
         if (myBoard[crocX][crocY] != myBoard[cherryTLTRX][cherryTLEY]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryTLTRX;
           crocY = cherryTLEY;
           myBoard[crocX][crocY] = croc;
@@ -413,7 +416,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 1) {
         if (myBoard[crocX][crocY] != myBoard[cherryTRXm1][cherryTLEY]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryTRXm1;
           crocY = cherryTLEY;
           myBoard[crocX][crocY] = croc;
@@ -422,7 +425,7 @@ document.addEventListener('keydown', function(event) {
       //top right side
       if (moveAmtTL == 0 && moveAmtTR == 4) {
         if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryTRYc]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryTREX;
           crocY = cherryTRYc;
           myBoard[crocX][crocY] = croc;
@@ -430,7 +433,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 0 && moveAmtTR == 3) {
         if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryTRYm2]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryTREX;
           crocY = cherryTRYm2;
           myBoard[crocX][crocY] = croc;
@@ -438,7 +441,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 0 && moveAmtTR == 2) {
         if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryTRBRY]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryTREX;
           crocY = cherryTRBRY;
           myBoard[crocX][crocY] = croc;
@@ -446,7 +449,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 0 && moveAmtTR == 1) {
         if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryBRYm1]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryTREX;
           crocY = cherryBRYm1;
           myBoard[crocX][crocY] = croc;
@@ -455,7 +458,7 @@ document.addEventListener('keydown', function(event) {
       //bottom right side
       if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 4) {
         if (myBoard[crocX][crocY] != myBoard[cherryBRXc][cherryBREY]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryBRXc;
           crocY = cherryBREY;
           myBoard[crocX][crocY] = croc;
@@ -463,7 +466,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 3) {
         if (myBoard[crocX][crocY] != myBoard[cherryBRXm2][cherryBREY]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryBRXm2;
           crocY = cherryBREY;
           myBoard[crocX][crocY] = croc;
@@ -471,7 +474,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 2) {
         if (myBoard[crocX][crocY] != myBoard[cherryBRBLX][cherryBREY]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryBRBLX;
           crocY = cherryBREY;
           myBoard[crocX][crocY] = croc;
@@ -479,7 +482,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 1) {
         if (myBoard[crocX][crocY] != myBoard[cherryBLXm1][cherryBREY]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryBLXm1;
           crocY = cherryBREY;
           myBoard[crocX][crocY] = croc;
@@ -488,7 +491,7 @@ document.addEventListener('keydown', function(event) {
       //bottom left side
       if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 4) {
         if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryBLYc]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryBLEX;
           crocY = cherryBLYc;
           myBoard[crocX][crocY] = croc;
@@ -496,7 +499,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 3) {
         if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryBLYm2]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryBLEX;
           crocY = cherryBLYm2;
           myBoard[crocX][crocY] = croc;
@@ -504,7 +507,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 2) {
         if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryBLTLY]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryBLEX;
           crocY = cherryBLTLY;
           myBoard[crocX][crocY] = croc;
@@ -512,7 +515,7 @@ document.addEventListener('keydown', function(event) {
       }
       if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 1) {
         if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryTLYm1]) {
-          myBoard[crocX][crocY] = "🔲";
+          myBoard[crocX][crocY] = blank;
           crocX = cherryBLEX;
           crocY = cherryTLYm1;
           myBoard[crocX][crocY] = croc;
@@ -531,7 +534,7 @@ document.addEventListener('keydown', function(event) {
     myBoard[crocX][crocY] = croc
     myBoard[sharkX][sharkY] = shark;
     myBoard[shadowX][shadowY] = moon;
-    myBoard[snakeX][snakeY] = "🐍"
+    myBoard[snakeX][snakeY] = bee;
     myBoard[monkeyX][monkeyY] = monkey;
   }
   }
@@ -551,6 +554,10 @@ document.addEventListener('keydown', function(event) {
     document.getElementById("lives").innerHTML = " Lives: " + lives;
   }
   if (myBoard[snakeX][snakeY] == myBoard[myCharacterX][myCharacterY]) {
+    lives--;
+    document.getElementById("lives").innerHTML = " Lives: " + lives;
+  }
+  if (myBoard[monkeyX][monkeyY] == myBoard[myCharacterX][myCharacterY]) {
     lives--;
     document.getElementById("lives").innerHTML = " Lives: " + lives;
   }
@@ -612,15 +619,15 @@ function snakeMovement() {
     var snake1stMove = Math.floor((Math.random() * 4) + 1);
     var snake2ndMove = Math.floor((Math.random() * 4) + 1);
 
-    myBoard[snakeX][snakeY] = "🐍";
+    myBoard[snakeX][snakeY] = bee;
     if (snake1stMove == 1) {
       if (snakeY == 0 || snakeY == 1) {
         snake1stMove = 2;
         snake2ndMove = 2;
       } else {
-        myBoard[snakeX][snakeY] = "🔲"
+        myBoard[snakeX][snakeY] = blank
         snakeY--;
-        myBoard[snakeX][snakeY] = "🐍"
+        myBoard[snakeX][snakeY] = bee
       }
     }
     if (snake1stMove == 2) {
@@ -628,9 +635,9 @@ function snakeMovement() {
         snake1stMove = 1;
         snake2ndMove = 1;
       } else {
-        myBoard[snakeX][snakeY] = "🔲"
+        myBoard[snakeX][snakeY] = blank
         snakeY++;
-        myBoard[snakeX][snakeY] = "🐍"
+        myBoard[snakeX][snakeY] = bee
       }
     }
     if (snake1stMove == 3) {
@@ -638,9 +645,9 @@ function snakeMovement() {
         snake1stMove = 4;
         snake2ndMove = 4;
       } else {
-        myBoard[snakeX][snakeY] = "🔲"
+        myBoard[snakeX][snakeY] = blank
         snakeX--;
-        myBoard[snakeX][snakeY] = "🐍"
+        myBoard[snakeX][snakeY] = bee
       }
     }
     if (snake1stMove == 4) {
@@ -648,9 +655,9 @@ function snakeMovement() {
         snake1stMove = 3;
         snake2ndMove = 3;
       } else {
-        myBoard[snakeX][snakeY] = "🔲"
+        myBoard[snakeX][snakeY] = blank
         snakeX++;
-        myBoard[snakeX][snakeY] = "🐍"
+        myBoard[snakeX][snakeY] = bee
       }
     }
     if (snakeY == 0 || snakeY == 1) {
@@ -670,24 +677,24 @@ function snakeMovement() {
       snake2ndMove = 3;
     }
     if (snake2ndMove == 1) {
-      myBoard[snakeX][snakeY] = "🔲"
+      myBoard[snakeX][snakeY] = blank
       snakeY = snakeY - 2;
-      myBoard[snakeX][snakeY] = "🐍"
+      myBoard[snakeX][snakeY] = bee
     }
     if (snake2ndMove == 2) {
-      myBoard[snakeX][snakeY] = "🔲"
+      myBoard[snakeX][snakeY] = blank
       snakeY = snakeY + 2;
-      myBoard[snakeX][snakeY] = "🐍"
+      myBoard[snakeX][snakeY] = bee
     }
     if (snake2ndMove == 3) {
-      myBoard[snakeX][snakeY] = "🔲"
+      myBoard[snakeX][snakeY] = blank
       snakeX = snakeX - 2;
-      myBoard[snakeX][snakeY] = "🐍"
+      myBoard[snakeX][snakeY] = bee
     }
     if (snake2ndMove == 4) {
-      myBoard[snakeX][snakeY] = "🔲"
+      myBoard[snakeX][snakeY] = blank
       snakeX = snakeX + 2;
-      myBoard[snakeX][snakeY] = "🐍"
+      myBoard[snakeX][snakeY] = bee;
     }
   }
 }
@@ -760,25 +767,25 @@ if(score >= 2000){
     }
 
     if (moveAmtTL > 0) {
-      myBoard[crocX][crocY] = "🔲";
+      myBoard[crocX][crocY] = blank;
       crocX++;
       myBoard[crocX][crocY] = croc;
       moveAmtTL--;
 
     } else if (moveAmtTR > 0) {
-      myBoard[crocX][crocY] = "🔲";
+      myBoard[crocX][crocY] = blank;
       crocY++;
       myBoard[crocX][crocY] = croc;
       moveAmtTR--;
 
     } else if (moveAmtBR > 0) {
-      myBoard[crocX][crocY] = "🔲";
+      myBoard[crocX][crocY] = blank;
       crocX--;
       myBoard[crocX][crocY] = croc;
       moveAmtBR--;
 
     } else if (moveAmtBL > 0) {
-      myBoard[crocX][crocY] = "🔲";
+      myBoard[crocX][crocY] = blank;
       crocY--;
       myBoard[crocX][crocY] = croc;
       moveAmtBL--;
