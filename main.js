@@ -1,5 +1,10 @@
 blank = "🔲";
 
+//QoL functions
+function get(thingToGet) {
+  return document.getElementById(thingToGet);
+}
+
 var myBoard = [];
 
 //board creation
@@ -14,7 +19,7 @@ for (var x = 0; x < 20; x++) {
 
 
 function displayBoard() {
-  document.getElementById('output_holder').innerHTML = '';
+  get('output_holder').innerHTML = '';
   var outputString = '';
 
   for (var y = 0; y < myBoard.length; y++) {
@@ -23,7 +28,7 @@ function displayBoard() {
     }
     outputString = outputString + "</br>";
   }
-  document.getElementById('output_holder').innerHTML = outputString;
+  get('output_holder').innerHTML = outputString;
 }
 
 //score and lives
@@ -100,8 +105,6 @@ var cherryTLYm1 = cherryY - 1;
 var disX = Math.abs(myCharacterX - sharkX);
 var disY = Math.abs(myCharacterY - sharkY);
 
-
-
 //mines(OPTIMIZING because it can and should be)
 //well now that im in vscode i COULD make a different file for this... nah
 class Mine {
@@ -116,27 +119,27 @@ class Mine {
 //ded function lol
 function ded() {
   document.body.style.background = "rgb(225,35,0)";
-  document.getElementById("lives").style.display = "none";
-  document.getElementById("game_over").style.display = "block";
-  document.getElementById("ur_dead").style.display = "block";
-  document.getElementById("everything").style.backgroundImage = "url(https://i.imgur.com/knQZJCq.jpg)";
-  document.getElementById("everything").style.backgroundSize = "100% 100%";
-  document.getElementById("everything").style.backgroundRepeat = "no-repeat";
-  document.getElementById("everything").style.backgroundSize = "100% 100%";
-  document.getElementById("everything").style.backgroundAttachment = "fixed";
-  document.getElementById("output_holder").style.opacity = "0";
-  document.getElementById("output_holder").style.fontSize = "90%";
-  
+  get("lives").style.display = "none";
+  get("game_over").style.display = "block";
+  get("ur_dead").style.display = "block";
+  get("everything").style.backgroundImage = "url(https://i.imgur.com/knQZJCq.jpg)";
+  get("everything").style.backgroundSize = "100% 100%";
+  get("everything").style.backgroundRepeat = "no-repeat";
+  get("everything").style.backgroundSize = "100% 100%";
+  get("everything").style.backgroundAttachment = "fixed";
+  get("output_holder").style.opacity = "0";
+  get("output_holder").style.fontSize = "90%";
+
 }
 
 
 //element removal
 function removeElement() {
-  var element1 = document.getElementById("title_screen");
-  var element2 = document.getElementById("info");
-  var element3 = document.getElementById("infobutton");
-  var element4 = document.getElementById("patchNoteButton");
-  var element5 = document.getElementById("patch_notes");
+  var element1 = get("title_screen");
+  var element2 = get("info");
+  var element3 = get("infobutton");
+  var element4 = get("patchNoteButton");
+  var element5 = get("patch_notes");
   element1.parentNode.removeChild(element1);
   element2.parentNode.removeChild(element2);
   element3.parentNode.removeChild(element3);
@@ -145,427 +148,416 @@ function removeElement() {
 }
 
 //actions on key press
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
 
   event.preventDefault();
   if (event.keycode == 13) {
     displayBoard();
   }
-  if(event.keyCode == 186){
+  if (event.keyCode == 186) {
     lives = 99999;
-    document.getElementById("lives").style.color = "gold";
-    document.getElementById("godMode").style.display = "block";
+    get("lives").style.color = "gold";
+    get("godMode").style.display = "block";
     player1 = "🌞";
   }
   if (work == 1) {
     work = 0;
     removeElement();
   }
-  document.getElementById('output_holder').style.border = "thick double aquamarine";
+  get('output_holder').style.border = "thick double aquamarine";
 
   //shark 
-  try{
-  if (lives < 3) {
+  try {
+    if (lives < 3) {
 
-    if (sharkY == 0) {
-      myBoard[sharkX][sharkY] = blank;
-      sharkY++;
-      myBoard[sharkX][sharkY] = shark;
-
-    } else if (sharkY == 19) {
-      myBoard[sharkX][sharkY] = blank;
-      sharkY--;
-      myBoard[sharkX][sharkY] = shark;
-    } else if (sharkX == 0) {
-      myBoard[sharkX][sharkY] = blank;
-      sharkX++;
-      myBoard[sharkX][sharkY] = shark;
-    } else if (sharkX == 19) {
-      myBoard[sharkX][sharkY] = blank;
-      sharkX--;
-      myBoard[sharkX][sharkY] = shark;
-    } // x movement 
-    else {
-      if (sharkX < myCharacterX) {
+      if (sharkY == 0) {
         myBoard[sharkX][sharkY] = blank;
-        sharkX++;
+        sharkY++;
         myBoard[sharkX][sharkY] = shark;
-      } else if (sharkX == myCharacterX) {
+
+      } else if (sharkY == 19) {
         myBoard[sharkX][sharkY] = blank;
         sharkY--;
         myBoard[sharkX][sharkY] = shark;
-      } else {
+      } else if (sharkX == 0) {
+        myBoard[sharkX][sharkY] = blank;
+        sharkX++;
+        myBoard[sharkX][sharkY] = shark;
+      } else if (sharkX == 19) {
         myBoard[sharkX][sharkY] = blank;
         sharkX--;
-        sharkX--;
         myBoard[sharkX][sharkY] = shark;
+      } // x movement 
+      else {
+        if (sharkX < myCharacterX) {
+          myBoard[sharkX][sharkY] = blank;
+          sharkX++;
+          myBoard[sharkX][sharkY] = shark;
+        } else if (sharkX == myCharacterX) {
+          myBoard[sharkX][sharkY] = blank;
+          sharkY--;
+          myBoard[sharkX][sharkY] = shark;
+        } else {
+          myBoard[sharkX][sharkY] = blank;
+          sharkX--;
+          sharkX--;
+          myBoard[sharkX][sharkY] = shark;
+        }
+
       }
 
     }
-
   }
+  //i have the ability to fix the softlocking and i make it into a mechanic
+  catch (error) {
+    softlock();
   }
- //i have the ability to fix the softlocking and i make it into a mechanic
-  catch(error){
-  		softlock();
-  }
- function softlock(){
-  document.body.style.backgroundImage = "url(https://ak0.picdn.net/shutterstock/videos/8502370/thumb/10.jpg)";
-  document.getElementById("output_holder").style.opacity = "0";
-	document.getElementById("softlocked").style.display = "block";
-  document.getElementById("beCareful").style.display = "block";
-  document.getElementById("lives").style.display = "none";
-  lives = 0;
+  function softlock() {
+    document.body.style.backgroundImage = "url(https://ak0.picdn.net/shutterstock/videos/8502370/thumb/10.jpg)";
+    get("output_holder").style.opacity = "0";
+    get("softlocked").style.display = "block";
+    get("beCareful").style.display = "block";
+    get("lives").style.display = "none";
+    lives = 0;
   }
   //reset
-  if(event.keyCode == 82){
-  window.location.reload(true);
+  if (event.keyCode == 82) {
+    window.location.reload(true);
   }
-  
+
   //character and frog movement
 
-  if(lives > 0){
+  if (lives > 0) {
 
-  if (event.keyCode == 38 && myCharacterY > 0) {
+    if (event.keyCode == 38 && myCharacterY > 0) {
 
-    if (spiderY == 19) {
-      myBoard[spiderX][spiderY] = frog;
-      if (myCharacterY == 0) {
+      if (spiderY == 19) {
+        myBoard[spiderX][spiderY] = frog;
+        if (myCharacterY == 0) {
+          myBoard[myCharacterX][myCharacterY] = player1;
+        } else {
+          myBoard[myCharacterX][myCharacterY] = blank;
+          myCharacterY--;
+          myBoard[myCharacterX][myCharacterY] = player1;
+        }
+      } else if (myCharacterY == 0) {
         myBoard[myCharacterX][myCharacterY] = player1;
-      } else {
+      }
+      if (spiderY != 19 && myCharacterY != 0) {
+        myBoard[spiderX][spiderY] = blank;
+        spiderY++;
+        myBoard[spiderX][spiderY] = frog;
         myBoard[myCharacterX][myCharacterY] = blank;
         myCharacterY--;
         myBoard[myCharacterX][myCharacterY] = player1;
+        myBoard[spiderX][spiderY] = frog;
+
       }
-    } else if (myCharacterY == 0) {
-      myBoard[myCharacterX][myCharacterY] = player1;
-    }
-    if (spiderY != 19 && myCharacterY != 0) {
-      myBoard[spiderX][spiderY] = blank;
-      spiderY++;
-      myBoard[spiderX][spiderY] = frog;
-      myBoard[myCharacterX][myCharacterY] = blank;
-      myCharacterY--;
-      myBoard[myCharacterX][myCharacterY] = player1;
-      myBoard[spiderX][spiderY] = frog;
 
     }
+    if (event.keyCode == 40 && myCharacterY < 19) {
 
-  }
-  if (event.keyCode == 40 && myCharacterY < 19) {
-
-    if (spiderY == 0) {
-      myBoard[spiderX][spiderY] = frog;
-      if (myCharacterY == 19) {
+      if (spiderY == 0) {
+        myBoard[spiderX][spiderY] = frog;
+        if (myCharacterY == 19) {
+          myBoard[myCharacterX][myCharacterY] = player1;
+        } else {
+          myBoard[myCharacterX][myCharacterY] = blank;
+          myCharacterY++;
+          myBoard[myCharacterX][myCharacterY] = player1;
+        }
+      } else if (myCharacterY == 19) {
         myBoard[myCharacterX][myCharacterY] = player1;
-      } else {
+      }
+      if (spiderY != 0 && myCharacterY != 19) {
+        myBoard[spiderX][spiderY] = blank;
+        spiderY--;
+        myBoard[spiderX][spiderY] = frog;
         myBoard[myCharacterX][myCharacterY] = blank;
         myCharacterY++;
         myBoard[myCharacterX][myCharacterY] = player1;
+        myBoard[spiderX][spiderY] = frog;
+
       }
-    } else if (myCharacterY == 19) {
-      myBoard[myCharacterX][myCharacterY] = player1;
-    }
-    if (spiderY != 0 && myCharacterY != 19) {
-      myBoard[spiderX][spiderY] = blank;
-      spiderY--;
-      myBoard[spiderX][spiderY] = frog;
-      myBoard[myCharacterX][myCharacterY] = blank;
-      myCharacterY++;
-      myBoard[myCharacterX][myCharacterY] = player1;
-      myBoard[spiderX][spiderY] = frog;
 
     }
+    if (event.keyCode == 39 && myCharacterX < 19) {
 
-  }
-  if (event.keyCode == 39 && myCharacterX < 19) {
-
-    if (spiderX == 0) {
-      myBoard[spiderX][spiderY] = frog;
-      if (myCharacterX == 19) {
+      if (spiderX == 0) {
+        myBoard[spiderX][spiderY] = frog;
+        if (myCharacterX == 19) {
+          myBoard[myCharacterX][myCharacterY] = player1;
+        } else {
+          myBoard[myCharacterX][myCharacterY] = blank;
+          myCharacterX++;
+          myBoard[myCharacterX][myCharacterY] = player1;
+        }
+      } else if (myCharacterX == 19) {
         myBoard[myCharacterX][myCharacterY] = player1;
-      } else {
+      }
+      if (spiderX != 0 && myCharacterX != 19) {
+        myBoard[spiderX][spiderY] = blank;
+        spiderX--;
+        myBoard[spiderX][spiderY] = frog;
         myBoard[myCharacterX][myCharacterY] = blank;
         myCharacterX++;
         myBoard[myCharacterX][myCharacterY] = player1;
+        myBoard[spiderX][spiderY] = frog;
+
       }
-    } else if (myCharacterX == 19) {
-      myBoard[myCharacterX][myCharacterY] = player1;
-    }
-    if (spiderX != 0 && myCharacterX != 19) {
-      myBoard[spiderX][spiderY] = blank;
-      spiderX--;
-      myBoard[spiderX][spiderY] = frog;
-      myBoard[myCharacterX][myCharacterY] = blank;
-      myCharacterX++;
-      myBoard[myCharacterX][myCharacterY] = player1;
-      myBoard[spiderX][spiderY] = frog;
 
     }
+    if (event.keyCode == 37 && myCharacterX > 0) {
 
-  }
-  if (event.keyCode == 37 && myCharacterX > 0) {
-
-    if (spiderX == 19) {
-      myBoard[spiderX][spiderY] = frog;
-      if (myCharacterX == 0) {
+      if (spiderX == 19) {
+        myBoard[spiderX][spiderY] = frog;
+        if (myCharacterX == 0) {
+          myBoard[myCharacterX][myCharacterY] = player1;
+        } else {
+          myBoard[myCharacterX][myCharacterY] = blank;
+          myCharacterX--;
+          myBoard[myCharacterX][myCharacterY] = player1;
+        }
+      } else if (myCharacterX == 0) {
         myBoard[myCharacterX][myCharacterY] = player1;
-      } else {
+      }
+      if (spiderX != 19 && myCharacterX != 0) {
+        myBoard[spiderX][spiderY] = blank;
+        spiderX++;
+        myBoard[spiderX][spiderY] = frog;
         myBoard[myCharacterX][myCharacterY] = blank;
         myCharacterX--;
         myBoard[myCharacterX][myCharacterY] = player1;
+
       }
-    } else if (myCharacterX == 0) {
-      myBoard[myCharacterX][myCharacterY] = player1;
-    }
-    if (spiderX != 19 && myCharacterX != 0) {
-      myBoard[spiderX][spiderY] = blank;
-      spiderX++;
-      myBoard[spiderX][spiderY] = frog;
-      myBoard[myCharacterX][myCharacterY] = blank;
-      myCharacterX--;
-      myBoard[myCharacterX][myCharacterY] = player1;
 
     }
 
-  }
-
-  //croc teleport and cherry pickup
-  if (myBoard[myCharacterX][myCharacterY] == myBoard[cherryX][cherryY]) {
-    score += 250;
-    cherryX = Math.floor((Math.random() * 20));
-    cherryY = Math.floor((Math.random() * 20));
-    if (myBoard[cherryX][cherryY] == myBoard[shadowX][shadowY]) {
+    //croc teleport and cherry pickup
+    if (myBoard[myCharacterX][myCharacterY] == myBoard[cherryX][cherryY]) {
+      score += 250;
       cherryX = Math.floor((Math.random() * 20));
       cherryY = Math.floor((Math.random() * 20));
-    }
-    if (myBoard[cherryX][cherryY] == myBoard[snakeX][snakeY]) {
-      cherryX = Math.floor((Math.random() * 20));
-      cherryY = Math.floor((Math.random() * 20));
-    }
-    for(var objectOfMine of minePositions){
-      if (myBoard[cherryX][cherryY] == myBoard[objectOfMine.xPos][objectOfMine.yPos]) {
+      if (myBoard[cherryX][cherryY] == myBoard[shadowX][shadowY]) {
         cherryX = Math.floor((Math.random() * 20));
         cherryY = Math.floor((Math.random() * 20));
       }
-    }
-    for(var bananobject of bananaPositions){
-      if (myBoard[cherryX][cherryY] == myBoard[bananobject.xPos][bananobject.yPos]) {
+      if (myBoard[cherryX][cherryY] == myBoard[snakeX][snakeY]) {
         cherryX = Math.floor((Math.random() * 20));
         cherryY = Math.floor((Math.random() * 20));
       }
-    }
-    if (myBoard[cherryX][cherryY] == myBoard[sharkX][sharkY]) {
-      cherryX = Math.floor((Math.random() * 20));
-      cherryY = Math.floor((Math.random() * 20));
-    }
-    if (myBoard[cherryX][cherryY] == myBoard[monkeyX][monkeyY]) {
-      cherryX = Math.floor((Math.random() * 20));
-      cherryY = Math.floor((Math.random() * 20));
-    }
-    myBoard[cherryX][cherryY] = energy;
-    cherryTLEY = cherryY - 2;
-    cherryTREX = cherryX + 2;
-    cherryBREY = cherryY + 2;
-    cherryBLEX = cherryX - 2;
-    cherryTLXc = cherryX - 2;
-    cherryTLXm2 = cherryX - 1;
-    cherryTLTRX = cherryX;
-    cherryTRXm1 = cherryX + 1;
-    cherryTRYc = cherryY - 2;
-    cherryTRYm2 = cherryY - 1;
-    cherryTRBRY = cherryY;
-    cherryBRYm1 = cherryY + 1;
-    cherryBRXc = cherryX + 2;
-    cherryBRXm2 = cherryX + 1;
-    cherryBRBLX = cherryX;
-    cherryBLXm1 = cherryX - 1;
-    cherryBLYc = cherryY + 2;
-    cherryBLYm2 = cherryY + 1;
-    cherryBLTLY = cherryY;
-    cherryTLYm1 = cherryY - 1;
+      if (myBoard[cherryX][cherryY] == myBoard[sharkX][sharkY]) {
+        cherryX = Math.floor((Math.random() * 20));
+        cherryY = Math.floor((Math.random() * 20));
+      }
+      if (myBoard[cherryX][cherryY] == myBoard[monkeyX][monkeyY]) {
+        cherryX = Math.floor((Math.random() * 20));
+        cherryY = Math.floor((Math.random() * 20));
+      }
+      for (var objectOfMine of minePositions) {
+        if (myBoard[cherryX][cherryY] == myBoard[objectOfMine.xPos][objectOfMine.yPos]) {
+          cherryX = Math.floor((Math.random() * 20));
+          cherryY = Math.floor((Math.random() * 20));
+        }
+      }
+      for (var bananobject of bananaPositions) {
+        if (myBoard[cherryX][cherryY] == myBoard[bananobject.xPos][bananobject.yPos]) {
+          cherryX = Math.floor((Math.random() * 20));
+          cherryY = Math.floor((Math.random() * 20));
+        }
+      }
 
-    if (cherryX <= 1 || cherryX >= 18 || cherryY <= 1 || cherryY >= 18) {
-      myBoard[crocX][crocY] = croc;
-    } else {
+      myBoard[cherryX][cherryY] = energy;
+      cherryTLEY = cherryY - 2;
+      cherryTREX = cherryX + 2;
+      cherryBREY = cherryY + 2;
+      cherryBLEX = cherryX - 2;
+      cherryTLXc = cherryX - 2;
+      cherryTLXm2 = cherryX - 1;
+      cherryTLTRX = cherryX;
+      cherryTRXm1 = cherryX + 1;
+      cherryTRYc = cherryY - 2;
+      cherryTRYm2 = cherryY - 1;
+      cherryTRBRY = cherryY;
+      cherryBRYm1 = cherryY + 1;
+      cherryBRXc = cherryX + 2;
+      cherryBRXm2 = cherryX + 1;
+      cherryBRBLX = cherryX;
+      cherryBLXm1 = cherryX - 1;
+      cherryBLYc = cherryY + 2;
+      cherryBLYm2 = cherryY + 1;
+      cherryBLTLY = cherryY;
+      cherryTLYm1 = cherryY - 1;
 
-      //top left side
-      if (moveAmtTL == 4) {
-        if (myBoard[crocX][crocY] != myBoard[cherryTLXc][cherryTLEY]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryTLXc;
-          crocY = cherryTLEY;
-          myBoard[crocX][crocY] = croc;
+      if (cherryX <= 1 || cherryX >= 18 || cherryY <= 1 || cherryY >= 18) {
+        myBoard[crocX][crocY] = croc;
+      } else {
+
+        //top left side
+        if (moveAmtTL == 4) {
+          if (myBoard[crocX][crocY] != myBoard[cherryTLXc][cherryTLEY]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryTLXc;
+            crocY = cherryTLEY;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 3) {
+          if (myBoard[crocX][crocY] != myBoard[cherryTLXm2][cherryTLEY]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryTLXm2;
+            crocY = cherryTLEY;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 2) {
+          if (myBoard[crocX][crocY] != myBoard[cherryTLTRX][cherryTLEY]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryTLTRX;
+            crocY = cherryTLEY;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 1) {
+          if (myBoard[crocX][crocY] != myBoard[cherryTRXm1][cherryTLEY]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryTRXm1;
+            crocY = cherryTLEY;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        //top right side
+        if (moveAmtTL == 0 && moveAmtTR == 4) {
+          if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryTRYc]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryTREX;
+            crocY = cherryTRYc;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 0 && moveAmtTR == 3) {
+          if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryTRYm2]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryTREX;
+            crocY = cherryTRYm2;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 0 && moveAmtTR == 2) {
+          if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryTRBRY]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryTREX;
+            crocY = cherryTRBRY;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 0 && moveAmtTR == 1) {
+          if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryBRYm1]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryTREX;
+            crocY = cherryBRYm1;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        //bottom right side
+        if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 4) {
+          if (myBoard[crocX][crocY] != myBoard[cherryBRXc][cherryBREY]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryBRXc;
+            crocY = cherryBREY;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 3) {
+          if (myBoard[crocX][crocY] != myBoard[cherryBRXm2][cherryBREY]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryBRXm2;
+            crocY = cherryBREY;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 2) {
+          if (myBoard[crocX][crocY] != myBoard[cherryBRBLX][cherryBREY]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryBRBLX;
+            crocY = cherryBREY;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 1) {
+          if (myBoard[crocX][crocY] != myBoard[cherryBLXm1][cherryBREY]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryBLXm1;
+            crocY = cherryBREY;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        //bottom left side
+        if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 4) {
+          if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryBLYc]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryBLEX;
+            crocY = cherryBLYc;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 3) {
+          if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryBLYm2]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryBLEX;
+            crocY = cherryBLYm2;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 2) {
+          if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryBLTLY]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryBLEX;
+            crocY = cherryBLTLY;
+            myBoard[crocX][crocY] = croc;
+          }
+        }
+        if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 1) {
+          if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryTLYm1]) {
+            myBoard[crocX][crocY] = blank;
+            crocX = cherryBLEX;
+            crocY = cherryTLYm1;
+            myBoard[crocX][crocY] = croc;
+          }
         }
       }
-      if (moveAmtTL == 3) {
-        if (myBoard[crocX][crocY] != myBoard[cherryTLXm2][cherryTLEY]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryTLXm2;
-          crocY = cherryTLEY;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 2) {
-        if (myBoard[crocX][crocY] != myBoard[cherryTLTRX][cherryTLEY]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryTLTRX;
-          crocY = cherryTLEY;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 1) {
-        if (myBoard[crocX][crocY] != myBoard[cherryTRXm1][cherryTLEY]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryTRXm1;
-          crocY = cherryTLEY;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      //top right side
-      if (moveAmtTL == 0 && moveAmtTR == 4) {
-        if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryTRYc]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryTREX;
-          crocY = cherryTRYc;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 0 && moveAmtTR == 3) {
-        if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryTRYm2]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryTREX;
-          crocY = cherryTRYm2;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 0 && moveAmtTR == 2) {
-        if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryTRBRY]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryTREX;
-          crocY = cherryTRBRY;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 0 && moveAmtTR == 1) {
-        if (myBoard[crocX][crocY] != myBoard[cherryTREX][cherryBRYm1]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryTREX;
-          crocY = cherryBRYm1;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      //bottom right side
-      if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 4) {
-        if (myBoard[crocX][crocY] != myBoard[cherryBRXc][cherryBREY]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryBRXc;
-          crocY = cherryBREY;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 3) {
-        if (myBoard[crocX][crocY] != myBoard[cherryBRXm2][cherryBREY]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryBRXm2;
-          crocY = cherryBREY;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 2) {
-        if (myBoard[crocX][crocY] != myBoard[cherryBRBLX][cherryBREY]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryBRBLX;
-          crocY = cherryBREY;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 1) {
-        if (myBoard[crocX][crocY] != myBoard[cherryBLXm1][cherryBREY]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryBLXm1;
-          crocY = cherryBREY;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      //bottom left side
-      if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 4) {
-        if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryBLYc]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryBLEX;
-          crocY = cherryBLYc;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 3) {
-        if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryBLYm2]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryBLEX;
-          crocY = cherryBLYm2;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 2) {
-        if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryBLTLY]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryBLEX;
-          crocY = cherryBLTLY;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
-      if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 1) {
-        if (myBoard[crocX][crocY] != myBoard[cherryBLEX][cherryTLYm1]) {
-          myBoard[crocX][crocY] = blank;
-          crocX = cherryBLEX;
-          crocY = cherryTLYm1;
-          myBoard[crocX][crocY] = croc;
-        }
-      }
+    }
+
+
+    get("score").innerHTML = "Score: " + score;
+    get("lives").innerHTML = " Lives: " + lives;
+
+    if (respawn == 1) {
+      myBoard[cherryX][cherryY] = energy;
+      myBoard[crocX][crocY] = croc
+      myBoard[sharkX][sharkY] = shark;
+      myBoard[shadowX][shadowY] = moon;
+      myBoard[snakeX][snakeY] = bee;
+      myBoard[monkeyX][monkeyY] = monkey;
     }
   }
-
-
-  document.getElementById("score").innerHTML = "Score: " + score;
-  document.getElementById("lives").innerHTML = " Lives: " + lives;
-
-  if (respawn == 1) {
-
-    myBoard[cherryX][cherryY] = energy;
-    myBoard[crocX][crocY] = croc
-    myBoard[sharkX][sharkY] = shark;
-    myBoard[shadowX][shadowY] = moon;
-    myBoard[snakeX][snakeY] = bee;
-    myBoard[monkeyX][monkeyY] = monkey;
-  }
-  }
-
 
   //lives
-  if (myBoard[spiderX][spiderY] == myBoard[myCharacterX][myCharacterY]) {
-    lives--;
-    document.getElementById("lives").innerHTML = " Lives: " + lives;
+  function lives(x, y) {
+    if (myBoard[x][y] == myBoard[myCharacterX][myCharacterY]) {
+      lives--;
+      get("lives").innerHTML = " Lives: " + lives;
+    }
   }
-  if (myBoard[sharkX][sharkY] == myBoard[myCharacterX][myCharacterY]) {
-    lives--;
-    document.getElementById("lives").innerHTML = " Lives: " + lives;
-  }
-  if (myBoard[shadowX][shadowY] == myBoard[myCharacterX][myCharacterY]) {
-    lives--;
-    document.getElementById("lives").innerHTML = " Lives: " + lives;
-  }
-  if (myBoard[snakeX][snakeY] == myBoard[myCharacterX][myCharacterY]) {
-    lives--;
-    document.getElementById("lives").innerHTML = " Lives: " + lives;
-  }
-  if (myBoard[monkeyX][monkeyY] == myBoard[myCharacterX][myCharacterY]) {
-    lives--;
-    document.getElementById("lives").innerHTML = " Lives: " + lives;
-  }
+  lives(spiderX, spiderY);
+  lives(sharkX, sharkY);
+  lives(shadowX, shadowY);
+  lives(snakeX, snakeY);
+  lives(monkeyX, monkeyY);
   for (var mineObj of minePositions) {
-    myBoard[mineObj.xPos][mineObj.yPos] = mineObj.img;
     if (myBoard[myCharacterX][myCharacterY] == myBoard[mineObj.xPos][mineObj.yPos]) {
       lives -= mineObj.damage;
-      document.getElementById("lives").innerHTML = " Lives: " + lives;
+      get("lives").innerHTML = " Lives: " + lives;
       break;
     }
   }
@@ -573,41 +565,41 @@ document.addEventListener('keydown', function(event) {
     myBoard[bananaObj.xPos][bananaObj.yPos] = bananaObj.img;
     if (myBoard[myCharacterX][myCharacterY] == myBoard[bananaObj.xPos][bananaObj.yPos]) {
       lives -= bananaObj.damage;
-      document.getElementById("lives").innerHTML = " Lives: " + lives;
+      get("lives").innerHTML = " Lives: " + lives;
       break;
     }
   }
   if (lives == 0) {
     ded();
   }
- stepCount--;
+  stepCount--;
 });
 displayBoard();
 
-function pulsingLifeColor(){
-  if(lives == 2){
-    if(dontKnowSetTimeoutLol == 0){
-    document.getElementById("lives").style.color = "orange";
-    dontKnowSetTimeoutLol = 1;
-    }
-    else if (dontKnowSetTimeoutLol == 1){
-      document.getElementById("lives").style.color = "yellow";
-      dontKnowSetTimeoutLol = 0;
-    }
-  }
-  if(lives == 1){
-    if(dontKnowSetTimeoutLol == 0){
-      document.getElementById("lives").style.color = "red";
+function pulsingLifeColor() {
+  if (lives == 2) {
+    if (dontKnowSetTimeoutLol == 0) {
+      get("lives").style.color = "orange";
       dontKnowSetTimeoutLol = 1;
     }
-    else if (dontKnowSetTimeoutLol == 1){
-      document.getElementById("lives").style.color = "white";
+    else if (dontKnowSetTimeoutLol == 1) {
+      get("lives").style.color = "yellow";
+      dontKnowSetTimeoutLol = 0;
+    }
+  }
+  if (lives == 1) {
+    if (dontKnowSetTimeoutLol == 0) {
+      get("lives").style.color = "red";
+      dontKnowSetTimeoutLol = 1;
+    }
+    else if (dontKnowSetTimeoutLol == 1) {
+      get("lives").style.color = "white";
       dontKnowSetTimeoutLol = 0;
     }
 
   }
 
-  }
+}
 
 var jeezJustWORK = 0;
 //snake
@@ -706,16 +698,16 @@ var moveyBoi = setInterval(shadowMovement, 500);
 let minePositions = [];
 
 function shadowMovement() {
-
+  
   var mine = new Mine(shadowX, shadowY, 1, "🌑");
   if (score >= 3000) {
     myBoard[mine.xPos][mine.yPos] = mine.img;
     minePositions.push(mine);
     shadowX = Math.floor((Math.random() * 20));
     shadowY = Math.floor((Math.random() * 20));
-    if(myBoard[shadowX][shadowY] == myBoard[cherryX][cherryY]){
-    shadowX = Math.floor((Math.random() * 20));
-    shadowY = Math.floor((Math.random() * 20));
+    if (myBoard[shadowX][shadowY] == myBoard[cherryX][cherryY]) {
+      shadowX = Math.floor((Math.random() * 20));
+      shadowY = Math.floor((Math.random() * 20));
     }
     myBoard[shadowX][shadowY] = moon;
     mineCap++;
@@ -723,12 +715,12 @@ function shadowMovement() {
 
   if (lives < 0) {
     lives = 0;
-    document.getElementById("lives").innerHTML = " Lives: " + lives;
+    get("lives").innerHTML = " Lives: " + lives;
   }
   if (mineCap == 50) {
     clearInterval(moveyBoi);
   }
-}  
+}
 var theBrokenCounter = 0;
 
 //croc
@@ -737,121 +729,121 @@ setInterval(crocMovement, 40);
 var initPulse = setInterval(pulsingLifeColor, pulseSpeed);
 
 function crocMovement() {
- 
-if(score >= 2000){
-  if(score >= 10000){
-    if(theBrokenCounter == 0){
-      theBrokenCounter = 1;
-      var thisMAYbeBroken = setInterval(shadowMovement, 250);
-    }
+
+  if (score >= 2000) {
+    if (score >= 10000) {
+      if (theBrokenCounter == 0) {
+        theBrokenCounter = 1;
+        var thisMAYbeBroken = setInterval(shadowMovement, 250);
+      }
     }
     if (mineCap == 300) {
       clearInterval(thisMAYbeBroken);
     }
 
-  if(jeezJustWORK == 0){
-    if(lives == 1){
-      clearInterval(initPulse);
-      let pulseSpeed = 250;
-      setInterval(pulsingLifeColor, pulseSpeed);
-      jeezJustWORK = 1;
+    if (jeezJustWORK == 0) {
+      if (lives == 1) {
+        clearInterval(initPulse);
+        let pulseSpeed = 250;
+        setInterval(pulsingLifeColor, pulseSpeed);
+        jeezJustWORK = 1;
+      }
     }
+    if (lives > 0) {
+      myBoard[myCharacterX][myCharacterY] = player1;
+      if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 0) {
+        moveAmtTL = 4;
+        moveAmtTR = 4;
+        moveAmtBR = 4;
+        moveAmtBL = 4;
+      }
+
+      if (moveAmtTL > 0) {
+        myBoard[crocX][crocY] = blank;
+        crocX++;
+        myBoard[crocX][crocY] = croc;
+        moveAmtTL--;
+
+      } else if (moveAmtTR > 0) {
+        myBoard[crocX][crocY] = blank;
+        crocY++;
+        myBoard[crocX][crocY] = croc;
+        moveAmtTR--;
+
+      } else if (moveAmtBR > 0) {
+        myBoard[crocX][crocY] = blank;
+        crocX--;
+        myBoard[crocX][crocY] = croc;
+        moveAmtBR--;
+
+      } else if (moveAmtBL > 0) {
+        myBoard[crocX][crocY] = blank;
+        crocY--;
+        myBoard[crocX][crocY] = croc;
+        moveAmtBL--;
+      }
+
+      if (myBoard[crocX][crocY] == myBoard[myCharacterX][myCharacterY]) {
+        lives--;
+        get("lives").innerHTML = " Lives: " + lives;
+      }
+
+    }
+    myBoard[crocX][crocY] = croc;
   }
-  if (lives > 0) {
-    myBoard[myCharacterX][myCharacterY] = player1;
-    if (moveAmtTL == 0 && moveAmtTR == 0 && moveAmtBR == 0 && moveAmtBL == 0) {
-      moveAmtTL = 4;
-      moveAmtTR = 4;
-      moveAmtBR = 4;
-      moveAmtBL = 4;
-    }
-
-    if (moveAmtTL > 0) {
-      myBoard[crocX][crocY] = blank;
-      crocX++;
-      myBoard[crocX][crocY] = croc;
-      moveAmtTL--;
-
-    } else if (moveAmtTR > 0) {
-      myBoard[crocX][crocY] = blank;
-      crocY++;
-      myBoard[crocX][crocY] = croc;
-      moveAmtTR--;
-
-    } else if (moveAmtBR > 0) {
-      myBoard[crocX][crocY] = blank;
-      crocX--;
-      myBoard[crocX][crocY] = croc;
-      moveAmtBR--;
-
-    } else if (moveAmtBL > 0) {
-      myBoard[crocX][crocY] = blank;
-      crocY--;
-      myBoard[crocX][crocY] = croc;
-      moveAmtBL--;
-    }
-
-    if (myBoard[crocX][crocY] == myBoard[myCharacterX][myCharacterY]) {
-      lives--;
-      document.getElementById("lives").innerHTML = " Lives: " + lives;
-    }
-    
-  }
-  myBoard[crocX][crocY] = croc;
-}
-displayBoard();
+  displayBoard();
 }
 var blinker = 0;
 var bananaPositions = [];
 function monkeyMovement() {
-if(score >= 5000){
-  if(stepCount <= 0){
-  var midBanana = new Mine (monkeyX, monkeyY, 1, banana);
-  var tlBanana = new Mine(monkeyX - 1, monkeyY - 1, 1, banana);
-  var trBanana = new Mine(monkeyX + 1, monkeyY - 1, 1, banana);
-  var blBanana = new Mine(monkeyX - 1, monkeyY + 1, 1, banana);
-  var brBanana = new Mine(monkeyX + 1, monkeyY + 1, 1, banana);
-  bananaPositions.push(midBanana, tlBanana, trBanana, blBanana, brBanana);
-  if(blinker == 0){
-    blinker = 1;
-  myBoard[tlBanana.xPos][tlBanana.yPos] = tlBanana.img;
-  myBoard[trBanana.xPos][trBanana.yPos] = trBanana.img;
-  myBoard[blBanana.xPos][blBanana.yPos] = blBanana.img;
-  myBoard[brBanana.xPos][brBanana.yPos] = brBanana.img;
-  }
-  else if(blinker == 1){
-    blinker = 0;  
-    if(score >= 7500){
-      stepCount = 10;
+  if (score >= 5000) {
+    if (stepCount <= 0) {
+      var midBanana = new Mine(monkeyX, monkeyY, 1, banana);
+      var tlBanana = new Mine(monkeyX - 1, monkeyY - 1, 1, banana);
+      var trBanana = new Mine(monkeyX + 1, monkeyY - 1, 1, banana);
+      var blBanana = new Mine(monkeyX - 1, monkeyY + 1, 1, banana);
+      var brBanana = new Mine(monkeyX + 1, monkeyY + 1, 1, banana);
+      bananaPositions.push(midBanana, tlBanana, trBanana, blBanana, brBanana);
+      if (blinker == 0) {
+        blinker = 1;
+        myBoard[tlBanana.xPos][tlBanana.yPos] = tlBanana.img;
+        myBoard[trBanana.xPos][trBanana.yPos] = trBanana.img;
+        myBoard[blBanana.xPos][blBanana.yPos] = blBanana.img;
+        myBoard[brBanana.xPos][brBanana.yPos] = brBanana.img;
+      }
+      else if (blinker == 1) {
+        blinker = 0;
+        if (score >= 7500) {
+          stepCount = 10;
+        }
+        else {
+          stepCount = 20;
+        }
+
+        myBoard[monkeyX][monkeyY] = midBanana.img;
+        monkeyX = Math.floor(Math.random() * 18) + 1;
+        monkeyY = Math.floor(Math.random() * 18) + 1;
+        if (myBoard[monkeyX][monkeyY] == myBoard[cherryX][cherryY]) {
+          monkeyX = Math.floor(Math.random() * 18) + 1;
+          monkeyY = Math.floor(Math.random() * 18) + 1;
+        }
+        for (objectOfBanana of bananaPositions) {
+          if (myBoard[monkeyX][monkeyY] == myBoard[objectOfBanana.xPos][objectOfBanana.yPos]) {
+            monkeyX = Math.floor(Math.random() * 18) + 1;
+            monkeyY = Math.floor(Math.random() * 18) + 1;
+          }
+        }
+        for (theMines of minePositions) {
+          if (myBoard[monkeyX][monkeyY] == myBoard[theMines.xPos][theMines.yPos]) {
+            monkeyX = Math.floor(Math.random() * 18) + 1;
+            monkeyY = Math.floor(Math.random() * 18) + 1;
+          }
+        }
+        myBoard[monkeyX][monkeyY] = monkey;
+      }
     }
-    else{
-      stepCount = 20;
-    }
-    
-  myBoard[monkeyX][monkeyY] = midBanana.img;
-  monkeyX = Math.floor(Math.random() * 18) + 1;
-  monkeyY = Math.floor(Math.random() * 18) + 1;
-  if(myBoard[monkeyX][monkeyY] == myBoard[cherryX][cherryY]){
-    monkeyX = Math.floor(Math.random() * 18) + 1;
-    monkeyY = Math.floor(Math.random() * 18) + 1;
+    myBoard[monkeyX][monkeyY] = monkey;
+    displayBoard();
   }
-  for(objectOfBanana of bananaPositions){
-   if(myBoard[monkeyX][monkeyY] == myBoard[objectOfBanana.xPos][objectOfBanana.yPos]){
-    monkeyX = Math.floor(Math.random() * 18) + 1;
-    monkeyY = Math.floor(Math.random() * 18) + 1;
-  }
-}
-for(theMines of minePositions){
-  if(myBoard[monkeyX][monkeyY] == myBoard[theMines.xPos][theMines.yPos]){
-   monkeyX = Math.floor(Math.random() * 18) + 1;
-   monkeyY = Math.floor(Math.random() * 18) + 1;
- }
-}
-  myBoard[monkeyX][monkeyY] = monkey;
-  }
-}
-myBoard[monkeyX][monkeyY] = monkey;
-displayBoard();
-}
 }
 setInterval(monkeyMovement, 450);
