@@ -132,6 +132,13 @@ function ded() {
 
 }
 
+  //lives
+  function lives(x, y) {
+    if (myBoard[x][y] == myBoard[myCharacterX][myCharacterY]) {
+      lives--;
+      get("lives").innerHTML = " Lives: " + lives;
+    }
+  }
 
 //element removal
 function removeElement() {
@@ -542,13 +549,7 @@ document.addEventListener('keydown', function (event) {
     }
   }
 
-  //lives
-  function lives(x, y) {
-    if (myBoard[x][y] == myBoard[myCharacterX][myCharacterY]) {
-      lives--;
-      get("lives").innerHTML = " Lives: " + lives;
-    }
-  }
+
   lives(spiderX, spiderY);
   lives(sharkX, sharkY);
   lives(shadowX, shadowY);
