@@ -133,12 +133,6 @@ function ded() {
 }
 
   //lives
-  function lives(x, y) {
-    if (myBoard[x][y] == myBoard[myCharacterX][myCharacterY]) {
-      lives--;
-      get("lives").innerHTML = " Lives: " + lives;
-    }
-  }
 
 //element removal
 function removeElement() {
@@ -549,12 +543,26 @@ document.addEventListener('keydown', function (event) {
     }
   }
 
-
-  lives(spiderX, spiderY);
-  lives(sharkX, sharkY);
-  lives(shadowX, shadowY);
-  lives(snakeX, snakeY);
-  lives(monkeyX, monkeyY);
+  if (myBoard[spiderX][spiderY] == myBoard[myCharacterX][myCharacterY]) {
+    lives--;
+    get("lives").innerHTML = " Lives: " + lives;
+  }
+  if (myBoard[sharkX][sharkY] == myBoard[myCharacterX][myCharacterY]) {
+    lives--;
+    get("lives").innerHTML = " Lives: " + lives;
+  }
+  if (myBoard[shadowX][shadowY] == myBoard[myCharacterX][myCharacterY]) {
+    lives--;
+    get("lives").innerHTML = " Lives: " + lives;
+  }
+  if (myBoard[snakeX][snakeY] == myBoard[myCharacterX][myCharacterY]) {
+    lives--;
+    get("lives").innerHTML = " Lives: " + lives;
+  }
+  if (myBoard[monkeyX][monkeyY] == myBoard[myCharacterX][myCharacterY]) {
+    lives--;
+    get("lives").innerHTML = " Lives: " + lives;
+  }
   for (var mineObj of minePositions) {
     if (myBoard[myCharacterX][myCharacterY] == myBoard[mineObj.xPos][mineObj.yPos]) {
       lives -= mineObj.damage;
