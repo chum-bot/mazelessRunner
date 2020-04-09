@@ -132,8 +132,6 @@ function ded() {
 
 }
 
-  //lives
-
 //element removal
 function removeElement() {
   var element1 = get("title_screen");
@@ -204,9 +202,7 @@ document.addEventListener('keydown', function (event) {
           sharkX--;
           myBoard[sharkX][sharkY] = shark;
         }
-
       }
-
     }
   }
   //i have the ability to fix the softlocking and i make it into a mechanic
@@ -532,16 +528,8 @@ document.addEventListener('keydown', function (event) {
 
     get("score").innerHTML = "Score: " + score;
     get("lives").innerHTML = " Lives: " + lives;
-
-    if (respawn == 1) {
-      myBoard[cherryX][cherryY] = energy;
-      myBoard[crocX][crocY] = croc
-      myBoard[sharkX][sharkY] = shark;
-      myBoard[shadowX][shadowY] = moon;
-      myBoard[snakeX][snakeY] = bee;
-      myBoard[monkeyX][monkeyY] = monkey;
-    }
   }
+ 
 
   if (myBoard[spiderX][spiderY] == myBoard[myCharacterX][myCharacterY]) {
     lives--;
@@ -613,89 +601,97 @@ function pulsingLifeColor() {
 var jeezJustWORK = 0;
 //snake
 function snakeMovement() {
-
-
   if (score >= 1000) {
-
     var snake1stMove = Math.floor((Math.random() * 4) + 1);
     var snake2ndMove = Math.floor((Math.random() * 4) + 1);
-
     myBoard[snakeX][snakeY] = bee;
-    if (snake1stMove == 1) {
-      if (snakeY == 0 || snakeY == 1) {
+    switch(snake1stMove){
+      case 1:
+        if (snakeY == 0 || snakeY == 1) {
+          snake1stMove = 2;
+          snake2ndMove = 2;
+        } else {
+          myBoard[snakeX][snakeY] = blank;
+          snakeY--;
+          myBoard[snakeX][snakeY] = bee;
+        }
+        break;
+      case 2:
+        if (snakeY == 19 || snakeY == 18) {
+          snake1stMove = 1;
+          snake2ndMove = 1;
+        } else {
+          myBoard[snakeX][snakeY] = blank;
+          snakeY++;
+          myBoard[snakeX][snakeY] = bee;
+        }
+        break;
+      case 3:
+        if (snakeX == 0 || snakeX == 1) {
+          snake1stMove = 4;
+          snake2ndMove = 4;
+        } else {
+          myBoard[snakeX][snakeY] = blank;
+          snakeX--;
+          myBoard[snakeX][snakeY] = bee;
+        }
+        break;
+      case 4:
+          if (snakeX == 19 || snakeX == 18) {
+            snake1stMove = 3;
+            snake2ndMove = 3;
+          } else {
+            myBoard[snakeX][snakeY] = blank;
+            snakeX++;
+            myBoard[snakeX][snakeY] = bee;
+          }
+          break;
+    }
+    switch(snakeY){
+      case 1:
+      case 0:
         snake1stMove = 2;
         snake2ndMove = 2;
-      } else {
-        myBoard[snakeX][snakeY] = blank
-        snakeY--;
-        myBoard[snakeX][snakeY] = bee
-      }
-    }
-    if (snake1stMove == 2) {
-      if (snakeY == 19 || snakeY == 18) {
+        break;
+      case 19:
+      case 18:
         snake1stMove = 1;
         snake2ndMove = 1;
-      } else {
-        myBoard[snakeX][snakeY] = blank
-        snakeY++;
-        myBoard[snakeX][snakeY] = bee
-      }
+        break;
     }
-    if (snake1stMove == 3) {
-      if (snakeX == 0 || snakeX == 1) {
+    switch(snakeX){
+      case 1:
+      case 0:
         snake1stMove = 4;
         snake2ndMove = 4;
-      } else {
-        myBoard[snakeX][snakeY] = blank
-        snakeX--;
-        myBoard[snakeX][snakeY] = bee
-      }
-    }
-    if (snake1stMove == 4) {
-      if (snakeX == 19 || snakeX == 18) {
+        break;
+      case 19:
+      case 18:
         snake1stMove = 3;
         snake2ndMove = 3;
-      } else {
-        myBoard[snakeX][snakeY] = blank
-        snakeX++;
-        myBoard[snakeX][snakeY] = bee
-      }
+        break;
     }
-    if (snakeY == 0 || snakeY == 1) {
-      snake1stMove = 2;
-      snake2ndMove = 2;
-    }
-    if (snakeY == 19 || snakeY == 18) {
-      snake1stMove = 1;
-      snake2ndMove = 1;
-    }
-    if (snakeX == 0 || snakeX == 1) {
-      snake1stMove = 4;
-      snake2ndMove = 4;
-    }
-    if (snakeX == 19 || snakeX == 18) {
-      snake1stMove = 3;
-      snake2ndMove = 3;
-    }
-    if (snake2ndMove == 1) {
-      myBoard[snakeX][snakeY] = blank
-      snakeY = snakeY - 2;
-      myBoard[snakeX][snakeY] = bee
-    }
-    if (snake2ndMove == 2) {
-      myBoard[snakeX][snakeY] = blank
-      snakeY = snakeY + 2;
-      myBoard[snakeX][snakeY] = bee
-    }
-    if (snake2ndMove == 3) {
-      myBoard[snakeX][snakeY] = blank
-      snakeX = snakeX - 2;
-      myBoard[snakeX][snakeY] = bee
-    }
-    if (snake2ndMove == 4) {
-      myBoard[snakeX][snakeY] = blank
-      snakeX = snakeX + 2;
-      myBoard[snakeX][snakeY] = bee;
+    switch(snake2ndMove){
+      case 1:
+        myBoard[snakeX][snakeY] = blank;
+        snakeY -= 2;
+        myBoard[snakeX][snakeY] = bee;
+        break;
+      case 2:
+        myBoard[snakeX][snakeY] = blank;
+        snakeY += 2;
+        myBoard[snakeX][snakeY] = bee;
+        break;
+      case 3:
+        myBoard[snakeX][snakeY] = blank;
+        snakeX -= 2;
+        myBoard[snakeX][snakeY] = bee;
+        break;
+      case 4:
+        myBoard[snakeX][snakeY] = blank;
+        snakeX += 2;
+        myBoard[snakeX][snakeY] = bee;
+        break;
     }
   }
 }
@@ -707,7 +703,6 @@ var moveyBoi = setInterval(shadowMovement, 500);
 let minePositions = [];
 
 function shadowMovement() {
-  
   var mine = new Mine(shadowX, shadowY, 1, "🌑");
   if (score >= 3000) {
     myBoard[mine.xPos][mine.yPos] = mine.img;
@@ -856,3 +851,20 @@ function monkeyMovement() {
   }
 }
 setInterval(monkeyMovement, 450);
+
+function cooldownsAndRespawns(){
+  myBoard[cherryX][cherryY] = energy;
+  myBoard[crocX][crocY] = croc;
+  myBoard[sharkX][sharkY] = shark;
+  myBoard[shadowX][shadowY] = moon;
+  myBoard[snakeX][snakeY] = bee;
+  myBoard[monkeyX][monkeyY] = monkey;
+  for(meenayOhBeeJay of minePositions){
+    myBoard[meenayOhBeeJay.xPos][meenayOhBeeJay.yPos] = meenayOhBeeJay.img;
+  }
+  for(bahnananaOhBeeJay of bananaPositions){
+    myBoard[bahnananaOhBeeJay.xPos][bahnananaOhBeeJay.yPos] = bahnananaOhBeeJay.img;
+  }
+}
+
+setInterval(cooldownsAndRespawns, 1);

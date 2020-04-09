@@ -22,36 +22,13 @@
 
   function patchNotes() {
     document.getElementById("patch_notes").innerHTML =
-      "Mazeless Runner 2.1 Patch Notes" +
+      "Mazeless Runner 2.1.1 Patch Notes" +
       '</br>' +
       '</br>' +
-      "<b>General</b>" +
+      "<b>Fixes</b>" +
       "<ul>" +
-      "<li>Added god mode for easier testing (i'm not telling you what button it is tho ._.)</li>" +
-      "<li>Changed the lightning to an outlined sun (reference to god mode)</li>" +
-      "<li>The cherry no longer spawns on enemies to make it unobtainable(mostly)</li>" +
-      "<li>Made the lives change color when you lose lives to make it clear when a life has been lost</li>" +
-      "<li>The score and lives are now visible when you lose w/o scrolling down</li>" +
-      "<li>The arrow keys no longer scroll up and down on some screens</li>" + 
-      "</ul>" +
-      "</br>" +
-      "<b>Enemies</b>" +
-      "<ul>" +
-      "<li>Changed when the snake and the croc start to move (snake starts at 1000 pts, croc starts at 2000 pts)</li>" +
-      "<li>New enemy: The Monkey!</li>" +
-      "<ul>" +
-        "<li>Starts moving at 5000 pts</li>" +
-        "<li>Moves additional times based on the number of steps you take</li>" +
-        "<li>When it moves, it makes a cross of banana at its location and moves somewhere else</li>"+
-        "<li>Kind of an enhanced version of the moon for now</li>" + 
-      "</ul>"+
-      "<li>Changed the shadow's speed spawning point threshold to 10000 pts</li>" +
-      "</ul>" +
-      "</br>" +
-      "<b>Known Issues</b>" + 
-      "<ul>" + 
-      "<li>The sun will sometimes spawn on an enemy when it is redirected from another enemy that it would've spawned on otherwise. This is a rare occurrence.</li>"+
-      "<li>The mines and some other things disappear when things go over them. You can see them again when you move, but I'm working on a fix where you can see them all the time.</li>" +
+      "<li>Fized an issue where some things (mainly the moon mines) would disappear when things passed over them, but reappear when the player moved again. They are now always visible.</li>" +
+      "<li>Optimized the snake's code (changed some if/elses to switch cases. doesn't affect anything but i wanted to because i know switch cases are better)</li>" +
       "</ul>"
       }
 
