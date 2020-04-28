@@ -74,6 +74,11 @@ myBoard[sharkX][sharkY] = shark;
 myBoard[cherryX][cherryY] = energy;
 myBoard[shadowX][shadowY] = moon;
 myBoard[monkeyX][monkeyY] = monkey;
+upKey = 38;
+downKey = 40;
+leftKey = 37;
+rightKey = 39;
+wasdCheck = false;
 
 //croc variables (the ones with cherry affect croc on cherry pickup) (i feel like there's a better way to do this tho...)
 var dontKnowSetTimeoutLol = 0;
@@ -128,8 +133,7 @@ function ded() {
   get("everything").style.backgroundSize = "100% 100%";
   get("everything").style.backgroundAttachment = "fixed";
   get("output_holder").style.opacity = "0";
-  get("output_holder").style.fontSize = "90%";
-
+  get("output_holder").style.fontSize = "98%";
 }
 
 //element removal
@@ -139,13 +143,40 @@ function removeElement() {
   var element3 = get("infobutton");
   var element4 = get("patchNoteButton");
   var element5 = get("patch_notes");
+  var element6 = get("wasdbutton");
+  var element7 = get("wasdToggle");
   element1.parentNode.removeChild(element1);
   element2.parentNode.removeChild(element2);
   element3.parentNode.removeChild(element3);
   element4.parentNode.removeChild(element4);
   element5.parentNode.removeChild(element5);
+  element6.parentNode.removeChild(element6);
+  element7.parentNode.removeChild(element7);
 }
 
+function wasd() {
+  switch (wasdCheck){
+    case wasdCheck = true:
+    upKey = 38;
+    downKey = 40;
+    leftKey = 37;
+    rightKey = 39;
+    get("wasdToggle").innerHTML = "WASD is now OFF.";
+    wasdCheck = false;
+    console.log("present");
+    break;
+
+    case wasdCheck = false:
+    upKey = 87;
+    downKey = 83;
+    leftKey = 65;
+    rightKey = 68;
+    get("wasdToggle").innerHTML = "WASD is now ON.";
+    wasdCheck = true;
+    console.log("represent");
+    break;
+  }
+}
 //actions on key press
 document.addEventListener('keydown', function (event) {
 
@@ -163,7 +194,6 @@ document.addEventListener('keydown', function (event) {
     work = 0;
     removeElement();
   }
-  get('output_holder').style.border = "thick double aquamarine";
 
   //shark 
   try {
@@ -205,7 +235,7 @@ document.addEventListener('keydown', function (event) {
       }
     }
   }
-  //i have the ability to fix the softlocking and i make it into a mechanic
+  //i have the ability to fix the softlocking and i make it into a mechanic...great game design!
   catch (error) {
     softlock();
   }
@@ -226,7 +256,7 @@ document.addEventListener('keydown', function (event) {
 
   if (lives > 0) {
 
-    if (event.keyCode == 38 && myCharacterY > 0) {
+    if (event.keyCode == upKey && myCharacterY > 0) {
 
       if (spiderY == 19) {
         myBoard[spiderX][spiderY] = frog;
@@ -252,7 +282,7 @@ document.addEventListener('keydown', function (event) {
       }
 
     }
-    if (event.keyCode == 40 && myCharacterY < 19) {
+    if (event.keyCode == downKey && myCharacterY < 19) {
 
       if (spiderY == 0) {
         myBoard[spiderX][spiderY] = frog;
@@ -278,7 +308,7 @@ document.addEventListener('keydown', function (event) {
       }
 
     }
-    if (event.keyCode == 39 && myCharacterX < 19) {
+    if (event.keyCode == rightKey && myCharacterX < 19) {
 
       if (spiderX == 0) {
         myBoard[spiderX][spiderY] = frog;
@@ -304,7 +334,7 @@ document.addEventListener('keydown', function (event) {
       }
 
     }
-    if (event.keyCode == 37 && myCharacterX > 0) {
+    if (event.keyCode == leftKey && myCharacterX > 0) {
 
       if (spiderX == 19) {
         myBoard[spiderX][spiderY] = frog;
@@ -364,6 +394,7 @@ document.addEventListener('keydown', function (event) {
         }
       }
 
+      //ew. everything about this is... ew. but it works so
       myBoard[cherryX][cherryY] = energy;
       cherryTLEY = cherryY - 2;
       cherryTREX = cherryX + 2;
@@ -529,7 +560,7 @@ document.addEventListener('keydown', function (event) {
     get("score").innerHTML = "Score: " + score;
     get("lives").innerHTML = " Lives: " + lives;
   }
- 
+
 
   if (myBoard[spiderX][spiderY] == myBoard[myCharacterX][myCharacterY]) {
     lives--;
@@ -605,7 +636,7 @@ function snakeMovement() {
     var snake1stMove = Math.floor((Math.random() * 4) + 1);
     var snake2ndMove = Math.floor((Math.random() * 4) + 1);
     myBoard[snakeX][snakeY] = bee;
-    switch(snake1stMove){
+    switch (snake1stMove) {
       case 1:
         if (snakeY == 0 || snakeY == 1) {
           snake1stMove = 2;
@@ -637,17 +668,17 @@ function snakeMovement() {
         }
         break;
       case 4:
-          if (snakeX == 19 || snakeX == 18) {
-            snake1stMove = 3;
-            snake2ndMove = 3;
-          } else {
-            myBoard[snakeX][snakeY] = blank;
-            snakeX++;
-            myBoard[snakeX][snakeY] = bee;
-          }
-          break;
+        if (snakeX == 19 || snakeX == 18) {
+          snake1stMove = 3;
+          snake2ndMove = 3;
+        } else {
+          myBoard[snakeX][snakeY] = blank;
+          snakeX++;
+          myBoard[snakeX][snakeY] = bee;
+        }
+        break;
     }
-    switch(snakeY){
+    switch (snakeY) {
       case 1:
       case 0:
         snake1stMove = 2;
@@ -659,7 +690,7 @@ function snakeMovement() {
         snake2ndMove = 1;
         break;
     }
-    switch(snakeX){
+    switch (snakeX) {
       case 1:
       case 0:
         snake1stMove = 4;
@@ -671,7 +702,7 @@ function snakeMovement() {
         snake2ndMove = 3;
         break;
     }
-    switch(snake2ndMove){
+    switch (snake2ndMove) {
       case 1:
         myBoard[snakeX][snakeY] = blank;
         snakeY -= 2;
@@ -852,19 +883,18 @@ function monkeyMovement() {
 }
 setInterval(monkeyMovement, 450);
 
-function cooldownsAndRespawns(){
-  myBoard[cherryX][cherryY] = energy;
+function cooldownsAndRespawns() {
   myBoard[crocX][crocY] = croc;
   myBoard[sharkX][sharkY] = shark;
   myBoard[shadowX][shadowY] = moon;
   myBoard[snakeX][snakeY] = bee;
   myBoard[monkeyX][monkeyY] = monkey;
-  for(meenayOhBeeJay of minePositions){
-    myBoard[meenayOhBeeJay.xPos][meenayOhBeeJay.yPos] = meenayOhBeeJay.img;
-  }
-  for(bahnananaOhBeeJay of bananaPositions){
+  for (bahnananaOhBeeJay of bananaPositions) {
     myBoard[bahnananaOhBeeJay.xPos][bahnananaOhBeeJay.yPos] = bahnananaOhBeeJay.img;
   }
+  for (meenayOhBeeJay of minePositions) {
+    myBoard[meenayOhBeeJay.xPos][meenayOhBeeJay.yPos] = meenayOhBeeJay.img;
+  } myBoard[cherryX][cherryY] = energy;
 }
 
 setInterval(cooldownsAndRespawns, 1);

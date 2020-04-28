@@ -16,22 +16,23 @@
   border: 5px double aqua;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width: 99.8%;
+  height: 99.8%;
+  margin: auto;
 }
 
 #output_holder {
   font-family: 'Righteous', cursive;
-  border: 5px double steelblue;
   padding: 10px;
   border-radius: 25px;
   margin: auto;
   display: block;
   font-size: 108%;
+  background-image: linear-gradient(rgb(37, 130, 206), rgb(8, 226, 154));
 }
 
 body {
-  background-color: steelblue;
+  background-color: rgb(19, 57, 100);
   background-size: 100% 100%;
   background-position: center;
 }
@@ -42,6 +43,7 @@ body {
   text-align: center;
   font-family: 'Righteous', cursive;
   font-size: 25px;
+  margin: auto;
 }
 
 #lives {
@@ -50,8 +52,13 @@ body {
   text-align: center;
   font-family: 'Righteous', cursive;
   font-size: 25px;
+  margin: auto;
 }
-
+#wasdToggle {
+  color: aquamarine;
+  font-family: "Righteous", cursive;
+  font-size: 20px;
+}
 #info {
   color: aquamarine;
   font-family: 'Righteous', cursive;
