@@ -1,20 +1,38 @@
-@import url('https://fonts.googleapis.com/css?family=Fredoka+One|Source+Sans+Pro|Indie+Flower|Modak|Nova+Square|Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One|Source+Sans+Pro|Indie+Flower|Modak|Nova+Square|Righteous|Kumar+One+Outline&display=swap');
 
 #title_screen {
+  font-family: 'Kumar One Outline', cursive;
+  color: aquamarine;
+  margin-bottom: -25px;
+  text-align: center;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  font-size: 70px;
+  font-weight: 500;
+  -webkit-animation: glow 0.8s ease-in-out infinite alternate;
+  -moz-animation: glow 0.8s ease-in-out infinite alternate;
+  animation: glow 0.8s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px aquamarine, 0 0 40px aquamarine, 0 0 50px aquamarine, 0 0 60px aquamarine, 0 0 70px aquamarine;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px white, 0 0 40px lemonchiffon, 0 0 50px lemonchiffon, 0 0 60px lemonchiffon, 0 0 70px lemonchiffon, 0 0 80px lemonchiffon;
+  }
+}
+#secondaryTitleScreen{
   font-family: 'Fredoka One', cursive;
   color: aquamarine;
-  border: 5px double aqua;
-  padding: 10px;
-  border-radius: 25px;
-  margin: 10px;
+  margin-bottom: 20px;
   text-align: center;
-  font-size: 45px;
-  background-color: navy;
+  font-size: 35px;
 }
 
 #everything {
   border: 5px double aqua;
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 99.8%;
   height: 99.8%;
@@ -27,7 +45,7 @@
   border-radius: 25px;
   margin: auto;
   display: block;
-  font-size: 108%;
+  font-size: 102%;
   background-image: linear-gradient(rgb(37, 130, 206), rgb(8, 226, 154));
 }
 
@@ -54,14 +72,18 @@ body {
   font-size: 25px;
   margin: auto;
 }
+
+#time {
+  color: aquamarine;
+  display: block;
+  text-align: center;
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  margin: auto;
+}
 #wasdToggle {
   color: aquamarine;
   font-family: "Righteous", cursive;
-  font-size: 20px;
-}
-#info {
-  color: aquamarine;
-  font-family: 'Righteous', cursive;
   font-size: 20px;
 }
 
@@ -86,6 +108,10 @@ body {
   color: gold;
   display: none;
 }
+#buttonDiv{
+  display: flex;
+  justify-content: space-evenly;
+}
 
 button {
   border-radius: 20px;
@@ -95,12 +121,13 @@ button {
   font-family: "Righteous", cursive;
   color: aquamarine;
   font-size: 25px;
+  transition: 300ms;
 }
-
-#patch_notes {
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 16px;
-  color: aqua;
+button:hover{
+  border: 3px solid navy;
+  background-color: aquamarine;
+  color: navy;
+  
 }
 #softlocked{
   text-align: center;

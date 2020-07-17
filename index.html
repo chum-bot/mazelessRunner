@@ -2,63 +2,113 @@
 <html lang="en">
 
 <head>
-  <script src="./main.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mazeless Runner</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/movement.js"></script>
+  <script src="js/bee.js"></script>
+  <script src="js/monkey.js"></script>
+  <script src="js/shark.js"></script>
+  <script src="js/moon.js"></script>
+  <script src="js/energy.js"></script>
+  <script src="js/croc.js"></script>
+  <script src="js/lifeColor.js"></script>
+  <script src="js/main.js" defer></script>
+  
 
 </head>
 
 <body>
-  <div id="title_screen">Welcome to Mazeless Runner! Press any key to play.</div>
-  <button onclick="instructions()" id="infobutton">How to play</button>
+  <div id="title_screen">Mazeless Runner</div>
+  <div id="secondaryTitleScreen">
+    <p>Press Enter to Play</p> 
+  </div>
+
+  <div id = "buttonDiv">
   <button onclick="patchNotes()" id="patchNoteButton">
     View latest patch notes
+  </button>
+  <button onclick="instructions()" id="infobutton">
+    How to play
   </button>
   <button onclick="wasd()" id="wasdbutton">
     Toggle WASD controls
   </button>
+  </div>
+  
   <script>
     function instructions() {
-      document.getElementById("info").innerHTML = "You control the alien in this game." + "</br>" + "Use the arrow keys or WASD to move around." + '</br>' + "Your goal is to keep collecting the sun for as long as possible without dying." + "</br>" + "The game will get harder as you progress." + "</br>" + "Everything that isn't the sun kills you."
+      document.getElementById("info").innerHTML = 
+      "You control the alien in this game." + 
+      "</br>" + 
+      "Use the arrow keys or WASD to move around." + 
+      '</br>' + 
+      "Your goal is to keep collecting the sun for as long as you can in as little time as you can without dying."+ 
+      "</br>" + 
+      "The game will get harder as you progress." + 
+      "</br>" + 
+      "You can pause with the P key if you want."+
+      "</br>"
+      "Everything that isn't the sun kills you."
+      document.getElementById("info").style.color = "aquamarine";
+      document.getElementById("info").style.fontFamily = "'Righteous', cursive";
+      document.getElementById("info").style.fontSize = "20px";
     }
-
     function patchNotes() {
-      document.getElementById("patch_notes").innerHTML =
-        "Mazeless Runner 2.2 Patch Notes" +
+      document.getElementById("info").innerHTML =
+        "Mazeless Runner Version 2.3 Patch Notes" +
         '</br>' +
         '</br>' +
         "<b>General</b>" +
         "<ul>" +
-        "<li>Changed the visuals, as you can see</li>" +
-        "<li>Added the option to toggle between WASD controls and arrow keys</li>" +
+        "<li>Added a menu screen (a bit barebones at the moment, but it's there)</li>" +
+        "<li>Added a stopwatch for an additional element of challenge: score as much as you can in as little time as you can</li>"+
+        "<li>Added a pause button (P)</li>" +
+        "<li>Updated instructions to reflect these additions</li>"+
+        "<li>Changed the position of the lives</li>"+
+        "<li>The buttons have a transition effect when you hover over them now</li>" +
+        "<li>WHOA GLOWY TITLE TEXT</li>"+
+        "<li>After you lose and restart, your score and time for that game will be displayed on screen. It only shows your latest game, though.</li>"+
+        "</ul>"+
+        "<b>Enemies</b>"+
+        "<ul>" +
+        "<li>Changed the shark's movement pattern (you do NOT want to lose a life now)</li>"+
+        "</ul>"+
+        "<b>Organization/Code things</b>"+
+        "<ul>"+
+        "<li>Changed some lengthy if/elses to switch cases</li>"+
+        "<li>The code looks a bit cleaner now - there are separate files for each character and the energy</li>"+
+        "<li>Renamed the variables to match the newer enemies</li>"+
+        "<li>Made the energy's code just a bit more efficient (i'm sure it could be better though)</li>"+
+        "</ul>"+
+        "<b>Known Issues</b>"+
+        "<ul>"+
+        "<li>Sometimes at the beginning of the game, when you run into an enemy and stay on it for a bit, the shark will enter its second aggression state and the lives will pulse more rapidly even though you'll still have 2 lives left. I don't know why that happens and I'm looking into it.</li>"+
+        "<li>Not really an issue at the moment, but I'm thinking that the shark in its current state may be a bit too powerful due to the size of the map. I may consider making it bigger to nerf the shark a bit, but I'm not sure yet.</li>"+
         "</ul>"+
         "</br>"+
-        "<b>Things I've been thinking about adding</b>"+
-        "<ul>"+
-          "<li>A pause button and a proper title screen</li>"+
-          "<li>Something that saves your high score</li>"+
-          "<li>Making the monkey's bananas temporary obstacles (they disappear when something goes over them)</li>"+
-          "<li>Powerups (shield, extra life, maybe the ability to destroy obstacles)</li>"+
-        "</ul>"
-          
-    }
+        "<b>Thanks for playing!</b>"
 
+    document.getElementById("info").style.fontFamily = '"Source Sans Pro", sans-serif';
+    document.getElementById("info").style.color = "aqua";
+    document.getElementById("info").style.fontSize = "16px";
+    }
+    
   </script>
+  <p id="wasdToggle"></p>
   <p id="info"></p>
-  <p id="patch_notes"></p>
-  <p id="wasdToggle">WASD is now OFF.</p>
   <div id="everything">
     <div id="game_over">Game Over</div>
     <div id="ur_dead">ur dead m8.</div>
     <div id="softlocked">Softlocked</div>
     <div id="beCareful">be careful next time.</div>
     <div id="godMode">God mode activated.</div>
+    <div id="lives"></div>
     <div id="output_holder"></div>
     <div id="score"></div>
-    <div id="lives"></div>
+    <div id="time"></div>
   </div>
 
 </body>
