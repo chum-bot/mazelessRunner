@@ -191,7 +191,7 @@ function pause(){
       paused = false;
       gamestate = whatsAnEnum.GAMEPLAY;
       get("output_holder").style.opacity = "1";
-      get("everything").style.background = "rgb(19, 57, 100)";
+      get("everything").style.backgroundImage = "none";
       break;
     case false:
       paused = true;
@@ -200,7 +200,7 @@ function pause(){
       get("everything").style.backgroundPosition = "center";
       get("everything").style.backgroundRepeat = "no-repeat";
       get("everything").style.backgroundAttachment = "fixed";
-      get("output_holder").style.opacity = "0.5";
+      get("output_holder").style.opacity = "0.6";
       break;
   }
 }
@@ -250,7 +250,9 @@ document.addEventListener('keydown', function (event) {
   event.preventDefault();
   switch (event.keyCode) {
     case 80:
-      pause()
+      if(gamestate == whatsAnEnum.GAMEPLAY){
+        pause();
+      }
       break;
     case 186:
       gamestate = whatsAnEnum.GAMEPLAY;
