@@ -196,12 +196,11 @@ function pause(){
     case false:
       paused = true;
       gamestate = whatsAnEnum.PAUSE;
-      get("everything").style.backgroundImage = "url(https://lh3.googleusercontent.com/proxy/7wQ0jjv_HrckgtL8YF6cP5a0bkgZKuk_wVIdMBjatbeexp8me5wxxgipeEicuHfLA-WVR6s2zV2-6-Mt4c6v9-m_oCHdpnRe)";
-      get("everything").style.backgroundSize = "100% 100%";
+      get("everything").style.backgroundImage = "url(https://icon-library.com/images/pause-icon-transparent/pause-icon-transparent-16.jpg)";
       get("everything").style.backgroundPosition = "center";
       get("everything").style.backgroundRepeat = "no-repeat";
       get("everything").style.backgroundAttachment = "fixed";
-      get("output_holder").style.opacity = "0.6";
+      get("output_holder").style.opacity = "0.5";
       break;
   }
 }
