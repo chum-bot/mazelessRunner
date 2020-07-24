@@ -1,3 +1,5 @@
+var beeX = 16;
+var beeY = 8;
 function beeMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
       if (score >= 1000) {
@@ -16,7 +18,7 @@ function beeMovement() {
             }
             break;
           case 2:
-            if (beeY == 19 || beeY == 18) {
+            if (beeY == 24 || beeY == 23) {
               bee1stMove = 1;
               bee2ndMove = 1;
             } else {
@@ -36,7 +38,7 @@ function beeMovement() {
             }
             break;
           case 4:
-            if (beeX == 19 || beeX == 18) {
+            if (beeX == 24 || beeX == 23) {
               bee1stMove = 3;
               bee2ndMove = 3;
             } else {
@@ -52,8 +54,8 @@ function beeMovement() {
             bee1stMove = 2;
             bee2ndMove = 2;
             break;
-          case 19:
-          case 18:
+          case 24:
+          case 23:
             bee1stMove = 1;
             bee2ndMove = 1;
             break;
@@ -64,8 +66,8 @@ function beeMovement() {
             bee1stMove = 4;
             bee2ndMove = 4;
             break;
-          case 19:
-          case 18:
+          case 24:
+          case 23:
             bee1stMove = 3;
             bee2ndMove = 3;
             break;

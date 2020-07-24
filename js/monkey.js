@@ -1,3 +1,9 @@
+//monkey vars
+var stepCount = 10;
+var blinker = 0;
+var bananaPositions = [];
+var monkeyX = 14;
+var monkeyY = 21;
 function monkeyMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
       if (score >= 5000) {
@@ -21,26 +27,26 @@ function monkeyMovement() {
               stepCount = 10;
             }
             else {
-              stepCount = 20;
+              stepCount = 17;
             }
   
             myBoard[monkeyX][monkeyY] = midBanana.img;
-            monkeyX = Math.floor(Math.random() * 18) + 1;
-            monkeyY = Math.floor(Math.random() * 18) + 1;
+            monkeyX = Math.floor(Math.random() * 23) + 1;
+            monkeyY = Math.floor(Math.random() * 23) + 1;
             if (myBoard[monkeyX][monkeyY] == myBoard[cherryX][cherryY]) {
-              monkeyX = Math.floor(Math.random() * 18) + 1;
-              monkeyY = Math.floor(Math.random() * 18) + 1;
+              monkeyX = Math.floor(Math.random() * 23) + 1;
+              monkeyY = Math.floor(Math.random() * 23) + 1;
             }
             for (objectOfBanana of bananaPositions) {
               if (myBoard[monkeyX][monkeyY] == myBoard[objectOfBanana.xPos][objectOfBanana.yPos]) {
-                monkeyX = Math.floor(Math.random() * 18) + 1;
-                monkeyY = Math.floor(Math.random() * 18) + 1;
+                monkeyX = Math.floor(Math.random() * 23) + 1;
+                monkeyY = Math.floor(Math.random() * 23) + 1;
               }
             }
             for (theMines of minePositions) {
               if (myBoard[monkeyX][monkeyY] == myBoard[theMines.xPos][theMines.yPos]) {
-                monkeyX = Math.floor(Math.random() * 18) + 1;
-                monkeyY = Math.floor(Math.random() * 18) + 1;
+                monkeyX = Math.floor(Math.random() * 23) + 1;
+                monkeyY = Math.floor(Math.random() * 23) + 1;
               }
             }
             myBoard[monkeyX][monkeyY] = monkey;

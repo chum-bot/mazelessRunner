@@ -1,3 +1,19 @@
+var crocX = 3;
+var crocY = 9;
+var moveAmtT = 4;
+var moveAmtR = 4;
+var moveAmtB = 4;
+var moveAmtL = 4;
+var energyTEY = energyY - 2;
+var energyBEY = energyY + 2;
+var energyREX = energyX + 2;
+var energyLEX = energyX - 2;
+var energyTBLX = energyX - 1;
+var energyTBRX = energyX + 1;
+var energyLRTY = energyY - 1;
+var energyLRBY = energyY + 1;
+var energyHMX = energyX;
+var energyVMY = energyY;
 function crocMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
       if (score >= 2000) {

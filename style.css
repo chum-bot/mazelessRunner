@@ -45,7 +45,6 @@
   border-radius: 25px;
   margin: auto;
   display: block;
-  font-size: 102%;
   background-image: linear-gradient(rgb(37, 130, 206), rgb(8, 226, 154));
 }
 
@@ -64,6 +63,56 @@ body {
   margin: auto;
 }
 
+#hiScore{
+  color: aquamarine;
+  display: block;
+  text-align: left;
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  margin: auto;
+  margin-top: 25px;
+}
+
+#topScores{
+  display: none;
+  color: aquamarine;
+  text-align: left;
+  font-family: 'Nova Square', cursive;
+  font-size: 25px;
+  margin: 15px;
+  background-color: rgb(37, 130, 206);
+  border-radius: 20px;
+  padding: 3px;
+}
+
+#backToMenu{
+  display: none;
+}
+
+#userContainer{
+  display: none;
+  color: aquamarine;
+  text-align: left;
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  margin: auto;
+}
+#userContainer input{
+  margin-bottom: 15px;
+}
+#userContainer button{
+  margin-bottom: 15px;
+}
+
+#submitted{
+  display: none;
+  color: aquamarine;
+  text-align: left;
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  margin: auto;
+}
+
 #lives {
   color: aquamarine;
   display: block;
@@ -73,14 +122,6 @@ body {
   margin: auto;
 }
 
-#time {
-  color: aquamarine;
-  display: block;
-  text-align: center;
-  font-family: 'Righteous', cursive;
-  font-size: 25px;
-  margin: auto;
-}
 #wasdToggle {
   color: aquamarine;
   font-family: "Righteous", cursive;
@@ -121,13 +162,23 @@ button {
   font-family: "Righteous", cursive;
   color: aquamarine;
   font-size: 25px;
-  transition: 300ms;
+  transition: 200ms;
 }
 button:hover{
   border: 3px solid navy;
   background-color: aquamarine;
   color: navy;
-  
+}
+button:focus{
+  border: 3px solid navy;
+  background-color: aquamarine;
+  color: navy;
+}
+button:active{
+  border: 3px solid rgb(0,0, 60);
+  background-color: rgb(98, 190, 160);
+  color: rgb(0, 0, 60);
+  transition: 0ms;
 }
 #softlocked{
   text-align: center;

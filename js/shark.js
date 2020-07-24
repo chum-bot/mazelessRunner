@@ -1,3 +1,8 @@
+var sharkX = 8;
+var sharkY = 24;
+var disX = Math.abs(p1X - sharkX);
+var disY = Math.abs(p1Y - sharkY);
+var aggressionTime = 400;
 function sharkMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
       if (lives <= 2) {
@@ -6,7 +11,7 @@ function sharkMovement() {
           myBoard[sharkX][sharkY] = blank;
           sharkY++;
           myBoard[sharkX][sharkY] = shark;
-        } else if (sharkY == 19) {
+        } else if (sharkY == 24) {
           myBoard[sharkX][sharkY] = blank;
           sharkY--;
           myBoard[sharkX][sharkY] = shark;
@@ -14,7 +19,7 @@ function sharkMovement() {
           myBoard[sharkX][sharkY] = blank;
           sharkX++;
           myBoard[sharkX][sharkY] = shark;
-        } else if (sharkX == 19) {
+        } else if (sharkX == 24) {
           myBoard[sharkX][sharkY] = blank;
           sharkX--;
           myBoard[sharkX][sharkY] = shark;

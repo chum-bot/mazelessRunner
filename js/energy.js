@@ -1,29 +1,32 @@
+var energyX = 5;
+var energyY = 11;
+var dontKnowSetTimeoutLol = 0;
 function teleport() {
 
     if (myBoard[p1X][p1Y] == myBoard[energyX][energyY]) {
         score += 250;
-        energyX = Math.floor((Math.random() * 20));
-        energyY = Math.floor((Math.random() * 20));
+        energyX = Math.floor((Math.random() * 25));
+        energyY = Math.floor((Math.random() * 25));
         switch(myBoard[energyX][energyY]){
             case myBoard[moonX][moonY]:
             case myBoard[beeX][beeY]:
             case myBoard[sharkX][sharkY]:
             case myBoard[monkeyX][monkeyY]:
-                energyX = Math.floor((Math.random() * 20));
-                energyY = Math.floor((Math.random() * 20));
+                energyX = Math.floor((Math.random() * 25));
+                energyY = Math.floor((Math.random() * 25));
                 break;
         }
         
         for (var objectOfMine of minePositions) {
             if (myBoard[energyX][energyY] == myBoard[objectOfMine.xPos][objectOfMine.yPos]) {
-                energyX = Math.floor((Math.random() * 20));
-                energyY = Math.floor((Math.random() * 20));
+                energyX = Math.floor((Math.random() * 25));
+                energyY = Math.floor((Math.random() * 25));
             }
         }
         for (var bananobject of bananaPositions) {
             if (myBoard[energyX][energyY] == myBoard[bananobject.xPos][bananobject.yPos]) {
-                energyX = Math.floor((Math.random() * 20));
-                energyY = Math.floor((Math.random() * 20));
+                energyX = Math.floor((Math.random() * 25));
+                energyY = Math.floor((Math.random() * 25));
             }
         }
         //ew. everything about this is... ew. but it works so
@@ -39,7 +42,7 @@ function teleport() {
         energyHMX = energyX;
         energyVMY = energyY;
 
-        if (energyX <= 1 || energyX >= 18 || energyY <= 1 || energyY >= 18) {
+        if (energyX <= 1 || energyX >= 23 || energyY <= 1 || energyY >= 23) {
             myBoard[crocX][crocY] = croc;
         } else {
             //top left side

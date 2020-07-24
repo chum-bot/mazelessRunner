@@ -6,107 +6,283 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mazeless Runner</title>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <!-- Add the entire Firebase JavaScript SDK -->
+  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyB8oKwhx_kXh_ilCZUhqBDeWlqQlkX3_YU",
+      authDomain: "mazeless-leaderboard.firebaseapp.com",
+      databaseURL: "https://mazeless-leaderboard.firebaseio.com",
+      projectId: "mazeless-leaderboard",
+      storageBucket: "mazeless-leaderboard.appspot.com",
+      messagingSenderId: "636801803105",
+      appId: "1:636801803105:web:c094b145e185189ba61b20",
+      measurementId: "G-CFWKTGZBG5"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
   <link rel="stylesheet" href="style.css">
+  <script src="js/qualityOfLife.js"></script>
+  <script src="js/board.js"></script>
+  <script src="js/gamestateShifts.js"></script>
+  <script src="js/vars.js"></script>
+  <script src="js/lbForm.js"></script>
+  <script src="js/leaderboard.js"></script>
+  <script src="js/wasd.js"></script>
   <script src="js/movement.js"></script>
   <script src="js/bee.js"></script>
   <script src="js/monkey.js"></script>
   <script src="js/shark.js"></script>
+  <script src="js/mines.js"></script>
   <script src="js/moon.js"></script>
   <script src="js/energy.js"></script>
   <script src="js/croc.js"></script>
   <script src="js/lifeColor.js"></script>
   <script src="js/main.js" defer></script>
-  
 
 </head>
 
 <body>
   <div id="title_screen">Mazeless Runner</div>
   <div id="secondaryTitleScreen">
-    <p>Press Enter to Play</p> 
+    <p>Press Enter to Play</p>
   </div>
 
-  <div id = "buttonDiv">
-  <button onclick="patchNotes()" id="patchNoteButton">
-    View latest patch notes
-  </button>
-  <button onclick="instructions()" id="infobutton">
-    How to play
-  </button>
-  <button onclick="wasd()" id="wasdbutton">
-    Toggle WASD controls
-  </button>
+  <div id="buttonDiv">
+    <button onclick="patchNotes()" id="patchNoteButton">
+      Changelog
+    </button>
+    <button onclick="instructions()" id="infobutton">
+      How to play
+    </button>
+    <button onclick="wasd()" id="wasdbutton">
+      Toggle WASD controls
+    </button>
+    <button onclick="leaderboard()" id="leaderboardButton">
+      Scorelog
+    </button>
   </div>
-  
+  <div id="hiScore">High Score: 0</div>
+
   <script>
     function instructions() {
-      document.getElementById("info").innerHTML = 
-      "You control the alien in this game." + 
-      "</br>" + 
-      "Use the arrow keys or WASD to move around." + 
-      '</br>' + 
-      "Your goal is to keep collecting the sun for as long as you can in as little time as you can without dying."+ 
-      "</br>" + 
-      "The game will get harder as you progress." + 
-      "</br>" + 
-      "You can pause with the P key if you want."+
-      "</br>"+
-      "Everything that isn't the sun kills you."
+      document.getElementById("info").innerHTML =
+        "You control the alien in this game." +
+        "</br>" +
+        "Use the arrow keys or WASD to move around." +
+        '</br>' +
+        "Your goal is to keep collecting the sun for as long as you can in as little time as you can without dying." +
+        "</br>" +
+        "The game will get harder as you progress." +
+        "</br>" +
+        "You can pause with the P key if you want." +
+        "</br>" +
+        "Everything that isn't the sun kills you."
       document.getElementById("info").style.color = "aquamarine";
       document.getElementById("info").style.fontFamily = "'Righteous', cursive";
       document.getElementById("info").style.fontSize = "20px";
     }
     function patchNotes() {
       document.getElementById("info").innerHTML =
-      "<b>Mazeless Runner Version 2.3.1 Patch Notes</b>"+
-      '</br>' +
-      '</br>' +
-      "<ul>"+
-        "<li>Fixed a bug where no image appeared when you paused the game</li>"+
-        "<li>Fixed a bug where you could pause on the game over screen</li>"+
-      "</ul>"+
-        "</br>"+
+        "<b>Mazeless Runner Version 2.4 Patch Notes</b>" +
+        "</br>" +
+        "</br>" +
+        "<b>General</b>" +
+        "<ul>" +
+        "<li>Added a score log so you can see everyone else's scores compared to your own</li>" +
+        "<li>Added a high score (shows your highest score after a few games of playing. doesn't save if you refresh the page)" +
+        "<li>After you play a game and get a high score you're satisfied with, you can submit your score to the score log along with a username to show all players your skill!</li>" +
+        "<li>God mode has been disabled</li>" +
+        "<li>Increased board size from 20x20 to 25x25</li>" +
+        "<li>Changed starting position of the player from (7, 7) to (11, 11)" +
+        "<li>The buttons now have more effects</li>" +
+        "<li>Removed the timer (may add it back in the future idk yet)</li>" +
+        "<li>The patch notes are now a changelog (only goes back to version 2.0 because that's when I started logging patchnotes)" +
+        "<li>Also in an earlier patch, I changed the color and layout of the lives but I never mentioned it, so yeah I did that" +
+        "</ul>" +
+        "<b>Enemies</b>" +
+        "<ul>" +
+        "<li>All the enemies are faster now</li>" +
+        "<ul><li>Increased bee speed from 750ms to 700ms</li>" +
+        "<li>Increased croc speed from 40ms to 35ms</li>" +
+        "<li>Increased shark first aggression state speed from 450ms to 400ms</li>" +
+        "<li>Increased shark second aggression state speed from 270ms to 220ms</li>" +
+        "<li>Increased moon spawn speed from 500ms to 470ms</li>" +
+        "<li>Decreased first monkey step counter from 20 to 17 (it changes positions slightly faster now)</li>" +
+        "<li>Increased monkey teleport speed from 450ms to 400ms</li>" +
+        "<li>This may be a bit confusing because I'm saying that their speed increased from a higher number to a lower number. To clarify, the ms value is the wait time between each movement that they make, so decreasing this would reduce the time they had to wait to move, making them move faster.</li>" +
+        "</ul>" +
+        "<li>Changed the starting positions of the monkey and the bee</li>" +
+        "</ul>" +
+        "<b>Code Edits</b>" +
+        "<ul>"+
+        "<li>Added more switch cases</li>" +
+        "<li>Made a file specifically for quality of life functions (shortening of common functions used in the code like getElementById and such)</li>" +
+        "<li>The mines class is now its own file</li>" +
+        "<li>Gave some functions their own files (create/display board, changes in gamestate, WASD toggle)" +
+        "</ul>"+
+        "<b>Other</b>" +
+        "<ul>" +
+        "<li>I've been considering removing the frog from the game. Initially, it was supposed to be the starting enemy to provide some sort of obstacle at the beginning of the game. Before I increased the size of the board, it was impossible to collide with the frog a bit later in the game, and after I've increased it, you can only hit it in the middle of the board. Also, I've heard some people say that they thought they were the frog when they started the game. So it only really exists to cause confusion for new players and it poses no obstacle at all. It'll probably be gone next patch.</li>" +
+        "<li>Multiplayer isn't coming, or at least it isn't something I'm planning to add. Do you guys want multiplayer? It'll depend on feedback I get, so lemme know</li>"+
+        "<li>Powerups maybe coming soon?</li>"+
+        "<li>The game's slowing down. I can see that it is. Maybe it's my laptop, or it's because I always have a lot of tabs open when updating it, but even then... I'll try to fix it.</li>"+
+        "<li>Stay safe.</li>"+
+        "</ul>"+
+          "<b>Thanks for playing!</b>"+
+          "</br>"+
+          "</br>"+
+        "<b>Mazeless Runner Version 2.3.1 Patch Notes</b>" +
+        '</br>' +
+        '</br>' +
+        "<ul>" +
+        "<li>Fixed a bug where no image appeared when you paused the game</li>" +
+        "<li>Fixed a bug where you could pause on the game over screen</li>" +
+        "</ul>" +
+        "</br>" +
         "<b>Mazeless Runner Version 2.3 Patch Notes</b>" +
         '</br>' +
         '</br>' +
         "<b>General</b>" +
         "<ul>" +
         "<li>Added a menu screen (a bit barebones at the moment, but it's there)</li>" +
-        "<li>Added a stopwatch for an additional element of challenge: score as much as you can in as little time as you can</li>"+
+        "<li>Added a stopwatch for an additional element of challenge: score as much as you can in as little time as you can</li>" +
         "<li>Added a pause button (P)</li>" +
-        "<li>Updated instructions to reflect these additions</li>"+
-        "<li>Changed the position of the lives</li>"+
+        "<li>Updated instructions to reflect these additions</li>" +
+        "<li>Changed the position of the lives</li>" +
         "<li>The buttons have a transition effect when you hover over them now</li>" +
-        "<li>WHOA GLOWY TITLE TEXT</li>"+
-        "<li>After you lose and restart, your score and time for that game will be displayed on screen. It only shows your latest game, though.</li>"+
-        "</ul>"+
-        "<b>Enemies</b>"+
+        "<li>WHOA GLOWY TITLE TEXT</li>" +
+        "<li>After you lose and restart, your score and time for that game will be displayed on screen. It only shows your latest game, though.</li>" +
+        "</ul>" +
+        "<b>Enemies</b>" +
         "<ul>" +
-        "<li>Changed the shark's movement pattern (you do NOT want to lose a life now)</li>"+
-        "</ul>"+
-        "<b>Organization/Code things</b>"+
-        "<ul>"+
-        "<li>Changed some lengthy if/elses to switch cases</li>"+
-        "<li>The code looks a bit cleaner now - there are separate files for each character and the energy</li>"+
-        "<li>Renamed the variables to match the newer enemies</li>"+
-        "<li>Made the energy's code just a bit more efficient (i'm sure it could be better though)</li>"+
-        "</ul>"+
-        "<b>Known Issues</b>"+
-        "<ul>"+
-        "<li>Sometimes at the beginning of the game, when you run into an enemy and stay on it for a bit, the shark will enter its second aggression state and the lives will pulse more rapidly even though you'll still have 2 lives left. I don't know why that happens and I'm looking into it.</li>"+
-        "<li>Not really an issue at the moment, but I'm thinking that the shark in its current state may be a bit too powerful due to the size of the map. I may consider making it bigger to nerf the shark a bit, but I'm not sure yet.</li>"+
-        "</ul>"+
+        "<li>Changed the shark's movement pattern (you do NOT want to lose a life now)</li>" +
+        "</ul>" +
+        "<b>Organization/Code things</b>" +
+        "<ul>" +
+        "<li>Changed some lengthy if/elses to switch cases</li>" +
+        "<li>The code looks a bit cleaner now - there are separate files for each character and the energy</li>" +
+        "<li>Renamed the variables to match the newer enemies</li>" +
+        "<li>Made the energy's code just a bit more efficient (i'm sure it could be better though)</li>" +
+        "</ul>" +
+        "<b>Known Issues</b>" +
+        "<ul>" +
+        "<li>Sometimes at the beginning of the game, when you run into an enemy and stay on it for a bit, the shark will enter its second aggression state and the lives will pulse more rapidly even though you'll still have 2 lives left. I don't know why that happens and I'm looking into it.</li>" +
+        "<li>Not really an issue at the moment, but I'm thinking that the shark in its current state may be a bit too powerful due to the size of the map. I may consider making it bigger to nerf the shark a bit, but I'm not sure yet.</li>" +
+        "</ul>" +
+        "</br>" +
+        "<b>Thanks for playing!</b>" +
+        "</br>" +
+        "</br>" +
+        "Mazeless Runner 2.2 Patch Notes" +
+        '</br>' +
+        '</br>' +
+        "<b>General</b>" +
+        "<ul>" +
+        "<li>Changed the visuals, as you can see</li>" +
+        "<li>Added the option to toggle between WASD controls and arrow keys</li>" +
+        "</ul>" +
+        "</br>" +
+        "<b>Things I've been thinking about adding</b>" +
+        "<ul>" +
+        "<li>A pause button and a proper title screen</li>" +
+        "<li>Something that saves your high score</li>" +
+        "<li>Making the monkey's bananas temporary obstacles (they disappear when something goes over them)</li>" +
+        "<li>Powerups (shield, extra life, maybe the ability to destroy obstacles)</li>" +
+        "</ul>" +
+        "</br>" +
+        "Mazeless Runner 2.1 Patch Notes" +
+        '</br>' +
+        '</br>' +
+        "<b>General</b>" +
+        "<ul>" +
+        "<li>Added god mode for easier testing (i'm not telling you what button it is tho ._.)</li>" +
+        "<li>Changed the lightning to an outlined sun (reference to god mode)</li>" +
+        "<li>The cherry no longer spawns on enemies to make it unobtainable(mostly)</li>" +
+        "<li>Made the lives change color when you lose lives to make it clear when a life has been lost</li>" +
+        "<li>The score and lives are now visible when you lose w/o scrolling down</li>" +
+        "<li>The arrow keys no longer scroll up and down on some screens</li>" +
+        "</ul>" +
+        "</br>" +
+        "<b>Enemies</b>" +
+        "<ul>" +
+        "<li>Changed when the snake and the croc start to move (snake starts at 1000 pts, croc starts at 2000 pts)</li>" +
+        "<li>New enemy: The Monkey!</li>" +
+        "<ul>" +
+        "<li>Starts moving at 5000 pts</li>" +
+        "<li>Moves additional times based on the number of steps you take</li>" +
+        "<li>When it moves, it makes a cross of banana at its location and moves somewhere else</li>" +
+        "<li>Kind of an enhanced version of the moon for now</li>" +
+        "</ul>" +
+        "<li>Changed the shadow's speed spawning point threshold to 10000 pts</li>" +
+        "</ul>" +
+        "</br>" +
+        "<b>Known Issues</b>" +
+        "<ul>" +
+        "<li>The sun will sometimes spawn on an enemy when it is redirected from another enemy that it would've spawned on otherwise. This is a rare occurrence.</li>" +
+        "<li>The mines and some other things disappear when things go over them. You can see them again when you move, but I'm working on a fix where you can see them all the time.</li>" +
+        "</ul>" +
         "</br>"+
-        "<b>Thanks for playing!</b>"
+        "</br>"+
+      "Mazeless Runner 2.0 Patch Notes" +
+        '</br>' +
+        '</br>' +
+        "<b>General</b>" +
+        "<ul>" +
+        "<li>Added color to the game</li>" +
+        "<li>Changed the robot into a space invader</li>" +
+        "<li>Centered and increased the size of the game board(The grid size is still the same)</li>" +
+        "<li>Changed the cherry to lightning</li>" +
+        "<li>The cherry no longer spawns on enemies to make it unobtainable</li>" +
+        "<li>Added a game over screen to make it clearer when the game is over</li>" +
+        "<li>Made the instructions clearer</li>" +
+        "<li>Decreased score per pickup from 500 to 250</li>" +
+        "</ul>" +
+        "</br>" +
+        "<b>Enemies</b>" +
+        "<ul>" +
+        "<li>Fixed the mines that the shadow drops so they apply the correct amount of damage</li>" +
+        "<li>Fixed an issue that caused the snake to not register damage</li>" +
+        "<li>The shadow now spawns 25 additional mines when the player's score is above 5000</li>" +
+        "<li>Removed the skull</li>" +
+        "<li>The shark now has a softlock mechanic(The softlock issue is now an intentional mechanic)</li>" +
+        "<li>Increased croc speed from 1 tile/50ms to 1 tile/40ms</li>"
 
-    document.getElementById("info").style.fontFamily = '"Source Sans Pro", sans-serif';
-    document.getElementById("info").style.color = "aqua";
-    document.getElementById("info").style.fontSize = "16px";
+      document.getElementById("info").style.fontFamily = '"Source Sans Pro", sans-serif';
+      document.getElementById("info").style.color = "aqua";
+      document.getElementById("info").style.fontSize = "16px";
     }
-    
   </script>
   <p id="wasdToggle"></p>
   <p id="info"></p>
+
+  <div id="submitted">Submitted score!</div>
+  <div id="userContainer">
+    <form>
+      <div class="inputContainer">
+        <div class="singleInput">
+          <label for="username">Username: </label>
+          <input id="username" type="text">
+        </div>
+      </div>
+      <button id="submitButton">Submit high score</button>
+    </form>
+  </div>
+
+  <button onclick="backToMenu()" id="backToMenu">Back to menu</button>
+  <div id="topScores">
+
+  </div>
   <div id="everything">
     <div id="game_over">Game Over</div>
     <div id="ur_dead">ur dead m8.</div>
@@ -116,7 +292,6 @@
     <div id="lives"></div>
     <div id="output_holder"></div>
     <div id="score"></div>
-    <div id="time"></div>
   </div>
 
 </body>

@@ -1,9 +1,13 @@
+var p1X = 11;
+var p1Y = 11;
+var frogX = 3;
+var frogY = 3;
 function charAndFrogMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY && lives > 0) {
         switch (event.keyCode) {
             case upKey:
               switch (frogY) {
-                case 19:
+                case 24:
                   myBoard[frogX][frogY] = frog;
                   if (p1Y === 0) {
                     myBoard[p1X][p1Y] = p1;
@@ -34,7 +38,7 @@ function charAndFrogMovement() {
               switch (frogY) {
                 case 0:
                   myBoard[frogX][frogY] = frog;
-                  if (p1Y === 19) {
+                  if (p1Y === 24) {
                     myBoard[p1X][p1Y] = p1;
                   } else {
                     myBoard[p1X][p1Y] = blank;
@@ -44,7 +48,7 @@ function charAndFrogMovement() {
                   break;
                 default:
                   switch (p1Y) {
-                    case 19:
+                    case 24:
                       myBoard[p1X][p1Y] = p1;
                       break;
                     default:
@@ -61,7 +65,7 @@ function charAndFrogMovement() {
               break;
             case leftKey:
               switch (frogX) {
-                case 19:
+                case 24:
                   myBoard[frogX][frogY] = frog;
                   if (p1X === 0) {
                     myBoard[p1X][p1Y] = p1;
@@ -92,7 +96,7 @@ function charAndFrogMovement() {
               switch (frogX) {
                 case 0:
                   myBoard[frogX][frogY] = frog;
-                  if (p1X === 19) {
+                  if (p1X === 24) {
                     myBoard[p1X][p1Y] = p1;
                   } else {
                     myBoard[p1X][p1Y] = blank;
@@ -102,7 +106,7 @@ function charAndFrogMovement() {
                   break;
                 default:
                   switch (p1X) {
-                    case 19:
+                    case 24:
                       myBoard[p1X][p1Y] = p1;
                       break;
                     default:

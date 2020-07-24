@@ -1,3 +1,4 @@
+var pulseSpeed = 500;
 function pulsingLifeColor() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
         switch (lives) {
