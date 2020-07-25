@@ -31,7 +31,6 @@ var ranAlready = false;
 
 //actions on key press
 document.addEventListener('keydown', function (event) {
-  event.preventDefault();
   switch (event.keyCode) {
     case 80:
       if (gamestate == whatsAnEnum.GAMEPLAY || gamestate == whatsAnEnum.PAUSE) {

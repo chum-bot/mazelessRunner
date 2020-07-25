@@ -33,7 +33,7 @@ function monkeyMovement() {
             myBoard[monkeyX][monkeyY] = midBanana.img;
             monkeyX = Math.floor(Math.random() * 23) + 1;
             monkeyY = Math.floor(Math.random() * 23) + 1;
-            if (myBoard[monkeyX][monkeyY] == myBoard[cherryX][cherryY]) {
+            if (myBoard[monkeyX][monkeyY] == myBoard[energyX][energyY]) {
               monkeyX = Math.floor(Math.random() * 23) + 1;
               monkeyY = Math.floor(Math.random() * 23) + 1;
             }
