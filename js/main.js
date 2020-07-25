@@ -29,8 +29,25 @@ const banana = "🍌";
 const bee = "🐝";
 var ranAlready = false;
 
-//actions on key press
-document.addEventListener('keydown', function (event) {
+document.addEventListener("keydown", shiftsInGS);
+
+function shiftsInGS(){
+  switch(event.keyCode){
+  case 13:
+      if (gamestate != whatsAnEnum.GAMEOVER) {
+        startup();
+      }
+      break;
+    case 82:
+      if(gamestate != whatsAnEnum.MENU){
+      gamestate = whatsAnEnum.MENU;
+      reset();
+      }
+      break;
+}
+}
+
+function downOnTheKey(event){
   switch (event.keyCode) {
     case 80:
       if (gamestate == whatsAnEnum.GAMEPLAY || gamestate == whatsAnEnum.PAUSE) {
@@ -53,15 +70,6 @@ document.addEventListener('keydown', function (event) {
       get("godMode").style.display = "block";
       p1 = "🌞";
       break;*/
-    case 13:
-      if (gamestate != whatsAnEnum.GAMEOVER) {
-        startup();
-      }
-      break;
-    case 82:
-      gamestate = whatsAnEnum.MENU;
-      reset();
-      break;
   }
   if (gamestate == whatsAnEnum.GAMEPLAY) {
     //character and frog movement
@@ -107,29 +115,33 @@ document.addEventListener('keydown', function (event) {
       }
     }
   }
+  if(gamestate == whatsAnEnum.GAMEPLAY){
   stepCount--;
-});
+  }
+  }
+
+function gameplay(){
+document.addEventListener('keydown', downOnTheKey);
 
 //shark
-var aggression = setInterval(sharkMovement, aggressionTime);
+aggression = setInterval(sharkMovement, aggressionTime);
 
 //bee
-setInterval(beeMovement, 700);
+buzz = setInterval(beeMovement, 700);
 
 //moon
 var mineCap = 0;
-var moveyBoi = setInterval(moonMovement, 470);
-let minePositions = [];
+moveyBoi = setInterval(moonMovement, 470);
 var theBrokenCounter = 0;
 
 //croc
-setInterval(crocMovement, 35);
+guard = setInterval(crocMovement, 35);
 
 //monkey
-setInterval(monkeyMovement, 400);
+oohOoh = setInterval(monkeyMovement, 400);
 
 //life color change
-var initPulse = setInterval(pulsingLifeColor, pulseSpeed);
+initPulse = setInterval(pulsingLifeColor, pulseSpeed);
 
 //my version of unity's update function
 function cooldownsAndRespawns() {
@@ -157,6 +169,10 @@ function cooldownsAndRespawns() {
         var thisMAYbeBroken = setInterval(moonMovement, 250);
       }
     }
+    
+    if (mineCap == 50) {
+      clearInterval(moveyBoi);
+    }
     if (mineCap == 300) {
       clearInterval(thisMAYbeBroken);
     }
@@ -177,4 +193,5 @@ function cooldownsAndRespawns() {
     displayBoard();
   }
 }
-var cdsAndResps = setInterval(cooldownsAndRespawns, 10);
+setInterval(cooldownsAndRespawns, 10);
+}

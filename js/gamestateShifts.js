@@ -1,5 +1,6 @@
 function startup() {
     createBoard();
+    gameplay();
     gamestate = whatsAnEnum.GAMEPLAY;
     removeElement("info");
     removeElement("title_screen");
@@ -25,7 +26,6 @@ function startup() {
     displayBoard();
     displayBlock("lives");
     get("output_holder").style.fontSize = "89%";
-    cdsAndResps = setInterval(cooldownsAndRespawns, 10);
 }
 function ded() {
     document.body.style.background = "rgb(225,35,0)";
@@ -41,7 +41,13 @@ function ded() {
     get("output_holder").style.fontSize = "78%";
     scores.push(score);
     scores.sort((a,b) => a-b);
-    clearInterval(cdsAndResps);
+    document.removeEventListener("keydown", downOnTheKey);
+    clearInterval(buzz);
+    clearInterval(oohOoh);
+    clearInterval(guard);
+    clearInterval(aggression);
+    clearInterval(moveyBoi);
+    clearInterval(initPulse);
   }
   function reset() {
     createBoard();

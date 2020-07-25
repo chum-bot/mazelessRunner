@@ -15,8 +15,5 @@ function moonMovement() {
         myBoard[moonX][moonY] = moon;
         mineCap++;
       }
-      if (mineCap == 50) {
-        clearInterval(moveyBoi);
-      }
     }
   }
