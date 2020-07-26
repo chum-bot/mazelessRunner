@@ -2,7 +2,7 @@ var sharkX = 8;
 var sharkY = 24;
 var disX = Math.abs(p1X - sharkX);
 var disY = Math.abs(p1Y - sharkY);
-var aggressionTime = 400;
+var aggressionTime = 490;
 function sharkMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
       if (lives <= 2) {

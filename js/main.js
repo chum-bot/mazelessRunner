@@ -1,4 +1,4 @@
-var blank = "🔲";
+var blank = "⬛";
 var paused = false;
 
 
@@ -18,36 +18,34 @@ createBoard();
 displayBoard();
 
 //characters/elements
-const croc = "🐊";
-const moon = "🌚";
-const energy = "🔆";
+const unicorn = "🦄";
+const moon = "🌝";
+const sun = "🔆";
 var p1 = "👾";
-const frog = "🐸";
 const shark = "🦈";
 const monkey = "🐒";
 const banana = "🍌";
 const bee = "🐝";
-var ranAlready = false;
 
 document.addEventListener("keydown", shiftsInGS);
 
-function shiftsInGS(){
-  switch(event.keyCode){
-  case 13:
+function shiftsInGS() {
+  switch (event.keyCode) {
+    case 13:
       if (gamestate != whatsAnEnum.GAMEOVER) {
         startup();
       }
       break;
     case 82:
-      if(gamestate != whatsAnEnum.MENU){
-      gamestate = whatsAnEnum.MENU;
-      reset();
+      if (gamestate != whatsAnEnum.MENU) {
+        gamestate = whatsAnEnum.MENU;
+        reset();
       }
       break;
-}
+  }
 }
 
-function downOnTheKey(event){
+function downOnTheKey(event) {
   switch (event.keyCode) {
     case 80:
       if (gamestate == whatsAnEnum.GAMEPLAY || gamestate == whatsAnEnum.PAUSE) {
@@ -72,17 +70,14 @@ function downOnTheKey(event){
       break;*/
   }
   if (gamestate == whatsAnEnum.GAMEPLAY) {
-    //character and frog movement
+    //character movement
     if (lives > 0) {
-      charAndFrogMovement();
-      //croc teleport and energy pickup
+      charMovement();
+      //unicorn teleport and sun pickup
       teleport();
     }
 
-    if (myBoard[frogX][frogY] === myBoard[p1X][p1Y]) {
-      lives--;
-      get("lives").innerHTML = " Lives: " + lives;
-    }
+
     if (myBoard[sharkX][sharkY] === myBoard[p1X][p1Y]) {
       lives--;
       get("lives").innerHTML = " Lives: " + lives;
@@ -115,83 +110,84 @@ function downOnTheKey(event){
       }
     }
   }
-  if(gamestate == whatsAnEnum.GAMEPLAY){
-  stepCount--;
-  }
-  }
-
-function gameplay(){
-document.addEventListener('keydown', downOnTheKey);
-
-//shark
-aggression = setInterval(sharkMovement, aggressionTime);
-
-//bee
-buzz = setInterval(beeMovement, 700);
-
-//moon
-var mineCap = 0;
-moveyBoi = setInterval(moonMovement, 470);
-var theBrokenCounter = 0;
-
-//croc
-guard = setInterval(crocMovement, 35);
-
-//monkey
-oohOoh = setInterval(monkeyMovement, 400);
-
-//life color change
-initPulse = setInterval(pulsingLifeColor, pulseSpeed);
-
-//my version of unity's update function
-function cooldownsAndRespawns() {
   if (gamestate == whatsAnEnum.GAMEPLAY) {
-    myBoard[crocX][crocY] = croc;
-    myBoard[sharkX][sharkY] = shark;
-    myBoard[moonX][moonY] = moon;
-    myBoard[beeX][beeY] = bee;
-    myBoard[monkeyX][monkeyY] = monkey;
-    for (bahnananaOhBeeJay of bananaPositions) {
-      myBoard[bahnananaOhBeeJay.xPos][bahnananaOhBeeJay.yPos] = bahnananaOhBeeJay.img;
-    }
-    for (meenayOhBeeJay of minePositions) {
-      myBoard[meenayOhBeeJay.xPos][meenayOhBeeJay.yPos] = meenayOhBeeJay.img;
-    }
-    myBoard[energyX][energyY] = energy;
-
-    if (lives <= 0) {
-      gamestate = whatsAnEnum.GAMEOVER;
-      ded();
-    }
-    if (score >= 10000) {
-      if (theBrokenCounter == 0) {
-        theBrokenCounter = 1;
-        var thisMAYbeBroken = setInterval(moonMovement, 250);
-      }
-    }
-    
-    if (mineCap == 50) {
-      clearInterval(moveyBoi);
-    }
-    if (mineCap == 300) {
-      clearInterval(thisMAYbeBroken);
-    }
-    get("score").innerHTML = `Score: ${score}`;
-    get("lives").innerHTML = `Lives: ${lives}`;
-
-    if (ranAlready === false) {
-      if (lives === 1) {
-        ranAlready = true;
-        clearInterval(initPulse);
-        clearInterval(aggression);
-        let pulseSpeed = 250;
-        let aggressionTime = 220;
-        setInterval(pulsingLifeColor, pulseSpeed);
-        setInterval(sharkMovement, aggressionTime);
-      }
-    }
-    displayBoard();
+    stepCount--;
   }
 }
-setInterval(cooldownsAndRespawns, 10);
+
+function gameplay() {
+  document.addEventListener('keydown', downOnTheKey);
+
+  //shark
+  aggression = setInterval(sharkMovement, aggressionTime);
+
+  //bee
+  buzz = setInterval(beeMovement, 700);
+
+  //moon
+  moveyBoi = setInterval(moonMovement, 500);
+  var theBrokenCounter = 0;
+
+  //unicorn
+  guard = setInterval(unicornMovement, 40);
+
+  //monkey
+  oohOoh = setInterval(monkeyMovement, 400);
+
+  //life color change
+  initPulse = setInterval(pulsingLifeColor, pulseSpeed);
+
+  //the thing that runs unity update
+  cdsAndResps = setInterval(cooldownsAndRespawns, 10);
+
+  //my version of unity's update function
+  function cooldownsAndRespawns() {
+    if (gamestate == whatsAnEnum.GAMEPLAY) {
+      myBoard[unicornX][unicornY] = unicorn;
+      myBoard[sharkX][sharkY] = shark;
+      myBoard[moonX][moonY] = moon;
+      myBoard[beeX][beeY] = bee;
+      myBoard[monkeyX][monkeyY] = monkey;
+      for (bahnananaOhBeeJay of bananaPositions) {
+        myBoard[bahnananaOhBeeJay.xPos][bahnananaOhBeeJay.yPos] = bahnananaOhBeeJay.img;
+      }
+      for (meenayOhBeeJay of minePositions) {
+        myBoard[meenayOhBeeJay.xPos][meenayOhBeeJay.yPos] = meenayOhBeeJay.img;
+      }
+      myBoard[sunX][sunY] = sun;
+
+      if (lives <= 0) {
+        gamestate = whatsAnEnum.GAMEOVER;
+        ded();
+      }
+      if (score >= 10000) {
+        if (theBrokenCounter == 0) {
+          theBrokenCounter = 1;
+          var thisMAYbeBroken = setInterval(moonMovement, 250);
+        }
+      }
+
+      if (mineCap == 50) {
+        clearInterval(moveyBoi);
+      }
+      if (mineCap == 300) {
+        clearInterval(thisMAYbeBroken);
+      }
+      get("score").innerHTML = `Score: ${score}`;
+      get("lives").innerHTML = `Lives: ${lives}`;
+
+      if (ranAlready === false) {
+        if (lives === 1) {
+          ranAlready = true;
+          clearInterval(initPulse);
+          clearInterval(aggression);
+          let pulseSpeed = 250;
+          let aggressionTime = 245;
+          initPulse = setInterval(pulsingLifeColor, pulseSpeed);
+          aggression = setInterval(sharkMovement, aggressionTime);
+        }
+      }
+      displayBoard();
+    }
+  }
 }

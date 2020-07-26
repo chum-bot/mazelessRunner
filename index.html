@@ -45,8 +45,8 @@
   <script src="js/shark.js"></script>
   <script src="js/mines.js"></script>
   <script src="js/moon.js"></script>
-  <script src="js/energy.js"></script>
-  <script src="js/croc.js"></script>
+  <script src="js/sun.js"></script>
+  <script src="js/unicorn.js"></script>
   <script src="js/lifeColor.js"></script>
   <script src="js/main.js" defer></script>
 
@@ -94,13 +94,41 @@
     }
     function patchNotes() {
       document.getElementById("info").innerHTML =
-      "<b>Mazeless Runner Version 2.4.1 Patch Notes</b>"+
-      "</br>"+
-      "</br>"+
-      "<ul>"+
-        "<li>Fixed an issue where you were unable to type in the username field and submit a name to the score log (i can't believe i missed that... i tested it with autofill so i never had to type. im sorry for this. i'll try my best to make sure something like this doesn't happen again.)</li>"+
-      "</ul>"+
-      "</br>"+
+        "<b>Mazeles Runner Version 2.4.2 Patch Notes</b>" +
+        "</br>" +
+        "</br>" +
+        "<b>General</b>" +
+        "<ul>" +
+        "<li>Fixed an issue where the lives would pulse unreasonably fast after playing a few games</li>" +
+        "<li>You can no longer submit a score of 0  or a score without a name (that was in the last patch)</li>" +
+        "<li>The blank spaces are now black boxes instead of white</li>" +
+        "</ul>" +
+        "<b>Enemies</b>" +
+        "<ul>" +
+        "<li>The moon is now a full moon</li>" +
+        "<li>Changed the croc to a unicorn (i thought it made more sense since they protect the light or whatever)</li>" +
+        "<li>Removed the frog from the game</li>" +
+        "<li>Fixed an issue when the shark would move unreasonably fast after playing a few games</li>" +
+        "<li>Decreased shark first aggression state speed from 400ms to 490ms</li>" +
+        "<li>Decreased shark second aggression state speed from 220ms to 245ms</li>" +
+        "<li>The shark is now much slower tha it usually was when you lose your first life, but it becomes twice as fast when you lose your second</li>" +
+        "<li>Reverted the change to the moon's spawn rate</li>" +
+        "</ul>" +
+        "<b>Other</b>" +
+        "<ul>" +
+        "<li>Difficulty settings?</li>" +
+        "<li>Powerups may be the next big update</li>" +
+        "<li>I may change the score thresholds for the enemies to activate</li>" +
+        "<li>You may be getting more lives in the future...</li>" +
+        "</ul>" +
+        "</br>" +
+        "<b>Mazeless Runner Version 2.4.1 Patch Notes</b>" +
+        "</br>" +
+        "</br>" +
+        "<ul>" +
+        "<li>Fixed an issue where you were unable to type in the username field and submit a name to the score log (i can't believe i missed that... i tested it with autofill so i never had to type. im sorry for this. i'll try my best to make sure something like this doesn't happen again.)</li>" +
+        "</ul>" +
+        "</br>" +
         "<b>Mazeless Runner Version 2.4 Patch Notes</b>" +
         "</br>" +
         "</br>" +
@@ -132,23 +160,23 @@
         "<li>Changed the starting positions of the monkey and the bee</li>" +
         "</ul>" +
         "<b>Code Edits</b>" +
-        "<ul>"+
+        "<ul>" +
         "<li>Added more switch cases</li>" +
         "<li>Made a file specifically for quality of life functions (shortening of common functions used in the code like getElementById and such)</li>" +
         "<li>The mines class is now its own file</li>" +
         "<li>Gave some functions their own files (create/display board, changes in gamestate, WASD toggle)" +
-        "</ul>"+
+        "</ul>" +
         "<b>Other</b>" +
         "<ul>" +
         "<li>I've been considering removing the frog from the game. Initially, it was supposed to be the starting enemy to provide some sort of obstacle at the beginning of the game. Before I increased the size of the board, it was impossible to collide with the frog a bit later in the game, and after I've increased it, you can only hit it in the middle of the board. Also, I've heard some people say that they thought they were the frog when they started the game. So it only really exists to cause confusion for new players and it poses no obstacle at all. It'll probably be gone next patch.</li>" +
-        "<li>Multiplayer isn't coming, or at least it isn't something I'm planning to add. Do you guys want multiplayer? It'll depend on feedback I get, so lemme know</li>"+
-        "<li>Powerups maybe coming soon?</li>"+
-        "<li>The game's slowing down. I can see that it is. Maybe it's my laptop, or it's because I always have a lot of tabs open when updating it, but even then... I'll try to fix it.</li>"+
-        "<li>Stay safe.</li>"+
-        "</ul>"+
-          "<b>Thanks for playing!</b>"+
-          "</br>"+
-          "</br>"+
+        "<li>Multiplayer isn't coming, or at least it isn't something I'm planning to add. Do you guys want multiplayer? It'll depend on feedback I get, so lemme know</li>" +
+        "<li>Powerups maybe coming soon?</li>" +
+        "<li>The game's slowing down. I can see that it is. Maybe it's my laptop, or it's because I always have a lot of tabs open when updating it, but even then... I'll try to fix it.</li>" +
+        "<li>Stay safe.</li>" +
+        "</ul>" +
+        "<b>Thanks for playing!</b>" +
+        "</br>" +
+        "</br>" +
         "<b>Mazeless Runner Version 2.3.1 Patch Notes</b>" +
         '</br>' +
         '</br>' +
@@ -178,9 +206,9 @@
         "<b>Organization/Code things</b>" +
         "<ul>" +
         "<li>Changed some lengthy if/elses to switch cases</li>" +
-        "<li>The code looks a bit cleaner now - there are separate files for each character and the energy</li>" +
+        "<li>The code looks a bit cleaner now - there are separate files for each character and the sun</li>" +
         "<li>Renamed the variables to match the newer enemies</li>" +
-        "<li>Made the energy's code just a bit more efficient (i'm sure it could be better though)</li>" +
+        "<li>Made the sun's code just a bit more efficient (i'm sure it could be better though)</li>" +
         "</ul>" +
         "<b>Known Issues</b>" +
         "<ul>" +
@@ -191,7 +219,7 @@
         "<b>Thanks for playing!</b>" +
         "</br>" +
         "</br>" +
-        "Mazeless Runner 2.2 Patch Notes" +
+        "<b>Mazeless Runner 2.2 Patch Notes</b>" +
         '</br>' +
         '</br>' +
         "<b>General</b>" +
@@ -208,7 +236,7 @@
         "<li>Powerups (shield, extra life, maybe the ability to destroy obstacles)</li>" +
         "</ul>" +
         "</br>" +
-        "Mazeless Runner 2.1 Patch Notes" +
+        "<b>Mazeless Runner 2.1 Patch Notes</b>" +
         '</br>' +
         '</br>' +
         "<b>General</b>" +
@@ -239,9 +267,8 @@
         "<li>The sun will sometimes spawn on an enemy when it is redirected from another enemy that it would've spawned on otherwise. This is a rare occurrence.</li>" +
         "<li>The mines and some other things disappear when things go over them. You can see them again when you move, but I'm working on a fix where you can see them all the time.</li>" +
         "</ul>" +
-        "</br>"+
-        "</br>"+
-      "Mazeless Runner 2.0 Patch Notes" +
+        "</br>" +
+        "<b>Mazeless Runner 2.0 Patch Notes</b>" +
         '</br>' +
         '</br>' +
         "<b>General</b>" +
