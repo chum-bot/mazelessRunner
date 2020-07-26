@@ -42,14 +42,14 @@ function ded() {
     scores.sort((a,b) => a-b);
     document.removeEventListener("keydown", downOnTheKey);
     aggressionTime = 400;
-    initPulse = 500;
+    pulseSpeed = 500;
+    clearInterval(initPulse);
     clearInterval(cdsAndResps);
     clearInterval(buzz);
     clearInterval(oohOoh);
     clearInterval(guard);
     clearInterval(aggression);
     clearInterval(moveyBoi);
-    clearInterval(initPulse);
     ranAlready = false;
   }
   function reset() {
