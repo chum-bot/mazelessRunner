@@ -18,7 +18,7 @@ function startup() {
     score = 0;
     myBoard[unicornX][unicornY] = unicorn;
     myBoard[p1X][p1Y] = p1;
-    myBoard[sharkX][sharkY] = shark;
+    myBoard[bearX][bearY] = bear;
     myBoard[sunX][sunY] = sun;
     myBoard[moonX][moonY] = moon;
     myBoard[monkeyX][monkeyY] = monkey;
@@ -77,8 +77,8 @@ function ded() {
     beeY = 8;
     moonX = 24;
     moonY = 24;
-    sharkX = 8;
-    sharkY = 24;
+    bearX = 8;
+    bearY = 24;
     sunX = 5;
     sunY = 11;
     p1X = 11;
@@ -91,7 +91,7 @@ function ded() {
     bananaPositions = [];
     myBoard[unicornX][unicornY] = unicorn;
     myBoard[p1X][p1Y] = p1;
-    myBoard[sharkX][sharkY] = shark;
+    myBoard[bearX][bearY] = bear;
     myBoard[sunX][sunY] = sun;
     myBoard[moonX][moonY] = moon;
     myBoard[monkeyX][monkeyY] = monkey;

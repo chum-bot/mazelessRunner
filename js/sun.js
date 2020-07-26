@@ -10,7 +10,7 @@ function teleport() {
         switch(myBoard[sunX][sunY]){
             case myBoard[moonX][moonY]:
             case myBoard[beeX][beeY]:
-            case myBoard[sharkX][sharkY]:
+            case myBoard[bearX][bearY]:
             case myBoard[monkeyX][monkeyY]:
                 sunX = Math.floor((Math.random() * 25));
                 sunY = Math.floor((Math.random() * 25));

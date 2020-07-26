@@ -42,7 +42,7 @@
   <script src="js/movement.js"></script>
   <script src="js/bee.js"></script>
   <script src="js/monkey.js"></script>
-  <script src="js/shark.js"></script>
+  <script src="js/bear.js"></script>
   <script src="js/mines.js"></script>
   <script src="js/moon.js"></script>
   <script src="js/sun.js"></script>
@@ -94,7 +94,7 @@
     }
     function patchNotes() {
       document.getElementById("info").innerHTML =
-        "<b>Mazeles Runner Version 2.4.2 Patch Notes</b>" +
+        "<b>Mazeles Runner Version 2.5 Patch Notes</b>" +
         "</br>" +
         "</br>" +
         "<b>General</b>" +
@@ -111,8 +111,10 @@
         "<li>Fixed an issue when the shark would move unreasonably fast after playing a few games</li>" +
         "<li>Decreased shark first aggression state speed from 400ms to 490ms</li>" +
         "<li>Decreased shark second aggression state speed from 220ms to 245ms</li>" +
-        "<li>The shark is now much slower tha it usually was when you lose your first life, but it becomes twice as fast when you lose your second</li>" +
-        "<li>Reverted the change to the moon's spawn rate</li>" +
+        "<li>The shark is now much slower than it usually was when you lose your first life, but it becomes twice as fast when you lose your second</li>" +
+        "<li>Also the shark is now a bear</li>"+
+        "<li>Decreased the moon's spawn rate from 500ms to 600ms</li>" +
+        "<li>The moon spawns 25 more mines when you hit 3000 points</li>"+
         "</ul>" +
         "<b>Other</b>" +
         "<ul>" +
@@ -120,6 +122,7 @@
         "<li>Powerups may be the next big update</li>" +
         "<li>I may change the score thresholds for the enemies to activate</li>" +
         "<li>You may be getting more lives in the future...</li>" +
+        "<li>This was going to be a smaller update but I just kept adding more things and decided to make it a big one instead</li>"+
         "</ul>" +
         "</br>" +
         "<b>Mazeless Runner Version 2.4.1 Patch Notes</b>" +

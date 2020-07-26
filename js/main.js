@@ -22,7 +22,7 @@ const unicorn = "🦄";
 const moon = "🌝";
 const sun = "🔆";
 var p1 = "👾";
-const shark = "🦈";
+const bear = "🐻";
 const monkey = "🐒";
 const banana = "🍌";
 const bee = "🐝";
@@ -78,7 +78,7 @@ function downOnTheKey(event) {
     }
 
 
-    if (myBoard[sharkX][sharkY] === myBoard[p1X][p1Y]) {
+    if (myBoard[bearX][bearY] === myBoard[p1X][p1Y]) {
       lives--;
       get("lives").innerHTML = " Lives: " + lives;
     }
@@ -118,14 +118,14 @@ function downOnTheKey(event) {
 function gameplay() {
   document.addEventListener('keydown', downOnTheKey);
 
-  //shark
-  aggression = setInterval(sharkMovement, aggressionTime);
+  //bear
+  aggression = setInterval(bearMovement, aggressionTime);
 
   //bee
   buzz = setInterval(beeMovement, 700);
 
   //moon
-  moveyBoi = setInterval(moonMovement, 500);
+  moveyBoi = setInterval(moonMovement, 600);
   var theBrokenCounter = 0;
 
   //unicorn
@@ -144,7 +144,7 @@ function gameplay() {
   function cooldownsAndRespawns() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
       myBoard[unicornX][unicornY] = unicorn;
-      myBoard[sharkX][sharkY] = shark;
+      myBoard[bearX][bearY] = bear;
       myBoard[moonX][moonY] = moon;
       myBoard[beeX][beeY] = bee;
       myBoard[monkeyX][monkeyY] = monkey;
@@ -167,10 +167,10 @@ function gameplay() {
         }
       }
 
-      if (mineCap == 50) {
+      if (mineCap == 75) {
         clearInterval(moveyBoi);
       }
-      if (mineCap == 300) {
+      if (mineCap == 450) {
         clearInterval(thisMAYbeBroken);
       }
       get("score").innerHTML = `Score: ${score}`;
@@ -184,7 +184,7 @@ function gameplay() {
           let pulseSpeed = 250;
           let aggressionTime = 245;
           initPulse = setInterval(pulsingLifeColor, pulseSpeed);
-          aggression = setInterval(sharkMovement, aggressionTime);
+          aggression = setInterval(bearMovement, aggressionTime);
         }
       }
       displayBoard();
