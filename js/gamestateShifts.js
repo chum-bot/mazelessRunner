@@ -34,7 +34,6 @@ function ded() {
     get("everything").style.backgroundImage = "url(https://i.imgur.com/knQZJCq.jpg)";
     get("everything").style.backgroundSize = "100% 100%";
     get("everything").style.backgroundRepeat = "no-repeat";
-    get("everything").style.backgroundSize = "100% 100%";
     get("everything").style.backgroundAttachment = "fixed";
     get("output_holder").style.opacity = "0";
     get("output_holder").style.fontSize = "78%";
@@ -43,6 +42,7 @@ function ded() {
     document.removeEventListener("keydown", downOnTheKey);
     aggressionTime = 400;
     pulseSpeed = 500;
+    mineCap = 0;
     clearInterval(initPulse);
     clearInterval(cdsAndResps);
     clearInterval(buzz);
@@ -108,7 +108,8 @@ function ded() {
       case false:
         paused = true;
         gamestate = whatsAnEnum.PAUSE;
-        get("everything").style.backgroundImage = "url(https://icon-library.com/images/pause-icon-transparent/pause-icon-transparent-16.jpg)";
+        get("everything").style.backgroundImage = "url('pixil-frame-0 (3).png')";
+        get("everything").style.backgroundSize = "100% 100%";
         get("everything").style.backgroundPosition = "center";
         get("everything").style.backgroundRepeat = "no-repeat";
         get("everything").style.backgroundAttachment = "fixed";

@@ -32,7 +32,7 @@ document.addEventListener("keydown", shiftsInGS);
 function shiftsInGS() {
   switch (event.keyCode) {
     case 13:
-      if (gamestate != whatsAnEnum.GAMEOVER) {
+      if (gamestate == whatsAnEnum.MENU) {
         startup();
       }
       break;
