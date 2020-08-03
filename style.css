@@ -13,6 +13,12 @@
   -moz-animation: glow 0.8s ease-in-out infinite alternate;
   animation: glow 0.8s ease-in-out infinite alternate;
 }
+#discordLink img{
+  display: block;
+  width: 7%;
+  height: 7%;
+  margin: auto;
+}
 @keyframes glow {
   from {
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px aquamarine, 0 0 40px aquamarine, 0 0 50px aquamarine, 0 0 60px aquamarine, 0 0 70px aquamarine;
@@ -25,7 +31,7 @@
 #secondaryTitleScreen{
   font-family: 'Fredoka One', cursive;
   color: aquamarine;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
   font-size: 35px;
 }

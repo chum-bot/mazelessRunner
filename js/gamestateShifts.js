@@ -12,6 +12,7 @@ function startup() {
   removeElement("difficultyMessage");
   removeElement("topScores");
   removeElement("submitted");
+  removeElement("discordLink");
   displayFlex("everything");
   displayBlock("output_holder");
   expirationDate = diffExpirationDate;
@@ -76,6 +77,7 @@ function reset() {
   displayFlex("buttonDiv");
   displayBlock("secondaryTitleScreen");
   displayBlock("wasdToggle");
+  displayBlock("discordLink");
   document.body.style.backgroundColor = "rgb(19, 57, 100)";
   removeElement("game_over");
   displayBlock("difficultyMessage");
