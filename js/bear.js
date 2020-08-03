@@ -2,7 +2,7 @@ var bearX = 8;
 var bearY = 24;
 var disX = Math.abs(p1X - bearX);
 var disY = Math.abs(p1Y - bearY);
-var aggressionTime = 490;
+var aggressionTime = diffFirstAggression;
 function bearMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
       if (lives <= 2) {

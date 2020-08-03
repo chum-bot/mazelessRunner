@@ -114,7 +114,7 @@ body {
 }
 
 #lives {
-  color: aquamarine;
+  color: aqua;
   display: block;
   text-align: center;
   font-family: 'Righteous', cursive;
@@ -153,6 +153,37 @@ body {
   display: flex;
   justify-content: space-evenly;
 }
+
+#difficultyMessage{
+  color: aquamarine;
+  text-align: left;
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  margin: auto;
+}
+
+#easy{
+  color: limegreen;
+  text-align: left;
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  margin: auto;
+}
+ #normal{
+  color: yellow;
+  text-align: left;
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  margin: auto;
+ }
+
+ #hard{
+  color: red;
+  text-align: left;
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
+  margin: auto;
+ }
 
 button {
   border-radius: 20px;

@@ -1,5 +1,10 @@
 var blank = "⬛";
 var paused = false;
+var uniSpeed = 40;
+var moonSkip = 600;
+var buzzTime = 700;
+var monkeyBoi = 400;
+var maybeFramerate = 10;
 
 
 get("submitButton").addEventListener("click", updateDB);
@@ -10,9 +15,15 @@ const whatsAnEnum = {
   GAMEOVER: "gameover",
   LEADERBOARD: "leaderboard"
 }
+const difficultyEnum = {  
+  EZMODE: "easy",
+  NORMALMODE: "normal",
+  HARDMODE: "hard"
+}
 
 var myBoard = [];
 let gamestate = whatsAnEnum.MENU;
+let difficultySetting = difficultyEnum.NORMALMODE;
 
 createBoard();
 displayBoard();
@@ -81,23 +92,28 @@ function downOnTheKey(event) {
     if (myBoard[bearX][bearY] === myBoard[p1X][p1Y]) {
       lives--;
       get("lives").innerHTML = " Lives: " + lives;
+      pulsingLifeColor();
     }
     if (myBoard[moonX][moonY] === myBoard[p1X][p1Y]) {
       lives--;
       get("lives").innerHTML = " Lives: " + lives;
+      pulsingLifeColor();
     }
     if (myBoard[beeX][beeY] === myBoard[p1X][p1Y]) {
       lives--;
       get("lives").innerHTML = " Lives: " + lives;
+      pulsingLifeColor();
     }
     if (myBoard[monkeyX][monkeyY] === myBoard[p1X][p1Y]) {
       lives--;
       get("lives").innerHTML = " Lives: " + lives;
+      pulsingLifeColor();
     }
     for (var mineObj of minePositions) {
       if (myBoard[p1X][p1Y] == myBoard[mineObj.xPos][mineObj.yPos]) {
         lives -= mineObj.damage;
         get("lives").innerHTML = " Lives: " + lives;
+        pulsingLifeColor();
         break;
       }
     }
@@ -106,6 +122,7 @@ function downOnTheKey(event) {
       if (myBoard[p1X][p1Y] == myBoard[bananaObj.xPos][bananaObj.yPos]) {
         lives -= bananaObj.damage;
         get("lives").innerHTML = " Lives: " + lives;
+        pulsingLifeColor();
         break;
       }
     }
@@ -122,52 +139,53 @@ function gameplay() {
   aggression = setInterval(bearMovement, aggressionTime);
 
   //bee
-  buzz = setInterval(beeMovement, 700);
+  buzz = setInterval(beeMovement, buzzTime);
 
   //moon
-  moveyBoi = setInterval(moonMovement, 600);
+  moveyBoi = setInterval(moonMovement, moonSkip);
   var theBrokenCounter = 0;
 
   //unicorn
-  guard = setInterval(unicornMovement, 40);
+  guard = setInterval(unicornMovement, uniSpeed);
 
   //monkey
-  oohOoh = setInterval(monkeyMovement, 400);
+  oohOoh = setInterval(monkeyMovement, monkeyBoi);
 
   //life color change
   initPulse = setInterval(pulsingLifeColor, pulseSpeed);
 
   //the thing that runs unity update
-  cdsAndResps = setInterval(cooldownsAndRespawns, 10);
+  cdsAndResps = setInterval(cooldownsAndRespawns, maybeFramerate);
 
   //my version of unity's update function
   function cooldownsAndRespawns() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
-      myBoard[unicornX][unicornY] = unicorn;
-      myBoard[bearX][bearY] = bear;
-      myBoard[moonX][moonY] = moon;
-      myBoard[beeX][beeY] = bee;
-      myBoard[monkeyX][monkeyY] = monkey;
       for (bahnananaOhBeeJay of bananaPositions) {
         myBoard[bahnananaOhBeeJay.xPos][bahnananaOhBeeJay.yPos] = bahnananaOhBeeJay.img;
       }
       for (meenayOhBeeJay of minePositions) {
         myBoard[meenayOhBeeJay.xPos][meenayOhBeeJay.yPos] = meenayOhBeeJay.img;
       }
+      myBoard[unicornX][unicornY] = unicorn;
+      myBoard[bearX][bearY] = bear;
+      myBoard[moonX][moonY] = moon;
+      myBoard[beeX][beeY] = bee;
+      myBoard[monkeyX][monkeyY] = monkey;
       myBoard[sunX][sunY] = sun;
 
+
+
       if (lives <= 0) {
-        gamestate = whatsAnEnum.GAMEOVER;
         ded();
       }
-      if (score >= 10000) {
+      if (score >= moonSpeedSpawnThreshold) {
         if (theBrokenCounter == 0) {
           theBrokenCounter = 1;
           var thisMAYbeBroken = setInterval(moonMovement, 250);
         }
       }
 
-      if (mineCap == 75) {
+      if (mineCap == diffMineCap) {
         clearInterval(moveyBoi);
       }
       if (mineCap == 450) {
@@ -182,7 +200,7 @@ function gameplay() {
           clearInterval(initPulse);
           clearInterval(aggression);
           let pulseSpeed = 250;
-          let aggressionTime = 245;
+          let aggressionTime = diffSecondAggression;
           initPulse = setInterval(pulsingLifeColor, pulseSpeed);
           aggression = setInterval(bearMovement, aggressionTime);
         }

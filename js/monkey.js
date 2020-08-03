@@ -4,9 +4,11 @@ var blinker = 0;
 var bananaPositions = [];
 var monkeyX = 14;
 var monkeyY = 21;
+var expirationDate = diffExpirationDate;
+var expired = false;
 function monkeyMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
-      if (score >= 5000) {
+      if (score >= monkeyThreshold) {
         if (stepCount <= 0) {
           var midBanana = new Mine(monkeyX, monkeyY, 1, banana);
           var tlBanana = new Mine(monkeyX - 1, monkeyY - 1, 1, banana);
@@ -14,6 +16,7 @@ function monkeyMovement() {
           var blBanana = new Mine(monkeyX - 1, monkeyY + 1, 1, banana);
           var brBanana = new Mine(monkeyX + 1, monkeyY + 1, 1, banana);
           bananaPositions.push(midBanana, tlBanana, trBanana, blBanana, brBanana);
+          timesUp = setTimeout(expiration, expirationDate);
           if (blinker == 0) {
             blinker = 1;
             myBoard[tlBanana.xPos][tlBanana.yPos] = tlBanana.img;
@@ -23,7 +26,7 @@ function monkeyMovement() {
           }
           else if (blinker == 1) {
             blinker = 0;
-            if (score >= 7500) {
+            if (score >= monkeySickoThreshold) {
               stepCount = 10;
             }
             else {
@@ -56,4 +59,16 @@ function monkeyMovement() {
         displayBoard();
       }
     }
+  }
+  function expiration(){
+    for(beNeeNeeObj of bananaPositions){
+    myBoard[beNeeNeeObj.xPos][beNeeNeeObj.yPos] = blank;
+    console.log("hello?");
+    }
+    bananaPositions.splice(0, 5);
+    for(bononoObj of bananaPositions){
+      myBoard[bononoObj.xPos][bononoObj.yPos] = banana;
+      console.log("represent");
+      }
+    expired = true;
   }

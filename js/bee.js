@@ -2,7 +2,7 @@ var beeX = 16;
 var beeY = 8;
 function beeMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
-      if (score >= 1000) {
+      if (score >= beeThreshold) {
         var bee1stMove = Math.floor((Math.random() * 4) + 1);
         var bee2ndMove = Math.floor((Math.random() * 4) + 1);
         myBoard[beeX][beeY] = bee;

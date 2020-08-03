@@ -4,7 +4,7 @@ var dontKnowSetTimeoutLol = 0;
 function teleport() {
 
     if (myBoard[p1X][p1Y] == myBoard[sunX][sunY]) {
-        score += 250;
+        score += scoreGained;
         sunX = Math.floor((Math.random() * 25));
         sunY = Math.floor((Math.random() * 25));
         switch(myBoard[sunX][sunY]){

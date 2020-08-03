@@ -16,7 +16,7 @@ var sunHMX = sunX;
 var sunVMY = sunY;
 function unicornMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
-      if (score >= 2000) {
+      if (score >= uniThreshold) {
         if (lives > 0) {
           myBoard[p1X][p1Y] = p1;
           if (moveAmtT == 0 && moveAmtR == 0 && moveAmtB == 0 && moveAmtL == 0) {

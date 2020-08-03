@@ -12,6 +12,7 @@ function updateDB(event){
     const messageObj = {
         USERNAME: username,
         HIGHSCORE: highScore,
+        DIFFICULTY: difficulties[scores.indexOf(highScore)]
     }
     if(username == ""){
         alert("You didn't put a name. Please enter a name.");
@@ -33,6 +34,11 @@ database.on("child_added", addMessageToBoard);
 function addMessageToBoard(rowData){
     const row = rowData.val();
     const pElem = document.createElement("p");
-    pElem.innerText = `${row.USERNAME} - ${row.HIGHSCORE}`;
+    if(row.DIFFICULTY == undefined){
+        pElem.innerText = `${row.USERNAME} - ${row.HIGHSCORE} (normal mode)`;
+    }
+    else{
+    pElem.innerText = `${row.USERNAME} - ${row.HIGHSCORE} (${row.DIFFICULTY} mode)`;
+    }
     get("topScores").appendChild(pElem);
 }

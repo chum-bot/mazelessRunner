@@ -9,6 +9,7 @@ function leaderboard(){
     get("info").innerText = "";
     displayBlock("topScores");
     removeElement("submitted");
+    removeElement("difficultyMessage");
     displayBlock("backToMenu");
 }
 function backToMenu(){
@@ -18,6 +19,7 @@ function backToMenu(){
     displayBlock("secondaryTitleScreen");
     displayBlock("userContainer");
     displayBlock("wasdToggle");
+    displayBlock("difficultyMessage");
     removeElement("topScores");
     removeElement("backToMenu");
 }

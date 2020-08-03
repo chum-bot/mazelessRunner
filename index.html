@@ -71,6 +71,9 @@
     <button onclick="leaderboard()" id="leaderboardButton">
       Scorelog
     </button>
+    <button onclick="difficultySwitch()" id="difficultyButton">
+      Select difficulty
+    </button>
   </div>
   <div id="hiScore">High Score: 0</div>
 
@@ -87,23 +90,91 @@
         "</br>" +
         "You can pause with the P key if you want." +
         "</br>" +
-        "Everything that isn't the sun kills you."
+        "Everything that isn't the sun kills you.";
       document.getElementById("info").style.color = "aquamarine";
       document.getElementById("info").style.fontFamily = "'Righteous', cursive";
       document.getElementById("info").style.fontSize = "20px";
     }
     function patchNotes() {
       document.getElementById("info").innerHTML =
-      "<b>Mazeless Runner Version 2.5.1 Patch Notes</b>"+
-      "</br>"+
-      "<ul>"+
-        "<li>The image that comes up on pause is now a custom asset that i made</li>"+
-        "<li>Fixed an issue where the moon would sometimes not spawn mines after starting up another game</li>"+
-        "<li>Pressing enter on any screen that isn't the menu no longer resets the game and makes the enemies faster</li>"+
-        "</ul>"+
+        "<b>Mazeless Runner Version 2.6 Patch Notes</b>" +
+        "</br>" +
+        "</br>" +
+        "<b>General</b>" +
+        "<ul>" +
+        "<li>There are now different difficulties</li><ul>" +
+        "<li>Easy Mode: You gain 300 points per sun pickup, the enemies activate at larger score thresholds (they activate later), the enemies are slower, and you have 5 lives.</li>" +
+        "<li>Normal Mode: Same as the game was before this patch. Same score thresholds unless otherwise specified in the patch notes, same 250 points per pickup, same speed, same 3 lives.</li>" +
+        "<li>Hard Mode: 200 points per pickup. Faster enemies that activate earlier. Only. One. Life.</li></ul>" +
+        "<li>Changed the colors of the lives slightly</li>" +
+        "<li>The score log saves your difficulty at which you got your score along with the score itself</li>" +
+        "<li>All scores set before this patch now have the difficulty next to them (normal mode for all of them)</li>" +
+        "</ul>" +
+        "<b>Enemies</b>" +
+        "<ul>" +
+        "<li>Decreased normal mode unicorn speed from 35ms to 40ms</li>" +
+        "<li>The monkey's bananas now now have a lifetime. This time depends on the difficulty you're playing on.</li>" +
+        "<li>Switched the score thresholds of the monkey and the moon (the monkey activates first)</li>" +
+        "<li>Reverted the change to the monkey's first step counter</li>" +
+        "<li>Details on all the changes to the enemies based on difficulty (listed as such: stat: normal mode value -> value at specified difficulty)</li>" +
+        "<b>Easy Mode</b><ul>" +
+        "<li>Bee activation threshold: 1000 pts -> 1500 pts</li>" +
+        "<li>Bee movement speed: 700ms -> 800ms</li>" +
+        "<li>Unicorn score threshold: 2000 pts -> 3000 pts</li>" +
+        "<li>Unicorn movement speed: 40ms -> 50ms</li>" +
+        "<li>Monkey first score threshold: 3000 pts -> 4500 pts</li>" +
+        "<li>Monkey first step count: 20 steps -> 30 steps</li>" +
+        "<li>Monkey second score threshold: 7500 pts -> 9000 pts</li>" +
+        "<li>Monkey second step count: 10 steps -> 15 steps</li>" +
+        "<li>Monkey teleportation speed: 400ms -> 500ms</li>" +
+        "<li>Banana lifetime: 30s -> 20s</li>" +
+        "<li>Moon first score threshold: 5000 pts -> 6000 pts</li>" +
+        "<li>Moon max mines spawned: 75 -> 60</li>" +
+        "<li>Moon second score threshold: 10000 pts -> 15000 pts</li>" +
+        "<li>Moon teleport speed: 600ms -> 700ms</li>" +
+        "<li>Bear first form speed: 490ms -> 650ms</li>" +
+        "<li>Bear final form speed: 245ms -> 325ms</li>" +
+        "</ul>" +
+        "<b>Hard Mode</b><ul>" +
+        "<li>Bee activation threshold: 1000 pts -> 600 pts</li>" +
+        "<li>Bee movement speed: 700ms -> 500ms</li>" +
+        "<li>Unicorn score threshold: 2000 pts -> 1200 pts</li>" +
+        "<li>Unicorn movement speed: 40ms -> 25ms</li>" +
+        "<li>Monkey first score threshold: 3000 pts -> 1800 pts</li>" +
+        "<li>Monkey first step count: 20 steps -> 10 steps</li>" +
+        "<li>Monkey second score threshold: 7500 pts -> 4000 pts</li>" +
+        "<li>Monkey second step count: 10 steps -> 5 steps</li>" +
+        "<li>Monkey teleportation speed: 400ms -> 300ms</li>" +
+        "<li>Banana lifetime: 30s -> 40s</li>" +
+        "<li>Moon first score threshold: 5000 pts -> 3000 pts</li>" +
+        "<li>Moon max mines spawned: 75 -> 90</li>" +
+        "<li>Moon second score threshold: 10000 pts -> 6000 pts</li>" +
+        "<li>Moon teleport speed: 600ms -> 400ms</li>" +
+        "<li>Bear first form speed: It's active all the time, so no changes here.</li>" +
+        "<li>Bear final form speed: 245ms -> 250ms to balance it with the fact that it's active all the time</li>" +
+        "</ul>" +
+        "</ul>" +
+        "<b>Other</b>" +
+        "<ul>" +
+        "<li>I know I said powerups were coming in this update, but difficulties seemed easier to add, so I added that first. Powerups for SURE in the next update.</li>" +
+        "<li>Hard mode is CRAZY hard and easy mode is SUPER easy. May tweak them a bit so they aren't so extreme.</li>" +
+        "<li>When I learn Unity/C#, this is the first thing I'm making with it.</li>" +
+        "<li>It's actually August, wow.</li>" +
+        "<li>Discord server?</li>"+
+        "</ul>" +
         "<b>Thanks for playing!</b>" +
-        "</br>"+
-        "</br>"+
+        "</br>" +
+        "</br>" +
+        "<b>Mazeless Runner Version 2.5.1 Patch Notes</b>" +
+        "</br>" +
+        "<ul>" +
+        "<li>The image that comes up on pause is now a custom asset that i made</li>" +
+        "<li>Fixed an issue where the moon would sometimes not spawn mines after starting up another game</li>" +
+        "<li>Pressing enter on any screen that isn't the menu no longer resets the game and makes the enemies faster</li>" +
+        "</ul>" +
+        "<b>Thanks for playing!</b>" +
+        "</br>" +
+        "</br>" +
         "<b>Mazeles Runner Version 2.5 Patch Notes</b>" +
         "</br>" +
         "</br>" +
@@ -122,9 +193,9 @@
         "<li>Decreased shark first aggression state speed from 400ms to 490ms</li>" +
         "<li>Decreased shark second aggression state speed from 220ms to 245ms</li>" +
         "<li>The shark is now much slower than it usually was when you lose your first life, but it becomes twice as fast when you lose your second</li>" +
-        "<li>Also the shark is now a bear</li>"+
+        "<li>Also the shark is now a bear</li>" +
         "<li>Decreased the moon's spawn rate from 500ms to 600ms</li>" +
-        "<li>The moon spawns 25 more mines when you hit 3000 points</li>"+
+        "<li>The moon spawns 25 more mines when you hit 3000 points</li>" +
         "</ul>" +
         "<b>Other</b>" +
         "<ul>" +
@@ -132,7 +203,7 @@
         "<li>Powerups may be the next big update</li>" +
         "<li>I may change the score thresholds for the enemies to activate</li>" +
         "<li>You may be getting more lives in the future...</li>" +
-        "<li>This was going to be a smaller update but I just kept adding more things and decided to make it a big one instead</li>"+
+        "<li>This was going to be a smaller update but I just kept adding more things and decided to make it a big one instead</li>" +
         "</ul>" +
         "</br>" +
         "<b>Mazeless Runner Version 2.4.1 Patch Notes</b>" +
@@ -311,6 +382,8 @@
     }
   </script>
   <p id="wasdToggle"></p>
+  <p id="difficultyMessage">The game is on <span id="normal">NORMAL</span> mode. The enemies activate at normal times,
+    you gain score at a normal rate, and you have 3 lives.</p>
   <p id="info"></p>
 
   <div id="submitted">Submitted score!</div>

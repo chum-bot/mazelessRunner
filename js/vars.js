@@ -1,13 +1,30 @@
 //score and lives
 var score = 0;
+var scoreGained = 250;
 var lives = 3;
 var scores = [];
 var highScore = 0;
 var mineCap = 0;
+var diffMineCap = 75;
+var difficultyLives = 3;
+var difficultyScoreGained = 250;
+var beeThreshold = 1000;
+var uniThreshold = 2000;
+var moonThreshold = 5000;
+var monkeyThreshold = 3000;
+var monkeySickoThreshold = 7500;
+var moonSpeedSpawnThreshold = 10000;
+var diffStepCount = 17;
+var diffSickoStepCount = 10;
+var diffFirstAggression = 490;
+var diffSecondAggression = 245;
+var diffExpirationDate = 10000;
+var timesUp;
 //weird title screen thing
 var why = 1;
 var ranAlready = false;
 let minePositions = [];
+let difficulties = [];
 var buzz;
 var guard;
 var oohOoh;
