@@ -17,7 +17,9 @@ function backToMenu(){
     get("title_screen").innerText = "Mazeless Runner";
     displayFlex("buttonDiv");
     displayBlock("secondaryTitleScreen");
+    if(highScore !== 0){
     displayBlock("userContainer");
+    }
     displayBlock("wasdToggle");
     displayBlock("difficultyMessage");
     removeElement("topScores");
