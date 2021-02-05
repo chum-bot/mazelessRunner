@@ -12,6 +12,7 @@ function leaderboard(){
     displayBlock("scoreDiffText");
     displayBlock("normalScores");
     displayBlock("hardScores");
+    removeElement("earlierPatchNoteButton");
     for(i=0; i<document.getElementsByClassName(lbCurrentDiff).length; i++){
         document.getElementsByClassName(lbCurrentDiff)[i].style.display = "block";
     }

@@ -16,6 +16,7 @@ function startup() {
   removeElement("easyScores");
   removeElement("normalScores");
   removeElement("hardScores");
+  removeElement("earlierPatchNoteButton");
   displayFlex("everything");
   displayBlock("output_holder");
   expirationDate = diffExpirationDate;
