@@ -13,18 +13,30 @@ function startup() {
   removeElement("topScores");
   removeElement("submitted");
   removeElement("discordLink");
+  removeElement("easyScores");
+  removeElement("normalScores");
+  removeElement("hardScores");
   displayFlex("everything");
   displayBlock("output_holder");
   expirationDate = diffExpirationDate;
   switch (difficultySetting) {
     case "easy":
       get("lives").style.color = "aqua";
+      diffBoardColor = "linear-gradient(springgreen, seagreen)";
+      diffBgColor = "limegreen";
+      get("output_holder").style.backgroundImage = diffBoardColor;
       break;
     case "normal":
       get("lives").style.color = "greenyellow";
+      diffBoardColor = "linear-gradient(yellow, goldenrod)";
+      diffBgColor = "darkgoldenrod";
+      get("output_holder").style.backgroundImage = diffBoardColor;
       break;
     case "hard":
       get("lives").style.color = "red";
+      diffBoardColor = "linear-gradient(red, darkred)";
+      diffBgColor = "rgb(100, 0, 0)";
+      get("output_holder").style.backgroundImage = diffBoardColor;
       break;
   }
   lives = difficultyLives;
@@ -38,6 +50,7 @@ function startup() {
   myBoard[monkeyX][monkeyY] = monkey;
   displayBoard();
   displayBlock("lives");
+  document.body.style.backgroundColor = diffBgColor;
   get("output_holder").style.fontSize = "89%";
 }
 function ded() {
@@ -156,6 +169,7 @@ function difficultySwitch() {
       diffMineCap = 60;
       diffExpirationDate = 20000;
       get("difficultyMessage").innerHTML = "The game is now on <span id='easy'>EASY</span> mode. The enemies are more tame, you gain score faster, and you have 5 lives.";
+      
       break;
     case difficultyEnum.EZMODE:
       difficultySetting = difficultyEnum.NORMALMODE;

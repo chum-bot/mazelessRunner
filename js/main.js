@@ -157,7 +157,7 @@ function gameplay() {
   //the thing that runs unity update
   cdsAndResps = setInterval(cooldownsAndRespawns, maybeFramerate);
 
-  //my version of unity's update function
+  //my version of unity's update function (why is this even here)
   function cooldownsAndRespawns() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
       for (bahnananaOhBeeJay of bananaPositions) {

@@ -20,6 +20,7 @@ var diffFirstAggression = 490;
 var diffSecondAggression = 245;
 var diffExpirationDate = 10000;
 var timesUp;
+var lbCurrentDiff = "normal";
 //weird title screen thing
 var why = 1;
 var ranAlready = false;
@@ -32,3 +33,5 @@ var moveyBoi;
 var initPulse;
 var aggression;
 var cdsAndResps;
+var diffBoardColor = "linear-gradient(yellow, goldenrod)";
+var diffBgColor = "darkgoldenrod";

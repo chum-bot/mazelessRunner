@@ -25,7 +25,6 @@ function updateDB(event){
     removeElement("userContainer");
     displayBlock("submitted");
     }
-    
 }
 
 // Set database "child_added" event listener here
@@ -35,10 +34,12 @@ function addMessageToBoard(rowData){
     const row = rowData.val();
     const pElem = document.createElement("p");
     if(row.DIFFICULTY == undefined){
-        pElem.innerText = `${row.USERNAME} - ${row.HIGHSCORE} (normal mode)`;
+        row.DIFFICULTY = "normal";
     }
-    else{
-    pElem.innerText = `${row.USERNAME} - ${row.HIGHSCORE} (${row.DIFFICULTY} mode)`;
-    }
+    pElem.className = row.DIFFICULTY;
+    pElem.id = row.HIGHSCORE;
+    pElem.innerText = `${row.USERNAME} - ${row.HIGHSCORE}`;
+    orderScores();
     get("topScores").appendChild(pElem);
 }
+

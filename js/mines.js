@@ -1,5 +1,4 @@
-//mines(OPTIMIZING because it can and should be)
-//well now that im in vscode i COULD make a different file for this... nah
+//mines class (wooo classes poglamp)
 class Mine {
     constructor(xPos, yPos, damage, img) {
       this.xPos = xPos;
