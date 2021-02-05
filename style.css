@@ -51,9 +51,14 @@
   border-radius: 25px;
   margin: auto;
   display: block;
-  background-image: linear-gradient(rgb(37, 130, 206), rgb(8, 226, 154));
+  background-image: linear-gradient((gold, darkgoldenrod));
 }
-
+#info{
+  display: none;
+  font-family: "Source Sans Pro", sans-serif;
+  color: aqua;
+  font-size: 16px;
+}
 body {
   background-color: rgb(19, 57, 100);
   background-size: 100% 100%;
@@ -86,9 +91,25 @@ body {
   font-family: 'Nova Square', cursive;
   font-size: 25px;
   margin: 15px;
-  background-color: rgb(37, 130, 206);
+  background: linear-gradient(gold, darkgoldenrod);
   border-radius: 20px;
   padding: 3px;
+}
+#earlierPatchNoteButton{
+  display: none;
+}
+
+#scoreDiffText{
+  font-size: 30px;
+  text-align: center;
+  font-family: 'Nova Square', cursive;
+  color: yellow;
+  display: none;
+}
+
+#flexButtons{
+  display: flex;
+  justify-content: center;
 }
 
 #backToMenu{
@@ -169,7 +190,7 @@ body {
 }
 
 #easy{
-  color: limegreen;
+  color: springgreen;
   text-align: left;
   font-family: 'Righteous', cursive;
   font-size: 25px;
@@ -191,6 +212,29 @@ body {
   margin: auto;
  }
 
+ .easy{
+  display: none;
+  color: springgreen;
+ }
+ .normal{
+  display: block;
+  color: lemonchiffon;
+ }
+ .hard{
+  display: none;
+  color: rgb(248, 164, 155);
+ }
+ #easyScores{
+  display: none;
+ }
+ #normalScores{
+  display: none;
+  margin-left: 25px;
+  margin-right: 25px;
+ }
+ #hardScores{
+  display: none;
+ }
 button {
   border-radius: 20px;
   border: 3px solid aqua;
@@ -216,19 +260,5 @@ button:active{
   background-color: rgb(98, 190, 160);
   color: rgb(0, 0, 60);
   transition: 0ms;
-}
-#softlocked{
-  text-align: center;
-  display: none;
-  font-family: "Nova Square", cursive;
-  font-size: 50px;
-  color: yellow;
-}
-#beCareful{
-  text-align: center;
-  display: none;
-  font-family: "Nova Square", cursive;
-  font-size: 16px;
-  color: yellow;
 }
 
