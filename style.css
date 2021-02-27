@@ -13,11 +13,17 @@
   -moz-animation: glow 0.8s ease-in-out infinite alternate;
   animation: glow 0.8s ease-in-out infinite alternate;
 }
-#discordLink img{
-  display: block;
+#discordBox{
+  display: flex;
+  justify-content: center;
+  margin: auto;
   width: 7%;
   height: 7%;
-  margin: auto;
+}
+#discordLink img{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
 }
 @keyframes glow {
   from {
@@ -167,13 +173,6 @@ body {
   text-align: center;
   font-size: 16px;
   color: yellow;
-  display: none;
-}
-#godMode{
-  font-family: "Righteous", cursive;
-  text-align: center;
-  font-size: 25px;
-  color: gold;
   display: none;
 }
 #buttonDiv{

@@ -1,23 +1,134 @@
 function instructions() {
     get("info").innerHTML =
-        "You control the alien in this game." +
+        "You control the purple alien in this game." +
         "</br>" +
         "Use the arrow keys or WASD to move around." +
         '</br>' +
-        "Your goal is to keep collecting the sun for as long as you can in as little time as you can without dying." +
+        "Your goal is to keep collecting the sun 🔆 for as long as you can in as little time as you can without dying." +
         "</br>" +
         "The game will get harder as you progress." +
         "</br>" +
         "You can pause with the P key if you want." +
         "</br>" +
-        "Everything that isn't the sun kills you.";
+        "Avoid these guys and everything that comes from them. 🌝 🐒 🦄 🐻 🐝"+
+        "</br>" +
+        "Collect these for cool effects. 🧊 🐲 🌞 🧿 💖 🔅"+
+        "</br>"+
+        "With the snowman and the dragon, press shift to fire projectiles in the direction you last went in."
     get("info").style.color = "aquamarine";
     get("info").style.fontFamily = "'Righteous', cursive";
     get("info").style.fontSize = "20px";
+    get("info").style.display = "block";
 }
 function patchNotes() {
     get("info").innerHTML =
-        "<b>Mazeless Runner Version 2.6.1 Patch Notes</b>" +
+        "<b>Mazeless Runner Version 2.7 Patch Notes</b>" +
+        "</br>" +
+        "</br>" +
+        "<b>General</b>" +
+        "<ul>" +
+        "<li>Powerups. They're here.</li>" +
+        "<ul>" +
+        "<li>Freeze your enemies with Snowman!</li>" +
+        "<li>Burn obstacles to a crisp with Dragon!</li>" +
+        "<li>Power through all who oppose you with Helios!</li>" +
+        "<li>Protect yourself from harm with Guard!</li>" +
+        "<li>Increase your survivability with Extra Life!</li>" +
+        "<li>Get a little extra score with the Mini-Sun!</li>" +
+        "<li>Or try your luck with Random!</li>" +
+        "</ul>" +
+        "<li>The Discord link at the bottom no longer takes up the whole horizontal line it's on</li>" +
+        "<li>It's ever so slightly bigger</li>"+
+        "<li>Updated the how to play section to include powerups and the enemies you should avoid</li>"+
+        "<li>Fixed an issue where the how to play button wouldn't work before clicking the view patch notes button</li>"+
+        "</ul>"+
+        "<b>Powerups</b>"+
+        "<ul>"+
+        "<li>Powerups start spawning when the monkey starts moving (3000 on Normal, 4500 on Easy, 1800 on Hard)</li>"+
+        "<li>They have a 40% chance of spawning every time you pick up the sun</li>"+
+        "<li>If a powerup is already on the field, it can be replaced with a different one if you pick up the sun (same 40% chance)</li>"+
+        "<li>Each powerup stays on the field for 45 seconds before despawning</li>"+
+        "<li>Each powerup has its own chance to spawn on top of the 40% for any powerup</li>"+
+        "<li>When a powerup is active (you picked it up), no others will spawn until that powerup's duration has ended</li>"+
+        "<li>Dragon (25%)</li>"+
+        "<ul>"+
+        "<li>Collect the dragon item 🐲 to become Dragon"+
+        "<li>Press Shift to shoot fire in the direction you last traveled</li>"+
+        "<li>The fire destroys the minimoons created by the moon</li>"+
+        "<li>Doesn't destroy the monkey's bananas (this is intentional since they disappear on their own anyway)</li>"+
+        "<li>Starts to spawn on its own after the shadow starts spawning mines (5000 on Normal, 6000 on Easy, 3000 on Hard)</li>"+
+        "<li>Can be gained from Random earlier than that, but it won't do anything other than let you shoot fire at stuff</li>"+
+        "<li>Lasts 12 seconds</li>"+
+        "</ul>"+
+        "<li>Snowman (25%)</li>"+
+        "<ul>"+
+        "<li>Collect the ice cube 🧊 to become Snowman</li>"+
+        "<li>Press Shift to shoot ice in the direction you last traveled</li>"+
+        "<li>If it comes into contact with an enemy, they are frozen for 5 seconds</li>"+
+        "<li>Every enemy can be frozen, including the moon, but you'll have to hit the main moon to freeze it</li>"+
+        "<li>Ice travels much faster than fire to more reliably freeze the unicorn</li>"+
+        "<li>This one took the longest to make because of how JS handles intervals</li>"+
+        "<li>Lasts 12 seconds</li>"+
+        "</ul>"+
+        "<li>Helios (5%)</li>"+
+        "<ul>"+
+        "<li>Collect the radiant sun (🌞 but with no face, this is what you turn into) to become Helios</li>"+
+        "<li>You are impervious to all damage</li>"+
+        "<li>Lasts 7 seconds</li>"+
+        "</ul>"+
+        "<li>Guard (30%)</li>"+
+        "<ul>"+
+        "<li>Collect the amulet 🧿 to become Guard</li>"+
+        "<li>You take no damage from your next hit</li>"+
+        "<li>Lasts 30 seconds, or until you get hit</li>"+
+        "</ul>"+
+        "<li>Instant-Effect Powerups</li>"+
+        "<ul>"+
+        "<li>Mini-Sun (50%): Collect the smaller sun 🔅 to gain half of the points you would gain from a normal sun (changes with difficulty)"+
+        "<li>Extra Life (10%): Collect the heart 💖 to get an extra life</li>"+
+        "<li>This also affects the bear's movement, slowing it down since its movement is dependent on your lives</li>"+
+        "</ul>"+
+        "<li>Random (25%)</li>"+
+        "<ul>"+
+        "<li>Gives you a random powerup out of all the ones shown above</li>"+
+        "<li>All powerups have an equal chance of coming from Random (1/6)</li>"+
+        "</ul>"+
+        "</ul>"+
+        "<b>Code Edits</b>"+
+        "<ul>"+
+        "<li>The bigger powerups (dragon, snowman) have their own file</li>"+
+        "<li>The smaller powerups are all in one file</li>"+
+        "<li>Created a class for the enemies so they're all objects now (made it easier to do some stuff with the powerups and it's much neater than what i had. also object-oriented programming is optimal)</li>"+
+        "<li>Learned how to use methods and made one for when you lose a life</li>"+
+        "<li>Organized vars.js file to be cleaner and moved a bunch of random vars there</li>"+
+        "<li>The projectiles (fire and snowflake) are also part of a class</li>"+
+        "<li>Moved the life color change check to the collision method because extra life made it finicky</li>"+
+        "<li>Removed variables that didn't do anything</li>"+
+        "<li>Shrank some code</li>"+
+        "<li>Learned more of JavaScript's limits</li>"+
+        "<li>Realized how far I've come since I started this project, and how much farther I can go</li>"+
+        "</ul>"+
+        "<b>Other</b>"+
+        "<ul>"+
+        "<li>Yeah, so they're done. I know the projectiles and some of the powerups make the board look weird, and I'm going to come out with an update to fix that later.</li>"+
+        "<li>FINALLY got how methods work, and they're pretty cool</li>"+
+        "<li>Snowman took a long while to get working, and I still think I missed something. Hopefully I didn't, but if I did, please let me know</li>"+
+        "<li>Unicorn variables look ugly, I know, but that's a whole ordeal that I'm not sure I'm ready for yet</li>"+
+        "<li>I'll make a more detailed how to play in the next update.</li>"+
+        "<li>The board's changing soon.</li>"+
+        "</ul>"+
+        "<b>Thanks for playing!</b>"+
+        "</br>" +
+        "</br>";
+    get("info").style.fontFamily = "Source Sans Pro";
+    get("info").style.color = "aqua";
+    get("info").style.fontSize = "16px";
+    get("info").style.display = "block";
+    get("earlierPatchNoteButton").style.display = "block";
+}
+function earlierPatchNotes() {
+    get("info").innerHTML =
+    "<b>Mazeless Runner Version 2.6.1 Patch Notes</b>" +
         "</br>" +
         "</br>" +
         "<b>General</b>" +
@@ -118,15 +229,7 @@ function patchNotes() {
         "</ul>" +
         "<b>Thanks for playing!</b>" +
         "</br>" +
-        "</br>";
-    get("info").style.fontFamily = "Source Sans Pro";
-    get("info").style.color = "aqua";
-    get("info").style.fontSize = "16px";
-    get("info").style.display = "block";
-    get("earlierPatchNoteButton").style.display = "block";
-}
-function earlierPatchNotes() {
-    get("info").innerHTML =
+        "</br>" +
         "<b>Mazeless Runner Version 2.5.1 Patch Notes</b>" +
         "</br>" +
         "<ul>" +

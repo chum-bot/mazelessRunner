@@ -1,8 +1,4 @@
-var upKey = 38;
-var downKey = 40;
-var leftKey = 37;
-var rightKey = 39;
-var wasdCheck = false;
+
 function wasd() {
     switch (wasdCheck) {
         case true:

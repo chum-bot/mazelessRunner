@@ -24,6 +24,7 @@ function updateDB(event){
     database.push(messageObj);
     removeElement("userContainer");
     displayBlock("submitted");
+    orderScores();
     }
 }
 

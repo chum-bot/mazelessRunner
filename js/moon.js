@@ -1,18 +1,16 @@
-var moonX = 24;
-var moonY = 24;
 function moonMovement() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
-      var mine = new Mine(moonX, moonY, 1, "🌕");
-      if (score >= moonThreshold) {
+      mine = new Mine(moon.x, moon.y, 1, "🌕");
+      if (score >= moon.threshold) {
         myBoard[mine.xPos][mine.yPos] = mine.img;
         minePositions.push(mine);
-        moonX = Math.floor((Math.random() * 25));
-        moonY = Math.floor((Math.random() * 25));
-        if (myBoard[moonX][moonY] == myBoard[sunX][sunY]) {
-          moonX = Math.floor((Math.random() * 25));
-          moonY = Math.floor((Math.random() * 25));
+        moon.x = Math.floor((Math.random() * 25));
+        moon.y = Math.floor((Math.random() * 25));
+        if (myBoard[moon.x][moon.y] == myBoard[sunX][sunY]) {
+          moon.x = Math.floor((Math.random() * 25));
+          moon.y = Math.floor((Math.random() * 25));
         }
-        myBoard[moonX][moonY] = moon;
+        myBoard[moon.x][moon.y] = moon.img;
         mineCap++;
       }
     }

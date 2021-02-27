@@ -1,45 +1,35 @@
-var blank = "⬛";
-var paused = false;
-var uniSpeed = 40;
-var moonSkip = 600;
-var buzzTime = 700;
-var monkeyBoi = 400;
-var maybeFramerate = 10;
-
-
+//leaderboard update for button
 get("submitButton").addEventListener("click", updateDB);
-const whatsAnEnum = {
-  MENU: "menu",
-  GAMEPLAY: "gameplay",
-  PAUSE: "pause",
-  GAMEOVER: "gameover",
-  LEADERBOARD: "leaderboard"
-}
-const difficultyEnum = {  
-  EZMODE: "easy",
-  NORMALMODE: "normal",
-  HARDMODE: "hard"
-}
 
-var myBoard = [];
-let gamestate = whatsAnEnum.MENU;
-let difficultySetting = difficultyEnum.NORMALMODE;
-
+//it does what it says
 createBoard();
 displayBoard();
 
-//characters/elements
-const unicorn = "🦄";
-const moon = "🌝";
-const sun = "🔆";
-var p1 = "👾";
-const bear = "🐻";
-const monkey = "🐒";
-const banana = "🍌";
-const bee = "🐝";
-
+//gamestate shift event listener
 document.addEventListener("keydown", shiftsInGS);
 
+
+//enemy objects*, the player, and the sun itself
+//NOTE: defined them here because they reference functions that are seen before main but after vars
+const bear = new Enemy("🐻", 8, 24, 490, undefined, bearMovement, "bear");
+const uni = new Enemy("🦄", 3, 9, 40, 2000, uniMovement, "unicorn");
+const moon = new Enemy("🌝", 24, 24, 600, 5000, moonMovement, "moon");
+const monkey = new Enemy("🐒", 14, 21, 400, 3000, monkeyMovement, "monkey");
+const bee = new Enemy("🐝", 16, 8, 700, 1000, beeMovement, "bee");
+const sun = "🔆";
+const invader = "👾";
+var p1 = invader;
+const banana = "🍌";
+
+//powerup array*
+var powers = [dragon, miniSun, shield, snowman, godMode, extraLife];
+
+//bear variables*
+var disX = Math.abs(p1X - bear.x);
+var disY = Math.abs(p1Y - bear.y);
+
+
+//the gamestate shifts
 function shiftsInGS() {
   switch (event.keyCode) {
     case 13:
@@ -53,79 +43,110 @@ function shiftsInGS() {
         reset();
       }
       break;
-  }
-}
-
-function downOnTheKey(event) {
-  switch (event.keyCode) {
     case 80:
       if (gamestate == whatsAnEnum.GAMEPLAY || gamestate == whatsAnEnum.PAUSE) {
         pause();
       }
       break;
-    /*case 186:
-      gamestate = whatsAnEnum.GAMEPLAY;
-      removeElement("info");
-      removeElement("title_screen");
-      removeElement("buttonDiv");
-      removeElement("secondaryTitleScreen");
-      removeElement("wasdToggle");
-      removeElement("hiScore");
-      removeElement("leaderboardButton");
-      removeElement("userContainer");
-      get("everything").style.display = "flex";
-      lives = 99999;
-      get("lives").style.color = "gold";
-      get("godMode").style.display = "block";
-      p1 = "🌞";
-      break;*/
   }
+}
+
+//main things that happen on key press like moving and getting hit
+function downOnTheKey(event) {
   if (gamestate == whatsAnEnum.GAMEPLAY) {
-    //character movement
     if (lives > 0) {
       charMovement();
+
+      //dragon and snowman firing
+      if (event.keyCode == 16) {
+        if (isDragon == true) {
+          let flame = new Projectile(fire, p1X, p1Y, lastDirection);
+          throughTheFireAndFlames.push(flame);
+          contact = false;
+          shootyShoot(flame, minePositions, throughTheFireAndFlames);
+        }
+        if (isSnow == true && snowOut == false) {
+          snowOut = true;
+          let stasis = new Projectile(snow, p1X, p1Y, lastDirection);
+          frozenHeart.push(stasis);
+          frostbite = false;
+          freezyFreeze(stasis, frozenHeart);
+        }
+      }
+      //powerup pickup
+      if (powerX != undefined && powerY != undefined) {
+        if (myBoard[p1X][p1Y] == myBoard[powerX][powerY]) {
+          isActive = true;
+          powerX = undefined;
+          powerY = undefined;
+          switch (activePower) {
+            case dragonItem:
+              dragon();
+              break;
+            case shieldItem:
+              shield();
+              break;
+            case extraLifeItem:
+              extraLife();
+              break;
+            case snowmanItem:
+              snowman();
+              break;
+            case godModeItem:
+              godMode();
+              break;
+            case miniSunItem:
+              miniSun();
+              break;
+            case randomItem:
+              randPow = Math.floor(Math.random() * powers.length);
+              powers[randPow]();
+          }
+        }
+      }
       //unicorn teleport and sun pickup
       teleport();
     }
 
 
-    if (myBoard[bearX][bearY] === myBoard[p1X][p1Y]) {
-      lives--;
-      get("lives").innerHTML = " Lives: " + lives;
-      pulsingLifeColor();
-    }
-    if (myBoard[moonX][moonY] === myBoard[p1X][p1Y]) {
-      lives--;
-      get("lives").innerHTML = " Lives: " + lives;
-      pulsingLifeColor();
-    }
-    if (myBoard[beeX][beeY] === myBoard[p1X][p1Y]) {
-      lives--;
-      get("lives").innerHTML = " Lives: " + lives;
-      pulsingLifeColor();
-    }
-    if (myBoard[monkeyX][monkeyY] === myBoard[p1X][p1Y]) {
-      lives--;
-      get("lives").innerHTML = " Lives: " + lives;
-      pulsingLifeColor();
-    }
-    for (var mineObj of minePositions) {
-      if (myBoard[p1X][p1Y] == myBoard[mineObj.xPos][mineObj.yPos]) {
-        lives -= mineObj.damage;
-        get("lives").innerHTML = " Lives: " + lives;
-        pulsingLifeColor();
-        break;
+    //collision methods for enemies and mines
+    bear.collision();
+    moon.collision();
+    bee.collision();
+    monkey.collision();
+    for (mineObj of minePositions) {
+      if (myBoard[p1X][p1Y] == myBoard[mineObj.xPos][mineObj.yPos] && isGod == false) {
+        if (isShielded) {
+          isShielded = false;
+          isActive = false;
+          p1 = invader;
+          break;
+        }
+        else {
+          lives -= mineObj.damage;
+          get("lives").innerHTML = " Lives: " + lives;
+          pulsingLifeColor();
+          break;
+        }
       }
     }
-    for (var bananaObj of bananaPositions) {
-      myBoard[bananaObj.xPos][bananaObj.yPos] = bananaObj.img;
-      if (myBoard[p1X][p1Y] == myBoard[bananaObj.xPos][bananaObj.yPos]) {
-        lives -= bananaObj.damage;
-        get("lives").innerHTML = " Lives: " + lives;
-        pulsingLifeColor();
-        break;
+    for (bananObj of bananaPositions) {
+      if (myBoard[p1X][p1Y] == myBoard[bananObj.xPos][bananObj.yPos] && isGod == false) {
+        if (isShielded) {
+          isShielded = false;
+          isActive = false;
+          p1 = invader;
+          break;
+        }
+        else {
+          lives -= bananObj.damage;
+          get("lives").innerHTML = " Lives: " + lives;
+          pulsingLifeColor();
+          break;
+        }
       }
     }
+    
   }
   if (gamestate == whatsAnEnum.GAMEPLAY) {
     stepCount--;
@@ -134,28 +155,27 @@ function downOnTheKey(event) {
 
 function gameplay() {
   document.addEventListener('keydown', downOnTheKey);
-
   //bear
-  aggression = setInterval(bearMovement, aggressionTime);
+  aggression = window.setInterval(bear.move, bear.speed);
 
   //bee
-  buzz = setInterval(beeMovement, buzzTime);
+  buzz = window.setInterval(bee.move, bee.speed);
 
   //moon
-  moveyBoi = setInterval(moonMovement, moonSkip);
+  moveyBoi = window.setInterval(moon.move, moon.speed);
   var theBrokenCounter = 0;
 
   //unicorn
-  guard = setInterval(unicornMovement, uniSpeed);
+  guard = window.setInterval(uni.move, uni.speed);
 
   //monkey
-  oohOoh = setInterval(monkeyMovement, monkeyBoi);
+  oohOoh = window.setInterval(monkey.move, monkey.speed);
 
   //life color change
-  initPulse = setInterval(pulsingLifeColor, pulseSpeed);
+  initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
 
   //the thing that runs unity update
-  cdsAndResps = setInterval(cooldownsAndRespawns, maybeFramerate);
+  cdsAndResps = window.setInterval(cooldownsAndRespawns, maybeFramerate);
 
   //my version of unity's update function (why is this even here)
   function cooldownsAndRespawns() {
@@ -166,13 +186,21 @@ function gameplay() {
       for (meenayOhBeeJay of minePositions) {
         myBoard[meenayOhBeeJay.xPos][meenayOhBeeJay.yPos] = meenayOhBeeJay.img;
       }
-      myBoard[unicornX][unicornY] = unicorn;
-      myBoard[bearX][bearY] = bear;
-      myBoard[moonX][moonY] = moon;
-      myBoard[beeX][beeY] = bee;
-      myBoard[monkeyX][monkeyY] = monkey;
+      for (theFire of throughTheFireAndFlames) {
+        myBoard[theFire.xPos][theFire.yPos] = theFire.img;
+      }
+      myBoard[uni.x][uni.y] = uni.img;
+      myBoard[bear.x][bear.y] = bear.img;
+      myBoard[moon.x][moon.y] = moon.img;
+      myBoard[bee.x][bee.y] = bee.img;
+      myBoard[monkey.x][monkey.y] = monkey.img;
       myBoard[sunX][sunY] = sun;
-
+      for (frozen of frozenHeart) {
+        myBoard[frozen.xPos][frozen.yPos] = frozen.img;
+      }
+      if (powerX != undefined && powerY != undefined && activePower != undefined) {
+        myBoard[powerX][powerY] = activePower;
+      }
 
 
       if (lives <= 0) {
@@ -181,30 +209,19 @@ function gameplay() {
       if (score >= moonSpeedSpawnThreshold) {
         if (theBrokenCounter == 0) {
           theBrokenCounter = 1;
-          var thisMAYbeBroken = setInterval(moonMovement, 250);
+          var thisMAYbeBroken = window.setInterval(moon.move, 250);
         }
       }
 
       if (mineCap == diffMineCap) {
-        clearInterval(moveyBoi);
+        window.clearInterval(moveyBoi);
       }
       if (mineCap == 450) {
-        clearInterval(thisMAYbeBroken);
+        window.clearInterval(thisMAYbeBroken);
       }
       get("score").innerHTML = `Score: ${score}`;
       get("lives").innerHTML = `Lives: ${lives}`;
-
-      if (ranAlready === false) {
-        if (lives === 1) {
-          ranAlready = true;
-          clearInterval(initPulse);
-          clearInterval(aggression);
-          let pulseSpeed = 250;
-          let aggressionTime = diffSecondAggression;
-          initPulse = setInterval(pulsingLifeColor, pulseSpeed);
-          aggression = setInterval(bearMovement, aggressionTime);
-        }
-      }
+      
       displayBoard();
     }
   }

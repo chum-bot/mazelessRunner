@@ -1,6 +1,3 @@
-var sunX = 5;
-var sunY = 11;
-var dontKnowSetTimeoutLol = 0;
 function teleport() {
 
     if (myBoard[p1X][p1Y] == myBoard[sunX][sunY]) {
@@ -8,10 +5,10 @@ function teleport() {
         sunX = Math.floor((Math.random() * 25));
         sunY = Math.floor((Math.random() * 25));
         switch(myBoard[sunX][sunY]){
-            case myBoard[moonX][moonY]:
-            case myBoard[beeX][beeY]:
-            case myBoard[bearX][bearY]:
-            case myBoard[monkeyX][monkeyY]:
+            case myBoard[moon.x][moon.y]:
+            case myBoard[bee.x][bee.y]:
+            case myBoard[bear.x][bear.y]:
+            case myBoard[monkey.x][monkey.y]:
                 sunX = Math.floor((Math.random() * 25));
                 sunY = Math.floor((Math.random() * 25));
                 break;
@@ -29,6 +26,12 @@ function teleport() {
                 sunY = Math.floor((Math.random() * 25));
             }
         }
+
+        var willTheySpawn = Math.random();
+        if(willTheySpawn <= 0.4 && score >= diffPowerSpawning && isActive == false){
+            powerups();
+        }
+
         //ew. everything about this is... ew. but it works so
         myBoard[sunX][sunY] = sun;
         sunTEY = sunY - 2;
@@ -43,142 +46,142 @@ function teleport() {
         sunVMY = sunY;
 
         if (sunX <= 1 || sunX >= 23 || sunY <= 1 || sunY >= 23) {
-            myBoard[unicornX][unicornY] = unicorn;
+            myBoard[uni.x][uni.y] = uni.img;
         } else {
             //top left side
             switch (moveAmtT) {
                 case 4:
-                    if (myBoard[unicornX][unicornY] != myBoard[sunLEX][sunTEY]) {
-                        myBoard[unicornX][unicornY] = blank;
-                        unicornX = sunLEX;
-                        unicornY = sunTEY;
-                        myBoard[unicornX][unicornY] = unicorn;
+                    if (myBoard[uni.x][uni.y] != myBoard[sunLEX][sunTEY]) {
+                        myBoard[uni.x][uni.y] = blank;
+                        uni.x = sunLEX;
+                        uni.y = sunTEY;
+                        myBoard[uni.x][uni.y] = uni.img;
                     }
                     break;
                 case 3:
-                    if (myBoard[unicornX][unicornY] != myBoard[sunTBLX][sunTEY]) {
-                        myBoard[unicornX][unicornY] = blank;
-                        unicornX = sunTBLX;
-                        unicornY = sunTEY;
-                        myBoard[unicornX][unicornY] = unicorn;
+                    if (myBoard[uni.x][uni.y] != myBoard[sunTBLX][sunTEY]) {
+                        myBoard[uni.x][uni.y] = blank;
+                        uni.x = sunTBLX;
+                        uni.y = sunTEY;
+                        myBoard[uni.x][uni.y] = uni.img;
                     }
                     break;
                 case 2:
-                    if (myBoard[unicornX][unicornY] != myBoard[sunHMX][sunTEY]) {
-                        myBoard[unicornX][unicornY] = blank;
-                        unicornX = sunHMX;
-                        unicornY = sunTEY;
-                        myBoard[unicornX][unicornY] = unicorn;
+                    if (myBoard[uni.x][uni.y] != myBoard[sunHMX][sunTEY]) {
+                        myBoard[uni.x][uni.y] = blank;
+                        uni.x = sunHMX;
+                        uni.y = sunTEY;
+                        myBoard[uni.x][uni.y] = uni.img;
                     }
                     break;
                 case 1:
-                    if (myBoard[unicornX][unicornY] != myBoard[sunTBRX][sunTEY]) {
-                        myBoard[unicornX][unicornY] = blank;
-                        unicornX = sunTBRX;
-                        unicornY = sunTEY;
-                        myBoard[unicornX][unicornY] = unicorn;
+                    if (myBoard[uni.x][uni.y] != myBoard[sunTBRX][sunTEY]) {
+                        myBoard[uni.x][uni.y] = blank;
+                        uni.x = sunTBRX;
+                        uni.y = sunTEY;
+                        myBoard[uni.x][uni.y] = uni.img;
                     }
                     break;
                 default:
                     switch (moveAmtR) {
                         case 4:
-                            if (myBoard[unicornX][unicornY] != myBoard[sunREX][sunTEY]) {
-                                myBoard[unicornX][unicornY] = blank;
-                                unicornX = sunREX;
-                                unicornY = sunTEY;
-                                myBoard[unicornX][unicornY] = unicorn;
+                            if (myBoard[uni.x][uni.y] != myBoard[sunREX][sunTEY]) {
+                                myBoard[uni.x][uni.y] = blank;
+                                uni.x = sunREX;
+                                uni.y = sunTEY;
+                                myBoard[uni.x][uni.y] = uni.img;
                             }
                             break;
                         case 3:
-                            if (myBoard[unicornX][unicornY] != myBoard[sunREX][sunLRTY]) {
-                                myBoard[unicornX][unicornY] = blank;
-                                unicornX = sunREX;
-                                unicornY = sunLRTY;
-                                myBoard[unicornX][unicornY] = unicorn;
+                            if (myBoard[uni.x][uni.y] != myBoard[sunREX][sunLRTY]) {
+                                myBoard[uni.x][uni.y] = blank;
+                                uni.x = sunREX;
+                                uni.y = sunLRTY;
+                                myBoard[uni.x][uni.y] = uni.img;
                             }
                             break;
                         case 2:
-                            if (myBoard[unicornX][unicornY] != myBoard[sunREX][sunVMY]) {
-                                myBoard[unicornX][unicornY] = blank;
-                                unicornX = sunREX;
-                                unicornY = sunVMY;
-                                myBoard[unicornX][unicornY] = unicorn;
+                            if (myBoard[uni.x][uni.y] != myBoard[sunREX][sunVMY]) {
+                                myBoard[uni.x][uni.y] = blank;
+                                uni.x = sunREX;
+                                uni.y = sunVMY;
+                                myBoard[uni.x][uni.y] = uni.img;
                             }
                             break;
                         case 1:
-                            if (myBoard[unicornX][unicornY] != myBoard[sunREX][sunLRBY]) {
-                                myBoard[unicornX][unicornY] = blank;
-                                unicornX = sunREX;
-                                unicornY = sunLRBY;
-                                myBoard[unicornX][unicornY] = unicorn;
+                            if (myBoard[uni.x][uni.y] != myBoard[sunREX][sunLRBY]) {
+                                myBoard[uni.x][uni.y] = blank;
+                                uni.x = sunREX;
+                                uni.y = sunLRBY;
+                                myBoard[uni.x][uni.y] = uni.img;
                             }
                             break;
                         default:
                             switch(moveAmtB){
                                 case 4:
-                                    if (myBoard[unicornX][unicornY] != myBoard[sunREX][sunBEY]) {
-                                        myBoard[unicornX][unicornY] = blank;
-                                        unicornX = sunREX;
-                                        unicornY = sunBEY;
-                                        myBoard[unicornX][unicornY] = unicorn;
+                                    if (myBoard[uni.x][uni.y] != myBoard[sunREX][sunBEY]) {
+                                        myBoard[uni.x][uni.y] = blank;
+                                        uni.x = sunREX;
+                                        uni.y = sunBEY;
+                                        myBoard[uni.x][uni.y] = uni.img;
                                     }
                                     break;
                                 case 3:
-                                    if (myBoard[unicornX][unicornY] != myBoard[sunTBRX][sunBEY]) {
-                                        myBoard[unicornX][unicornY] = blank;
-                                        unicornX = sunTBRX;
-                                        unicornY = sunBEY;
-                                        myBoard[unicornX][unicornY] = unicorn;
+                                    if (myBoard[uni.x][uni.y] != myBoard[sunTBRX][sunBEY]) {
+                                        myBoard[uni.x][uni.y] = blank;
+                                        uni.x = sunTBRX;
+                                        uni.y = sunBEY;
+                                        myBoard[uni.x][uni.y] = uni.img;
                                     }
                                     break;
                                 case 2:
-                                    if (myBoard[unicornX][unicornY] != myBoard[sunHMX][sunBEY]) {
-                                        myBoard[unicornX][unicornY] = blank;
-                                        unicornX = sunHMX;
-                                        unicornY = sunBEY;
-                                        myBoard[unicornX][unicornY] = unicorn;
+                                    if (myBoard[uni.x][uni.y] != myBoard[sunHMX][sunBEY]) {
+                                        myBoard[uni.x][uni.y] = blank;
+                                        uni.x = sunHMX;
+                                        uni.y = sunBEY;
+                                        myBoard[uni.x][uni.y] = uni.img;
                                     }
                                     break;
                                 case 1:
-                                    if (myBoard[unicornX][unicornY] != myBoard[sunTBLX][sunBEY]) {
-                                        myBoard[unicornX][unicornY] = blank;
-                                        unicornX = sunTBLX;
-                                        unicornY = sunBEY;
-                                        myBoard[unicornX][unicornY] = unicorn;
+                                    if (myBoard[uni.x][uni.y] != myBoard[sunTBLX][sunBEY]) {
+                                        myBoard[uni.x][uni.y] = blank;
+                                        uni.x = sunTBLX;
+                                        uni.y = sunBEY;
+                                        myBoard[uni.x][uni.y] = uni.img;
                                     }
                                     break;
                                     default:
                                         switch(moveAmtL){
                                             case 4:
-                                                if (myBoard[unicornX][unicornY] != myBoard[sunLEX][sunBEY]) {
-                                                    myBoard[unicornX][unicornY] = blank;
-                                                    unicornX = sunLEX;
-                                                    unicornY = sunBEY;
-                                                    myBoard[unicornX][unicornY] = unicorn;
+                                                if (myBoard[uni.x][uni.y] != myBoard[sunLEX][sunBEY]) {
+                                                    myBoard[uni.x][uni.y] = blank;
+                                                    uni.x = sunLEX;
+                                                    uni.y = sunBEY;
+                                                    myBoard[uni.x][uni.y] = uni.img;
                                                 }
                                                 break;
                                             case 3:
-                                                if (myBoard[unicornX][unicornY] != myBoard[sunLEX][sunLRBY]) {
-                                                    myBoard[unicornX][unicornY] = blank;
-                                                    unicornX = sunLEX;
-                                                    unicornY = sunLRBY;
-                                                    myBoard[unicornX][unicornY] = unicorn;
+                                                if (myBoard[uni.x][uni.y] != myBoard[sunLEX][sunLRBY]) {
+                                                    myBoard[uni.x][uni.y] = blank;
+                                                    uni.x = sunLEX;
+                                                    uni.y = sunLRBY;
+                                                    myBoard[uni.x][uni.y] = uni.img;
                                                 }
                                                 break;
                                             case 2:
-                                                if (myBoard[unicornX][unicornY] != myBoard[sunLEX][sunVMY]) {
-                                                    myBoard[unicornX][unicornY] = blank;
-                                                    unicornX = sunLEX;
-                                                    unicornY = sunVMY;
-                                                    myBoard[unicornX][unicornY] = unicorn;
+                                                if (myBoard[uni.x][uni.y] != myBoard[sunLEX][sunVMY]) {
+                                                    myBoard[uni.x][uni.y] = blank;
+                                                    uni.x = sunLEX;
+                                                    uni.y = sunVMY;
+                                                    myBoard[uni.x][uni.y] = uni.img;
                                                 }
                                                 break;
                                             case 1:
-                                                if (myBoard[unicornX][unicornY] != myBoard[sunLEX][sunLRTY]) {
-                                                    myBoard[unicornX][unicornY] = blank;
-                                                    unicornX = sunLEX;
-                                                    unicornY = sunLRTY;
-                                                    myBoard[unicornX][unicornY] = unicorn;
+                                                if (myBoard[uni.x][uni.y] != myBoard[sunLEX][sunLRTY]) {
+                                                    myBoard[uni.x][uni.y] = blank;
+                                                    uni.x = sunLEX;
+                                                    uni.y = sunLRTY;
+                                                    myBoard[uni.x][uni.y] = uni.img;
                                                 }
                                                 break;
                                         }

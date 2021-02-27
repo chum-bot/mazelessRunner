@@ -1,4 +1,3 @@
-var pulseSpeed = 500;
 function pulsingLifeColor() {
     if (gamestate == whatsAnEnum.GAMEPLAY) {
         switch (lives) {
@@ -13,25 +12,25 @@ function pulsingLifeColor() {
                 break;
             case 2:
                 switch (dontKnowSetTimeoutLol) {
-                    case 0:
+                    case true:
                         get("lives").style.color = "orange";
-                        dontKnowSetTimeoutLol = 1;
+                        dontKnowSetTimeoutLol = false;
                         break;
-                    case 1:
+                    case false:
                         get("lives").style.color = "yellow";
-                        dontKnowSetTimeoutLol = 0;
+                        dontKnowSetTimeoutLol = true;
                         break;
                 }
                 break;
             case 1:
                 switch (dontKnowSetTimeoutLol) {
-                    case 0:
+                    case true:
                         get("lives").style.color = "white";
-                        dontKnowSetTimeoutLol = 1;
+                        dontKnowSetTimeoutLol = false;
                         break;
-                    case 1:
+                    case false:
                         get("lives").style.color = "red";
-                        dontKnowSetTimeoutLol = 0;
+                        dontKnowSetTimeoutLol = true;
                         break;
                 }
                 break;

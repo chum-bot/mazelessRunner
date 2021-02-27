@@ -13,8 +13,8 @@ function removeElement(elem) {
 function orderScores(){
   [].map.call(get("topScores").children, Object).sort(function (a, b) {
     return +b.id.match(/\d+/) - +a.id.match(/\d+/);
-}).forEach( function ( elem ) {
-    topScores.appendChild( elem );
+}).forEach( function (elem) {
+    topScores.appendChild(elem);
 });
 }
  

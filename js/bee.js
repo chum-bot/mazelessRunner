@@ -1,54 +1,52 @@
-var beeX = 16;
-var beeY = 8;
 function beeMovement() {
   if (gamestate == whatsAnEnum.GAMEPLAY) {
-    if (score >= beeThreshold) {
+    if (score >= bee.threshold) {
       var bee1stMove = Math.floor((Math.random() * 4) + 1);
       var bee2ndMove = Math.floor((Math.random() * 4) + 1);
-      myBoard[beeX][beeY] = bee;
+      myBoard[bee.x][bee.y] = bee.img;
       switch (bee1stMove) {
         case 1:
-          if (beeY == 0 || beeY == 1) {
+          if (bee.y == 0 || bee.y == 1) {
             bee1stMove = 2;
             bee2ndMove = 2;
           } else {
-            myBoard[beeX][beeY] = blank;
-            beeY--;
-            myBoard[beeX][beeY] = bee;
+            myBoard[bee.x][bee.y] = blank;
+            bee.y--;
+            myBoard[bee.x][bee.y] = bee.img;
           }
           break;
         case 2:
-          if (beeY == 24 || beeY == 23) {
+          if (bee.y == 24 || bee.y == 23) {
             bee1stMove = 1;
             bee2ndMove = 1;
           } else {
-            myBoard[beeX][beeY] = blank;
-            beeY++;
-            myBoard[beeX][beeY] = bee;
+            myBoard[bee.x][bee.y] = blank;
+            bee.y++;
+            myBoard[bee.x][bee.y] = bee.img;
           }
           break;
         case 3:
-          if (beeX == 0 || beeX == 1) {
+          if (bee.x == 0 || bee.x == 1) {
             bee1stMove = 4;
             bee2ndMove = 4;
           } else {
-            myBoard[beeX][beeY] = blank;
-            beeX--;
-            myBoard[beeX][beeY] = bee;
+            myBoard[bee.x][bee.y] = blank;
+            bee.x--;
+            myBoard[bee.x][bee.y] = bee.img;
           }
           break;
         case 4:
-          if (beeX == 24 || beeX == 23) {
+          if (bee.x == 24 || bee.x == 23) {
             bee1stMove = 3;
             bee2ndMove = 3;
           } else {
-            myBoard[beeX][beeY] = blank;
-            beeX++;
-            myBoard[beeX][beeY] = bee;
+            myBoard[bee.x][bee.y] = blank;
+            bee.x++;
+            myBoard[bee.x][bee.y] = bee.img;
           }
           break;
       }
-      switch (beeY) {
+      switch (bee.y) {
         case 1:
         case 0:
           bee1stMove = 2;
@@ -60,7 +58,7 @@ function beeMovement() {
           bee2ndMove = 1;
           break;
       }
-      switch (beeX) {
+      switch (bee.x) {
         case 1:
         case 0:
           bee1stMove = 4;
@@ -74,24 +72,24 @@ function beeMovement() {
       }
       switch (bee2ndMove) {
         case 1:
-          myBoard[beeX][beeY] = blank;
-          beeY -= 2;
-          myBoard[beeX][beeY] = bee;
+          myBoard[bee.x][bee.y] = blank;
+          bee.y -= 2;
+          myBoard[bee.x][bee.y] = bee.img;
           break;
         case 2:
-          myBoard[beeX][beeY] = blank;
-          beeY += 2;
-          myBoard[beeX][beeY] = bee;
+          myBoard[bee.x][bee.y] = blank;
+          bee.y += 2;
+          myBoard[bee.x][bee.y] = bee.img;
           break;
         case 3:
-          myBoard[beeX][beeY] = blank;
-          beeX -= 2;
-          myBoard[beeX][beeY] = bee;
+          myBoard[bee.x][bee.y] = blank;
+          bee.x -= 2;
+          myBoard[bee.x][bee.y] = bee.img;
           break;
         case 4:
-          myBoard[beeX][beeY] = blank;
-          beeX += 2;
-          myBoard[beeX][beeY] = bee;
+          myBoard[bee.x][bee.y] = blank;
+          bee.x += 2;
+          myBoard[bee.x][bee.y] = bee.img;
           break;
       }
     }
