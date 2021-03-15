@@ -1,24 +1,16 @@
 function createBoard() {
-    myBoard = [];
-    //board creation
-    for (var x = 0; x < 25; x++) {
-      myBoard[x] = [];
-  
-      for (var y = 0; y < 25; y++) {
-        myBoard[x][y] = blank;
-      }
+  let gameBoard = make("table");
+  gameBoard.id = "gameboard";
+  gameBoard.style.display = "none";
+  append(gameBoard, get("output_holder"));
+  for (i = 0; i < 25; i++) {
+    var row = gameBoard.insertRow(i);
+    row.classList.add("rows");
+    row.id = `row${i}`;
+    for (j = 0; j < 25; j++) {
+      var cell = row.insertCell(j);
+      cell.classList.add("cells");
+      cell.id = `cell${j}_${i}`;
     }
   }
-  
-  function displayBoard() {
-    get('output_holder').innerHTML = '';
-    var outputString = '';
-  
-    for (var y = 0; y < myBoard.length; y++) {
-      for (var x = 0; x < myBoard[y].length; x++) {
-        outputString = outputString + myBoard[x][y];
-      }
-      outputString = outputString + "</br>";
-    }
-    get('output_holder').innerHTML = outputString;
-  }
+}

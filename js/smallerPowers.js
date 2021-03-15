@@ -1,21 +1,25 @@
 function shield(){
     p1 = playerShield;
     isShielded = true;
+    charColor = shieldColor;
 
     outOfPower = window.setTimeout(function(){
         p1 = invader;
         isShielded = false;
         isActive = false;
+        charColor = invaderColor;
     }, shieldDuration);
 }
 function godMode(){
     p1 = playerGodMode;
     isGod = true;
+    charColor = godModeColor;
 
     outOfPower = window.setTimeout(function(){
         p1 = invader;
         isGod = false;
         isActive = false;
+        charColor = invaderColor;
     }, godModeDuration);
 }
 function miniSun(){

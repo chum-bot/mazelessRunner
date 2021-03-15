@@ -19,6 +19,7 @@ function leaderboard(){
     removeElement("submitted");
     removeElement("difficultyMessage");
     displayBlock("backToMenu");
+    orderScores();
 }
 function backToMenu(){
     gamestate = whatsAnEnum.MENU;
@@ -59,9 +60,9 @@ function scoreDifficultySwitch(difficulty){
             get("scoreDiffText").style.color = "springgreen";
             break;
         case "normal":
-            get("topScores").style.background = "linear-gradient(gold, darkgoldenrod)";
+            get("topScores").style.background = "linear-gradient(rgb(163, 64, 255), indigo)";
             get("diff").innerText = "Normal";
-            get("scoreDiffText").style.color = "yellow";
+            get("scoreDiffText").style.color = "rgb(224, 180, 255)";
             break;
     }
 }

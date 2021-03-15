@@ -40,7 +40,7 @@ function addMessageToBoard(rowData){
     pElem.className = row.DIFFICULTY;
     pElem.id = row.HIGHSCORE;
     pElem.innerText = `${row.USERNAME} - ${row.HIGHSCORE}`;
-    orderScores();
     get("topScores").appendChild(pElem);
+    orderScores();
 }
 

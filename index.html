@@ -43,12 +43,12 @@
   <script src="js/wasd.js"></script>
   <script src="js/movement.js"></script>
   <script src="js/bee.js"></script>
-  <script src="js/monkey.js"></script>
+  <script src="js/robot.js"></script>
   <script src="js/mines.js"></script>
-  <script src="js/bear.js"></script>
+  <script src="js/ninja.js"></script>
   <script src="js/projectiles.js"></script>
-  <script src="js/moon.js"></script>
-  <script src="js/snowman.js"></script>
+  <script src="js/alien.js"></script>
+  <script src="js/khione.js"></script>
   <script src="js/smallerPowers.js"></script>
   <script src="js/dragon.js"></script>
   <script src="js/powerups.js"></script>
@@ -83,12 +83,10 @@
   </div>
   <div id="hiScore">High Score: 0</div>
   <p id="wasdToggle"></p>
-  <p id="difficultyMessage">The game is on <span id="normal">NORMAL</span> mode. The enemies activate at normal times,
-    you gain score at a normal rate, and you have 3 lives.</p>
-  <p id="info"></p>
-  <button onclick="earlierPatchNotes()" id="earlierPatchNoteButton">
-    View earlier patch notes
-  </button>
+  <p id="difficultyMessage">The game is on <span id="normal">NORMAL</span> mode. The enemies are normal, you gain score at a normal rate, and you have 3 lives.</p>
+    <div id="discordBox">
+      <a href="https://discord.gg/HT6z9Et" id="discordLink" target="_blank"><img src="https://lh3.googleusercontent.com/_4zBNFjA8S9yjNB_ONwqBvxTvyXYdC7Nh1jYZ2x6YEcldBr2fyijdjM2J5EoVdTpnkA"></a>
+    </div>
   <div id="submitted">Submitted score!</div>
   <div id="userContainer">
     <form>
@@ -119,10 +117,79 @@
     <div id="output_holder"></div>
     <div id="score"></div>
   </div>
-  <div id="discordBox">
-    <a href="https://discord.gg/HT6z9Et" id="discordLink" target="_blank"><img src="https://lh3.googleusercontent.com/_4zBNFjA8S9yjNB_ONwqBvxTvyXYdC7Nh1jYZ2x6YEcldBr2fyijdjM2J5EoVdTpnkA"></a>
-  </div>
-  
+  <div id="info">
+    <p id = "thisIsYou" class = "infoText miscText">This is you:</p>
+        <p id = "player" class = "infoText imageText">👾</p>
+        <p id = "loreQuestionMark" class = "infoText miscText">Your sole task is to collect solar energy 🔆 🔅 located within a danger-riddled, nonexistent labyrinth that reveals itself as you collect more.</p>
+        <p id = "controls" class = "infoText miscText">Use the arrow keys or WASD to move around.</p>
+        <p id = "pause" class = "infoText miscText">You can pause with the P key if you want.</p>
+        <p id = "harder" class = "infoText miscText">The labyrinth is ever-changing, but it always begins the same.</p>
+        <p id = "architects" class = "infoText miscText">You must avoid the five labyrinth architects, bent on preventing you from completing your mission.</p>
+        <div id = "enemies" class = "infoText infoBoxes">
+          <div id="bee" class = "infoText enemBoxes">
+            <p id = "beeName" class = "infoText beeIntro">Bee</p>
+            <p id = "beeImg" class = "infoText beeIntro imageText">🐝</p>
+            <p id = "beeDesc" class = "infoText beeIntro">The nicest of the architects and the first to act, the bee flies in short distances around the labyrinth. It won't attack you if it flies onto you, but if you go onto it, the bee will fight back.</p>
+          </div>
+          <div id = "unicorn" class = "infoText enemBoxes">
+            <p id = "uniName" class = "infoText uniIntro">Unicorn</p>
+            <p id = "uniImg" class = "infoText uniIntro imageText">🦄</p>
+            <p id = "uniDesc" class = "infoText uniIntro">The unicorn's main objective is to protect the light which you seek, so it runs around it at high speeds in an attempt to damage you when you try to go for it. It doesn't get too close to the walls of the labyrinth, but it isn't afraid to run on its edges if the sun is close to them. The unicorn isn't always spot-on with its path, however, and it may not take its place as the sun's primary guardian.</p>
+          </div>
+          <div id = "robot" class = "infoText enemBoxes">
+            <p id = "roboName" class = "infoText roboIntro">Robot</p>
+            <p id = "roboImg" class = "infoText roboIntro imageText">🤖</p>
+            <p id = "roboDesc" class = "infoText roboIntro">Created by the alien as additional defense, this robot tracks your movement and reacts based upon it, spreading bolts 🔩 at its current location and relocating to a new one. It will react more often when you've collected more energy. The bolts rust over time and disappear, no longer posing a threat to you.</p>
+          </div>
+          <div id = "alien" class = "infoText enemBoxes">
+            <p id = "aliName" class = "infoText aliIntro">Alien</p>
+            <p id = "aliImg" class = "infoText aliIntro imageText">👽</p>
+            <p id = "aliDesc" class = "infoText aliIntro">This is the master architect of the labyrinth, the one who enlisted the others to assist in blocking your progression. It steps in when the others have failed to end your mission, rapidly creating semi-permanent vortexes 🌌 in random locations. When you have collected a large amount of energy, it will create even more vortexes twice as fast, further establishing the labyrinth's walls.</p>
+          </div>
+          <div id = "ninja" class = "infoText enemBoxes">
+            <p id = "ninjaName" class = "infoText ninjaIntro">Ninja</p>
+            <p id = "ninjaImg" class = "infoText ninjaIntro imageText">🐱‍👤</p>
+            <p id = "ninjaDesc" class = "infoText ninjaIntro">A skilled assassin, the ninja assists the other architects and strike you when you weaken. It will hunt you down after you've taken a bit of damage from the others, or the ninja itself. As long as you share a space, it will constantly damage you, and it will move faster as you are more weakened, but slow down if you heal.</p>
+          </div>
+        </div>
+        <p id = "heliosBestow" class = "infoText miscText">You are not alone in this mission, however. The god Helios, the one who gave you this task, will help you in your quest by sending powers from above.</p>
+        <div id = "powerups" class = "infoText infoBoxes">
+          <div id = "godMode" class = "infoText powerBoxes">
+            <p id = "godModeName" class = "infoText godmodeIntro">Helios</p>
+            <p id = "godModeImg" class = "infoText godmodeIntro imageText">🌞</p>
+            <p id = "godModeDesc" class = "infoText godmodeIntro">Helios lends you his power, causing you to erupt in solar light and become impervious to all damage for 7 seconds. Collect ☀️ to activate.</p>
+          </div>
+          <div id = "dragon" class = "infoText powerBoxes">
+            <p id = "dragonName" class = "infoText dragonIntro">Dragon</p>
+            <p id = "dragonImg" class = "infoText dragonIntro imageText">🐉</p>
+            <p id = "dragonDesc" class = "infoText dragonIntro">Helios lends you his fury, causing you to become a fire-breathing dragon for 15 seconds. Pressing Shift will shoot fire in the direction you last traveled in, and this is able to destroy the alien's vortexes. Collect 🐲 to activate.</p>
+          </div>
+          <div id = "khione" class = "infoText powerBoxes">
+            <p id = "khioName" class = "infoText khioIntro">Khione</p>
+            <p id = "khioImg" class = "infoText khioIntro imageText">🌬️</p>
+            <p id = "khioDesc" class = "infoText khioIntro">Helios calls upon Khione, causing you to gain her power over ice for 15 seconds. Pressing Shift will shoot snow in the direction you last traveled in, and this is able to freeze every enemy for 5 seconds. Collect 🧊 to activate.</p>
+          </div>
+          <div id = "shield" class = "infoText powerBoxes">
+            <p id = "shieldName" class = "infoText shieldIntro">Shield</p>
+            <p id = "shieldImg" class = "infoText shieldIntro imageText">💂‍♂️</p>
+            <p id = "shieldDesc" class = "infoText shieldIntro">Helios sends down a shield, causing you to become a guard and protecting you from damage on your next hit. If you are not hit, the shield wears off after 30 seconds. Collect 🛡️ to activate.</p>
+          </div>
+          <div id = "extraLife" class = "infoText powerBoxes">
+            <p id = "heartName" class = "infoText heartIntro">Heart</p>
+            <p id = "heartImg" class = "infoText heartIntro imageText">💖</p>
+            <p id = "heartDesc" class = "infoText heartIntro">Helios sends down life energy, reinvigorating you and giving you an extra life.</p>
+          </div>
+          <div id = "random" class = "infoText powerBoxes">
+            <p id = "randName" class = "infoText randIntro">Random</p>
+            <p id = "randImg" class = "infoText randIntro imageText">🎲</p>
+            <p id = "randDesc" class = "infoText randIntro">Helios sends down a random power for you to use. This makes it more likely to receive a more powerful powerup, but less likely to receive the more common ones.</p>
+          </div>
+        </div>
+        <p id = "glhf" class = "infoText miscText">Good luck. The world's brightness depends on you.</p>
+  </div>  
+  <button onclick="earlierPatchNotes()" id="earlierPatchNoteButton">
+    View earlier patch notes
+  </button>
 </body>
 
 </html>

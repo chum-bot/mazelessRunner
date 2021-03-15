@@ -3,16 +3,16 @@ function beeMovement() {
     if (score >= bee.threshold) {
       var bee1stMove = Math.floor((Math.random() * 4) + 1);
       var bee2ndMove = Math.floor((Math.random() * 4) + 1);
-      myBoard[bee.x][bee.y] = bee.img;
+      reposition(bee);
       switch (bee1stMove) {
         case 1:
           if (bee.y == 0 || bee.y == 1) {
             bee1stMove = 2;
             bee2ndMove = 2;
           } else {
-            myBoard[bee.x][bee.y] = blank;
+            deposition(bee);
             bee.y--;
-            myBoard[bee.x][bee.y] = bee.img;
+            reposition(bee);
           }
           break;
         case 2:
@@ -20,9 +20,9 @@ function beeMovement() {
             bee1stMove = 1;
             bee2ndMove = 1;
           } else {
-            myBoard[bee.x][bee.y] = blank;
+            deposition(bee);
             bee.y++;
-            myBoard[bee.x][bee.y] = bee.img;
+            reposition(bee);
           }
           break;
         case 3:
@@ -30,9 +30,9 @@ function beeMovement() {
             bee1stMove = 4;
             bee2ndMove = 4;
           } else {
-            myBoard[bee.x][bee.y] = blank;
+            deposition(bee);
             bee.x--;
-            myBoard[bee.x][bee.y] = bee.img;
+            reposition(bee);
           }
           break;
         case 4:
@@ -40,9 +40,9 @@ function beeMovement() {
             bee1stMove = 3;
             bee2ndMove = 3;
           } else {
-            myBoard[bee.x][bee.y] = blank;
+            deposition(bee);
             bee.x++;
-            myBoard[bee.x][bee.y] = bee.img;
+            reposition(bee);
           }
           break;
       }
@@ -72,24 +72,24 @@ function beeMovement() {
       }
       switch (bee2ndMove) {
         case 1:
-          myBoard[bee.x][bee.y] = blank;
+          deposition(bee);
           bee.y -= 2;
-          myBoard[bee.x][bee.y] = bee.img;
+          reposition(bee);
           break;
         case 2:
-          myBoard[bee.x][bee.y] = blank;
+          deposition(bee);
           bee.y += 2;
-          myBoard[bee.x][bee.y] = bee.img;
+          reposition(bee);
           break;
         case 3:
-          myBoard[bee.x][bee.y] = blank;
+          deposition(bee);
           bee.x -= 2;
-          myBoard[bee.x][bee.y] = bee.img;
+          reposition(bee);
           break;
         case 4:
-          myBoard[bee.x][bee.y] = blank;
+          deposition(bee);
           bee.x += 2;
-          myBoard[bee.x][bee.y] = bee.img;
+          reposition(bee);
           break;
       }
     }

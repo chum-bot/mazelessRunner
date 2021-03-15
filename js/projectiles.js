@@ -1,93 +1,98 @@
 class Projectile {
-    constructor(img, xPos, yPos, direction) {
+    constructor(img, x, y, direction) {
         this.img = img;
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.x = x;
+        this.y = y;
         this.direction = direction;
+        this.pos = `cell${this.x}_${this.y}`;
     }
 }
 
 function projectileMovement(objectInMotion, objectInMotionArr, objectMoveSpeed) {
-        if (objectInMotion.xPos != undefined || objectInMotion.yPos != undefined) {
+        if (objectInMotion.x != undefined && objectInMotion.y != undefined && objectInMotion.pos != undefined && objectInMotion.pos != "cellundefined_undefined") {
             if (objectInMotion.direction == "up") {
-                if (objectInMotion.yPos == 0) {
+                if (objectInMotion.y == 0) {
                     snowOut = false;
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = blank;
+                    deposition(objectInMotion);
                     objectInMotionArr.splice(objectInMotionArr.indexOf(objectInMotion), 1);
-                    objectInMotion.xPos = undefined;
-                    objectInMotion.yPos = undefined;
+                    objectInMotion.x = undefined;
+                    objectInMotion.y = undefined;
                     window.clearInterval(objectMoveSpeed);
                 }
-                else if (objectInMotion.yPos == p1Y) {
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = p1;
+                else if (objectInMotion.y == p1Y) {
+                    colorify(objectInMotion.pos, charColor);
+                    get(objectInMotion.pos).innerText = p1;
                 }
                 else {
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = blank;
+                    deposition(objectInMotion);
                 }
-                if (objectInMotion.yPos != 0 && objectInMotion.yPos != undefined) {
-                    objectInMotion.yPos--;
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = objectInMotion.img;
+                if (objectInMotion.y != 0 && objectInMotion.y != undefined) {
+                    objectInMotion.y--;
+                    reposition(objectInMotion);
                 }
             }
             if (objectInMotion.direction == "down") {
-                if (objectInMotion.yPos == 24) {
+                if (objectInMotion.y == 24) {
                     snowOut = false;
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = blank;
+                    deposition(objectInMotion);
                     objectInMotionArr.splice(objectInMotionArr.indexOf(objectInMotion), 1);
-                    objectInMotion.xPos = undefined;
-                    objectInMotion.yPos = undefined;
+                    objectInMotion.x = undefined;
+                    objectInMotion.y = undefined;
                     window.clearInterval(objectMoveSpeed);
                 }
-                else if (objectInMotion.yPos == p1Y) {
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = p1;
+                else if (objectInMotion.y == p1Y) {
+                    colorify(objectInMotion.pos, charColor);
+                    get(objectInMotion.pos).innerText = p1;
                 }
                 else {
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = blank;
+                    deposition(objectInMotion);
                 }
-                if (objectInMotion.yPos != 24 && objectInMotion.yPos != undefined) {
-                    objectInMotion.yPos++;
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = objectInMotion.img;
+                if (objectInMotion.y != 24 && objectInMotion.y != undefined) {
+                    objectInMotion.y++;
+                    reposition(objectInMotion);
                 }
             }
             if (objectInMotion.direction == "left") {
-                if (objectInMotion.xPos == 0) {
+                if (objectInMotion.x == 0) {
                     snowOut = false;
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = blank;
+                    deposition(objectInMotion);
                     objectInMotionArr.splice(objectInMotionArr.indexOf(objectInMotion), 1);
-                    objectInMotion.xPos = undefined;
-                    objectInMotion.yPos = undefined;
+                    objectInMotion.x = undefined;
+                    objectInMotion.y = undefined;
                     window.clearInterval(objectMoveSpeed);
                 }
-                else if (objectInMotion.xPos == p1X) {
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = p1;
+                else if (objectInMotion.x == p1X) {
+                    colorify(objectInMotion.pos, charColor);
+                    get(objectInMotion.pos).innerText = p1;
                 }
                 else {
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = blank;
+                    deposition(objectInMotion);
                 }
-                if (objectInMotion.xPos != 0 && objectInMotion.xPos != undefined) {
-                    objectInMotion.xPos--;
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = objectInMotion.img;
+                if (objectInMotion.x != 0 && objectInMotion.x != undefined) {
+                    objectInMotion.x--;
+                    reposition(objectInMotion);
                 }
 
             }
             if (objectInMotion.direction == "right") {
-                if (objectInMotion.xPos == 24) {
+                if (objectInMotion.x == 24) {
                     snowOut = false;
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = blank;
+                    deposition(objectInMotion);
                     objectInMotionArr.splice(objectInMotionArr.indexOf(objectInMotion), 1);
-                    objectInMotion.xPos = undefined;
-                    objectInMotion.yPos = undefined;
+                    objectInMotion.x = undefined;
+                    objectInMotion.y = undefined;
                     window.clearInterval(objectMoveSpeed);
                 }
-                else if (objectInMotion.xPos == p1X) {
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = p1;
+                else if (objectInMotion.x == p1X) {
+                    colorify(objectInMotion.pos, charColor);
+                    get(objectInMotion.pos).innerText = p1;
                 }
                 else {
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = blank;
+                    deposition(objectInMotion);
                 }
-                if (objectInMotion.xPos != 24 && objectInMotion.xPos != undefined) {
-                    objectInMotion.xPos++;
-                    myBoard[objectInMotion.xPos][objectInMotion.yPos] = objectInMotion.img;
+                if (objectInMotion.x != 24 && objectInMotion.x != undefined) {
+                    objectInMotion.x++;
+                    reposition(objectInMotion);
                 }
             }
         }

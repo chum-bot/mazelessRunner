@@ -1,28 +1,166 @@
 function instructions() {
-    get("info").innerHTML =
-        "You control the purple alien in this game." +
-        "</br>" +
-        "Use the arrow keys or WASD to move around." +
-        '</br>' +
-        "Your goal is to keep collecting the sun 🔆 for as long as you can in as little time as you can without dying." +
-        "</br>" +
-        "The game will get harder as you progress." +
-        "</br>" +
-        "You can pause with the P key if you want." +
-        "</br>" +
-        "Avoid these guys and everything that comes from them. 🌝 🐒 🦄 🐻 🐝"+
-        "</br>" +
-        "Collect these for cool effects. 🧊 🐲 🌞 🧿 💖 🔅"+
-        "</br>"+
-        "With the snowman and the dragon, press shift to fire projectiles in the direction you last went in."
-    get("info").style.color = "aquamarine";
+    get("info").innerHTML = `<p id = "thisIsYou" class = "infoText miscText">This is you:</p>
+    <p id = "player" class = "infoText imageText">👾</p>
+    <p id = "loreQuestionMark" class = "infoText miscText">Your sole task is to collect solar energy 🔆 🔅 located within a danger-riddled, nonexistent labyrinth that reveals itself as you collect more.</p>
+    <p id = "controls" class = "infoText miscText">Use the arrow keys or WASD to move around.</p>
+    <p id = "pause" class = "infoText miscText">You can pause with the P key if you want.</p>
+    <p id = "harder" class = "infoText miscText">The labyrinth is ever-changing, but it always begins the same.</p>
+    <p id = "architects" class = "infoText miscText">You must avoid the five labyrinth architects, bent on preventing you from completing your mission.</p>
+    <div id = "enemies" class = "infoText infoBoxes">
+      <div id="bee" class = "infoText enemBoxes">
+        <p id = "beeName" class = "infoText beeIntro">Bee</p>
+        <p id = "beeImg" class = "infoText beeIntro imageText">🐝</p>
+        <p id = "beeDesc" class = "infoText beeIntro">The nicest of the architects and the first to act, the bee flies in short distances around the labyrinth. It won't attack you if it flies onto you, but if you go onto it, the bee will fight back.</p>
+      </div>
+      <div id = "unicorn" class = "infoText enemBoxes">
+        <p id = "uniName" class = "infoText uniIntro">Unicorn</p>
+        <p id = "uniImg" class = "infoText uniIntro imageText">🦄</p>
+        <p id = "uniDesc" class = "infoText uniIntro">The unicorn's main objective is to protect the light which you seek, so it runs around it at high speeds in an attempt to damage you when you try to go for it. It doesn't get too close to the walls of the labyrinth, but it isn't afraid to run on its edges if the sun is close to them. The unicorn isn't always spot-on with its path, however, and it may not take its place as the sun's primary guardian.</p>
+      </div>
+      <div id = "robot" class = "infoText enemBoxes">
+        <p id = "roboName" class = "infoText roboIntro">Robot</p>
+        <p id = "roboImg" class = "infoText roboIntro imageText">🤖</p>
+        <p id = "roboDesc" class = "infoText roboIntro">Created by the alien as additional defense, this robot tracks your movement and reacts based upon it, spreading bolts 🔩 at its current location and relocating to a new one. It will react more often when you've collected more energy. The bolts rust over time and disappear, no longer posing a threat to you.</p>
+      </div>
+      <div id = "alien" class = "infoText enemBoxes">
+        <p id = "aliName" class = "infoText aliIntro">Alien</p>
+        <p id = "aliImg" class = "infoText aliIntro imageText">👽</p>
+        <p id = "aliDesc" class = "infoText aliIntro">This is the master architect of the labyrinth, the one who enlisted the others to assist in blocking your progression. It steps in when the others have failed to end your mission, rapidly creating semi-permanent vortexes 🌌 in random locations. When you have collected a large amount of energy, it will create even more vortexes twice as fast, further establishing the labyrinth's walls.</p>
+      </div>
+      <div id = "ninja" class = "infoText enemBoxes">
+        <p id = "ninjaName" class = "infoText ninjaIntro">Ninja</p>
+        <p id = "ninjaImg" class = "infoText ninjaIntro imageText">🐱‍👤</p>
+        <p id = "ninjaDesc" class = "infoText ninjaIntro">A skilled assassin, the ninja assists the other architects and strikes you when you weaken. It will hunt you down after you've taken a bit of damage from the others, or the ninja itself. As long as you share a space, it will constantly damage you, and it will move faster as you are more weakened, but slow down if you heal.</p>
+      </div>
+    </div>
+    <p id = "heliosBestow" class = "infoText miscText">You are not alone in this mission, however. The god Helios, the one who gave you this task, will help you in your quest by sending powers from above.</p>
+    <div id = "powerups" class = "infoText infoBoxes">
+      <div id = "godMode" class = "infoText powerBoxes">
+        <p id = "godModeName" class = "infoText godmodeIntro">Helios</p>
+        <p id = "godModeImg" class = "infoText godmodeIntro imageText">🌞</p>
+        <p id = "godModeDesc" class = "infoText godmodeIntro">Helios lends you his power, causing you to erupt in solar light and become impervious to all damage for 7 seconds. Collect ☀️ to activate.</p>
+      </div>
+      <div id = "dragon" class = "infoText powerBoxes">
+        <p id = "dragonName" class = "infoText dragonIntro">Dragon</p>
+        <p id = "dragonImg" class = "infoText dragonIntro imageText">🐉</p>
+        <p id = "dragonDesc" class = "infoText dragonIntro">Helios lends you his fury, causing you to become a fire-breathing dragon for 15 seconds. Pressing Shift will shoot fire in the direction you last traveled in, and this is able to destroy the alien's vortexes. Collect 🐲 to activate.</p>
+      </div>
+      <div id = "khione" class = "infoText powerBoxes">
+        <p id = "khioName" class = "infoText khioIntro">Khione</p>
+        <p id = "khioImg" class = "infoText khioIntro imageText">🌬️</p>
+        <p id = "khioDesc" class = "infoText khioIntro">Helios calls upon Khione, causing you to gain her power over ice for 15 seconds. Pressing Shift will shoot snow in the direction you last traveled in, and this is able to freeze every enemy for 5 seconds. Collect 🧊 to activate.</p>
+      </div>
+      <div id = "shield" class = "infoText powerBoxes">
+        <p id = "shieldName" class = "infoText shieldIntro">Shield</p>
+        <p id = "shieldImg" class = "infoText shieldIntro imageText">💂‍♂️</p>
+        <p id = "shieldDesc" class = "infoText shieldIntro">Helios sends down a shield, causing you to become a guard and protecting you from damage on your next hit. If you are not hit, the shield wears off after 30 seconds. Collect 🛡️ to activate.</p>
+      </div>
+      <div id = "extraLife" class = "infoText powerBoxes">
+        <p id = "heartName" class = "infoText heartIntro">Heart</p>
+        <p id = "heartImg" class = "infoText heartIntro imageText">💖</p>
+        <p id = "heartDesc" class = "infoText heartIntro">Helios sends down life energy, reinvigorating you and giving you an extra life.</p>
+      </div>
+      <div id = "random" class = "infoText powerBoxes">
+        <p id = "randName" class = "infoText randIntro">Random</p>
+        <p id = "randImg" class = "infoText randIntro imageText">🎲</p>
+        <p id = "randDesc" class = "infoText randIntro">Helios sends down a random power for you to use. This makes it more likely to receive a more powerful powerup, but less likely to receive the more common ones.</p>
+      </div>
+    </div>
+    <p id = "glhf" class = "infoText miscText">Good luck. The world's brightness depends on you.</p>` 
+    get("info").style.color = "#ffe96f";
     get("info").style.fontFamily = "'Righteous', cursive";
     get("info").style.fontSize = "20px";
     get("info").style.display = "block";
 }
 function patchNotes() {
     get("info").innerHTML =
-        "<b>Mazeless Runner Version 2.7 Patch Notes</b>" +
+        "<b>Mazeless Runner Version 2.8 Patch Notes</b>" +
+        "</br>" +
+        "</br>" +
+        "<b>General</b>" +
+        "<ul>" +
+        "<li>Made the game board into a table instead of a 2D array</li>" +
+        "<ul>" +
+        "<li>Characters are now inside of a table cell instead of replacing the square in a 2D array</li>" +
+        "<li>Each character also has their own color cell</li>" +
+        "</ul>" +
+        "<li>Most of the text is now the color of the sun's tile</li>" +
+        "<li>Changed the color of the main menu background to midnight blue</li>" +
+        "<li>Changed the How To Play section layout</li>" +
+        "<li>Added a story(?) to the game</li>" +
+        "<ul>"+
+        "<li>You have been tasked by Helios to collect solar energy from an ever-changing labyrinth overseen by an alien and its four other architects. Helios is able to send down part of his power to aid you in your quest. The brightness of the world depends on you.</li>"+
+        "</ul>"+
+        "<li>Normal mode is now themed around purple/blue rather than gold/yellow. This includes the game board color changes, the text on the menu screen, and the leaderboard colors.</li>" +
+        "<li>Slightly changed the color of the hard mode leaderboard text</li>" +
+        "<li>The Discord logo is smaller now</li>"+
+        "<li>Removed the border from the game board</li>"+
+        "<li>Slightly changed the difficulty text</li>"+
+        "<li>Fixed an issue where newer scores would show up on the bottom of the leaderboard regardless of score after refreshing the page. They should always be ordered now.</li>"+
+        "</ul>"+
+        "<b>Powerups</b>"+
+        "<ul>"+
+        "<li>Changed the snowman to the wind face (to represent Khione)</li>"+
+        "<li>Khione (snowman) and Dragon now last 15 seconds, up from 12</li>"+
+        "<li>The fire is the same speed as the ice</li>"+
+        "<li>You can only fire one of each projectile at a time (no rapid fire, you can only fire if there are no other projectiles on the screen)</li>"+
+        "<ul><li>This was in the last patch for the ice, but now it applies to the fire as well. This fixes an issue with the fire, which was when you fired more than one projectile and one would disappear, the other would just stay there, unable to be removed. Maybe I'll bring back rapid-fire in the future and fix this issue with it, but I'm not planning to.</li></ul>"+
+        "<li>The shield powerup icon is now an actual shield and not an amulet</li>"+
+        "<li>When an enemy is frozen by Khione's ice, the cell they are on will turn into the ice's cell color and slowly fade back into the enemy's cell color as they thaw (because the unicorn moves when you collect the sun, the tile it was on rather than the new tile it goes to if it goes to one will continue to fade back into the unicorn's color if you collect the sun. the unicorn stays frozen, but the tile will stay as the unicorn's color until something goes onto it. minor issue but just letting you know)</li>"+
+        "<li>Fixed Khione's freeze time</li>"+
+        "<ul>"+
+        "<li>Before, enemies would be frozen for 5 seconds plus their interval time because of how JS handles intervals. Now they should be frozen for the proper 5 seconds.</li>"+
+        "</ul>"+
+        "</ul>"+
+        "<b>Enemies</b>"+
+        "<ul>"+
+        "<li>Changed the moon to an alien</li>"+
+        "<li>Changed the monkey to a robot (callback)</li>"+
+        "<li>Changed the bear to a ninja</li>"+
+        "<li>Changed the bananas to screws/bolts/metal thingies</li>"+
+        "<li>Changed the mini moons to vortexes</li>"+
+        "<li>All functionality remains the same</li>"+
+        "<li>Lasts 12 seconds</li>"+
+        "</ul>"+
+        "<b>Code Edits</b>"+
+        "<ul>"+
+        "<li>Renamed the enemy files to match their new identities</li>"+
+        "<li>Removed more variables that didn't do anything</li>"+
+        "<li>Made more quality of life functions (mainly for the new stuff relating to the grid)</li>"+
+        "<li>Became sad as I saw that my methods didn't work with the switch to the grid and sadly made those into functions that acted on the objects</li>"+
+        "<li>Made objects for the player and the sun and proceeded to not use them</li>"+
+        "<li>Changed code in the info section that let me format the stuff in HTML before putting in JS and quoting all of it (backticks ftw)</li>"+
+        "<li>Did some cool stuff with the enemy class constructor, giving each enemy a position based on its own x and y value right in the constructor (never done that before, it was cool)</li>"+
+        "<li>Started to get more infuriated with JS intervals as I continued to learn how dumb they were</li>"+
+        "<li>Abstracted some code</li>"+
+        "<li>Saw that I had a function that acted the same as unity's update function, refreshing the screen every 10 milliseconds just so things would always be visible to the player</li>"+
+        "<li>Realized just how unoptimized JS is for this sort of thing</li>"+
+        "<li>Got excited for when I learn C# so I could make cooler and more optimized games</li>"+
+        "</ul>"+
+        "<b>Other</b>"+
+        "<ul>"+
+        "<li>Board optimized. Now I can put whatever I want in the cells without making the board weird. The player was originally going to be the guy running emoji, but it made the table look weird since it was so small so we settled on the bigger invader emoji.</li>"+
+        "<li>I'll be cleaning up the Discord soon in case anyone wants to join, as it's not in the best state rn</li>"+
+        "<li>Still not ready for those unicorn/sun variables yet</li>"+
+        "<li>This may be the last update to the game for a while. There are a lot of things that I can fix, but I think the game's in a pretty good place for now. Also, I think I'll work on something else...</li>"+
+        "</ul>"+
+        "<b>Thanks for playing!</b>"+
+        "</br>" +
+        "</br>";
+    get("info").style.fontFamily = "Source Sans Pro";
+    get("info").style.color = "aqua";
+    get("info").style.fontSize = "16px";
+    get("info").style.display = "block";
+    get("earlierPatchNoteButton").style.display = "block";
+}
+function earlierPatchNotes() {
+    get("info").style.fontFamily = "Source Sans Pro";
+    get("info").style.color = "aqua";
+    get("info").style.fontSize = "16px";
+    get("info").style.display = "block";
+    get("earlierPatchNoteButton").style.display = "none";
+    get("info").innerHTML +=
+    "<b>Mazeless Runner Version 2.7 Patch Notes</b>" +
         "</br>" +
         "</br>" +
         "<b>General</b>" +
@@ -119,15 +257,7 @@ function patchNotes() {
         "</ul>"+
         "<b>Thanks for playing!</b>"+
         "</br>" +
-        "</br>";
-    get("info").style.fontFamily = "Source Sans Pro";
-    get("info").style.color = "aqua";
-    get("info").style.fontSize = "16px";
-    get("info").style.display = "block";
-    get("earlierPatchNoteButton").style.display = "block";
-}
-function earlierPatchNotes() {
-    get("info").innerHTML =
+        "</br>" +
     "<b>Mazeless Runner Version 2.6.1 Patch Notes</b>" +
         "</br>" +
         "</br>" +

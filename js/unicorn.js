@@ -2,7 +2,7 @@ function uniMovement() {
   if (gamestate == whatsAnEnum.GAMEPLAY) {
     if (score >= uni.threshold) {
       if (lives > 0) {
-        myBoard[p1X][p1Y] = p1;
+        get(charPos).innerText = p1;
         if (moveAmtT == 0 && moveAmtR == 0 && moveAmtB == 0 && moveAmtL == 0) {
           moveAmtT = 4;
           moveAmtR = 4;
@@ -10,29 +10,29 @@ function uniMovement() {
           moveAmtL = 4;
         }
         if (moveAmtT > 0) {
-          myBoard[uni.x][uni.y] = blank;
+          deposition(uni);
           uni.x++;
-          myBoard[uni.x][uni.y] = uni.img;
+          reposition(uni);
           moveAmtT--;
         } else if (moveAmtR > 0) {
-          myBoard[uni.x][uni.y] = blank;
+          deposition(uni);
           uni.y++;
-          myBoard[uni.x][uni.y] = uni.img;
+          reposition(uni);
           moveAmtR--;
         } else if (moveAmtB > 0) {
-          myBoard[uni.x][uni.y] = blank;
+          deposition(uni);
           uni.x--;
-          myBoard[uni.x][uni.y] = uni.img;
+          reposition(uni);
           moveAmtB--;
         } else if (moveAmtL > 0) {
-          myBoard[uni.x][uni.y] = blank;
+          deposition(uni);
           uni.y--;
-          myBoard[uni.x][uni.y] = uni.img;
+          reposition(uni);
           moveAmtL--;
         }
-        uni.collision();
+        collision(uni);
       }
-      myBoard[uni.x][uni.y] = uni.img;
+      reposition(uni);
     }
   }
 }

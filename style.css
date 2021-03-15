@@ -2,7 +2,7 @@
 
 #title_screen {
   font-family: 'Kumar One Outline', cursive;
-  color: aquamarine;
+  color: #ffe96f;
   margin-bottom: -25px;
   text-align: center;
   -webkit-text-stroke-width: 1px;
@@ -17,17 +17,25 @@
   display: flex;
   justify-content: center;
   margin: auto;
-  width: 7%;
-  height: 7%;
+  width: 5%;
+  height: 5%;
 }
 #discordLink img{
   width: 100%;
   height: 100%;
   margin: 0px;
 }
+.cells{
+  width: 15px;
+  height: 15px;
+  background-color: #383838;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 65%;
+}
 @keyframes glow {
   from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px aquamarine, 0 0 40px aquamarine, 0 0 50px aquamarine, 0 0 60px aquamarine, 0 0 70px aquamarine;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffe96f, 0 0 40px #ffe96f, 0 0 50px #ffe96f, 0 0 60px #ffe96f, 0 0 70px #ffe96f;
   }
   
   to {
@@ -36,14 +44,13 @@
 }
 #secondaryTitleScreen{
   font-family: 'Fredoka One', cursive;
-  color: aquamarine;
+  color: #ffe96f;
   margin-bottom: 10px;
   text-align: center;
   font-size: 35px;
 }
 
 #everything {
-  border: 5px double aqua;
   display: none;
   flex-direction: column;
   width: 99.8%;
@@ -57,7 +64,6 @@
   border-radius: 25px;
   margin: auto;
   display: block;
-  background-image: linear-gradient((gold, darkgoldenrod));
 }
 #info{
   display: none;
@@ -66,13 +72,13 @@
   font-size: 16px;
 }
 body {
-  background-color: rgb(19, 57, 100);
+  background-color: midnightblue;
   background-size: 100% 100%;
   background-position: center;
 }
 
 #score {
-  color: aquamarine;
+  color: #ffe96f;
   display: block;
   text-align: center;
   font-family: 'Righteous', cursive;
@@ -81,7 +87,7 @@ body {
 }
 
 #hiScore{
-  color: aquamarine;
+  color: #ffe96f;
   display: block;
   text-align: left;
   font-family: 'Righteous', cursive;
@@ -92,12 +98,12 @@ body {
 
 #topScores{
   display: none;
-  color: aquamarine;
+  color: #ffe96f;
   text-align: left;
   font-family: 'Nova Square', cursive;
   font-size: 25px;
   margin: 15px;
-  background: linear-gradient(gold, darkgoldenrod);
+  background: linear-gradient(rgb(163, 64, 255), indigo);
   border-radius: 20px;
   padding: 3px;
 }
@@ -109,7 +115,7 @@ body {
   font-size: 30px;
   text-align: center;
   font-family: 'Nova Square', cursive;
-  color: yellow;
+  color: rgb(224, 180, 255);
   display: none;
 }
 
@@ -124,7 +130,7 @@ body {
 
 #userContainer{
   display: none;
-  color: aquamarine;
+  color: #ffe96f;
   text-align: left;
   font-family: 'Righteous', cursive;
   font-size: 25px;
@@ -139,7 +145,7 @@ body {
 
 #submitted{
   display: none;
-  color: aquamarine;
+  color: #ffe96f;
   text-align: left;
   font-family: 'Righteous', cursive;
   font-size: 25px;
@@ -156,7 +162,7 @@ body {
 }
 
 #wasdToggle {
-  color: aquamarine;
+  color: #ffe96f;
   font-family: "Righteous", cursive;
   font-size: 20px;
 }
@@ -167,6 +173,61 @@ body {
   font-size: 50px;
   color: yellow;
   display: none;
+}
+.infoBoxes{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.enemBoxes{
+  width: 30%;
+}
+.powerBoxes{
+  width: 30%;
+}
+.infoText {
+  text-align: center;
+}
+.miscText {
+  color: rgb(224, 180, 255);
+}
+#alien{
+  width: 45%;
+  color: chartreuse;
+}
+#ninja{
+  width: 45%;
+  color: dimgray;
+}
+#unicorn{
+  color: lightcyan;
+}
+#bee{
+  color: #F3C622;
+}
+#robot{
+  color: silver;
+}
+#godMode{
+  color: gold;
+}
+#dragon{
+  color: limegreen;
+}
+#khione{
+  color: skyblue;
+}
+#shield{
+  color: lightcoral;
+}
+#extraLife{
+  color: red;
+}
+#random{
+  color: gainsboro;
+}
+.imageText{
+  font-size: 30px;
 }
 #ur_dead {
   font-family: 'Nova Square', cursive;
@@ -181,7 +242,7 @@ body {
 }
 
 #difficultyMessage{
-  color: aquamarine;
+  color: #ffe96f;
   text-align: left;
   font-family: 'Righteous', cursive;
   font-size: 25px;
@@ -196,7 +257,7 @@ body {
   margin: auto;
 }
  #normal{
-  color: yellow;
+  color:  rgb(224, 180, 255);
   text-align: left;
   font-family: 'Righteous', cursive;
   font-size: 25px;
@@ -217,11 +278,11 @@ body {
  }
  .normal{
   display: block;
-  color: lemonchiffon;
+  color: rgb(224, 180, 255);
  }
  .hard{
   display: none;
-  color: rgb(248, 164, 155);
+  color: rgb(255, 180, 167);
  }
  #easyScores{
   display: none;
@@ -236,28 +297,28 @@ body {
  }
 button {
   border-radius: 20px;
-  border: 3px solid aqua;
-  background-color: navy;
+  border: 3px solid yellow;
+  background-color: midnightblue;
   cursor: pointer;
   font-family: "Righteous", cursive;
-  color: aquamarine;
+  color: #ffe96f;
   font-size: 25px;
   transition: 200ms;
 }
 button:hover{
-  border: 3px solid navy;
-  background-color: aquamarine;
-  color: navy;
+  border: 3px solid midnightblue;
+  background-color: #ffe96f;
+  color: midnightblue;
 }
 button:focus{
-  border: 3px solid navy;
-  background-color: aquamarine;
-  color: navy;
+  border: 3px solid midnightblue;
+  background-color: #ffe96f;
+  color: midnightblue;
 }
 button:active{
-  border: 3px solid rgb(0,0, 60);
-  background-color: rgb(98, 190, 160);
-  color: rgb(0, 0, 60);
+  border: 3px solid rgb(25,25, 60);
+  background-color: rgb(195, 155, 0);
+  color: rgb(25, 25, 60);
   transition: 0ms;
 }
 

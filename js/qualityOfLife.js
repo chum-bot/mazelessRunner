@@ -1,8 +1,72 @@
 function get(thingToGet) {
     return document.getElementById(thingToGet);
   }
-function removeElement(elem) {
+  function make(thing) {
+    return document.createElement(thing);
+  }
+  function append(thing, otherThing){
+    return otherThing.appendChild(thing);
+  }
+  function style(thing){
+    return get(thing).style;
+  }
+  function colorify(pos, color){
+    style(pos).backgroundColor = color;
+  }
+  function decolorify(pos){
+    style(pos).backgroundColor = blankColor;
+  }
+  function deposition(enem) {
+    get(enem.pos).innerText = "";
+    decolorify(enem.pos);
+  }
+  function reposition(enem){
+      enem.pos = `cell${enem.x}_${enem.y}`;
+      colorify(enem.pos, enem.color);
+      get(enem.pos).innerText = enem.img;
+  }
+  function nonEnemDepos(pos){
+    get(pos).innerText = "";
+    decolorify(pos);
+  }
+  function nonEnemRepos(pos, x, y, color, img){
+    pos = `cell${x}_${y}`;
+    colorify(pos, color);
+    get(pos).innerText = img;
+  }
+  function collision (enem) {
+    if (enem.pos == charPos && isGod == false) {
+        if (isShielded) {
+            isShielded = false;
+            isActive = false;
+            p1 = invader;
+            charColor = invaderColor;
+        }
+        else {
+            lives--;
+            get("lives").innerHTML = " Lives: " + lives;
+            pulsingLifeColor();
+        }
+        if (lives === 2) {
+            window.clearInterval(initPulse);
+            let pulseSpeed = 500;
+            initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
+        }
+        if (lives === 1) {
+            window.clearInterval(initPulse);
+            let pulseSpeed = 250;
+            initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
+        }
+        if(lives <= 0){
+          ded();
+        }
+    }
+}
+  function removeElement(elem) {
     return get(elem).style.display = "none";
+  }
+  function destroy(elem) {
+    return get(elem).remove();
   }
   function displayBlock(elem){
       return get(elem).style.display = "block";
