@@ -153,6 +153,7 @@ function reset() {
   minePositions = [];
   boltPositions = [];
   activePower = new Powerup();
+  miniSun = new Powerup(undefined, undefined, undefined, minisun, "🔅", undefined, "Mini-Sun", "#ffe96f");
 }
 function pause() {
   switch (paused) {
