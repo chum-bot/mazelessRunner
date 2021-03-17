@@ -12,6 +12,7 @@ function goddess() {
 }
 
 function breakout(mene, enemInterval) {
+    style(mene.pos).transition = "none";
     window.clearInterval(enemInterval);
     if(frozeLast == mene.name){
         clearInterval(mene.idStorage);
@@ -23,7 +24,6 @@ function breakout(mene, enemInterval) {
         mene.speed = diffFirstAggression;
     }
     enemInterval = window.setInterval(mene.move, mene.speed);
-    style(mene.pos).transition = "none";
     mene.idStorage = enemInterval;
     frostbite = false;
 }

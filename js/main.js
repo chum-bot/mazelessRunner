@@ -217,7 +217,16 @@ function gameplay() {
       }
       get("score").innerHTML = `Score: ${score}`;
       get("lives").innerHTML = `Lives: ${lives}`;
-      
+      if (lives === 2) {
+        window.clearInterval(initPulse);
+        let pulseSpeed = 500;
+        initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
+    }
+    if (lives === 1) {
+        window.clearInterval(initPulse);
+        let pulseSpeed = 250;
+        initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
+    }
     }
   }
 }
