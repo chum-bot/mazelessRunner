@@ -1,14 +1,14 @@
-function dragon() {
-    p1 = playerDragon;
+function lizard() {
+    player.img = dragon.playerImg;
     isDragon = true;
-    charColor = dragonColor;
+    player.color = dragon.color;
 
     outOfPower = window.setTimeout(function () {
-        p1 = invader;
+        player.img = invader;
         isDragon = false;
         isActive = false;
-        charColor = invaderColor;
-    }, dragonDuration);
+        player.color = invaderColor;
+    }, dragon.duration);
 }
 
 function shootyShoot(obj, obsArr, objArr) {

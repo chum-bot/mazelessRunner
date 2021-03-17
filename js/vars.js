@@ -20,37 +20,24 @@ var moveyBoi;
 var initPulse;
 var aggression;
 var cdsAndResps;
-var lastDirection;
 var maybeFramerate = 10;
-var charColor = "rebeccapurple";
-var sunColor = "#ffe96f";
 var invaderColor = "rebeccapurple";
-var ninjaColor = "dimgrey";
-var uniColor = "lightcyan";
-var alienColor = "chartreuse";
-var roboColor = "silver";
-var beeColor = "#F3C622";
 var mineColor = "dodgerblue";
-var p1X = 11;
-var p1Y = 11;
-var charPos = `cell${p1X}_${p1Y}`;
-/*var player = {
+var player = {
   x: 11,
   y: 11,
   pos: `cell${this.x}_${this.y}`,
-  img: invader,
-  color: "rebeccapurple"
-}*/
-var sunX = 5;
-var sunY = 11;
-var sunPos = `cell${sunX}_${sunY}`;
-/*var collect = {
-  x: 11,
+  img: "👾",
+  color: "rebeccapurple",
+  lastDirection: undefined
+}
+var sun = {
+  x: 5,
   y: 11,
   pos: `cell${this.x}_${this.y}`,
-  img: sun,
+  img: "🔆",
   color: "#ffe96f"
-}*/
+}
 
 //gamestate and difficulty
 const whatsAnEnum = {
@@ -81,6 +68,7 @@ let minePositions = [];
 var alienSpeedSpawnThreshold = 10000;
 var diffMineCap = 75;
 var mineCap = 0;
+var thisMAYbeBroken;
 
 //robot vars
 var stepCount = 10;
@@ -110,51 +98,23 @@ var wasdCheck = false;
 var blankColor = "#383838";
 
 //powerups and powerup-related vars
-const playerGodMode = "🌞";
-const godModeItem = "☀️";
-const playerDragon = "🐉";
-const dragonItem = "🐲";
 const fire = "🔥";
-const playerKhione = "🌬️";
-const khioneItem = "🧊";
 const snow = "❄️";
-const randomItem = "🎲";
-const shieldItem = "🛡️";
-const playerShield = "💂‍♂️";
-const miniSunItem = "🔅";
-const extraLifeItem = "💖";
-var godModeColor = `gold`;
-var dragonColor = "limegreen";
 var fireColor = "orange";
-var khioneColor = "skyblue";
 var snowColor = "deepskyblue";
-var randomItemColor = "gainsboro";
-var shieldColor = "lightcoral";
-var miniSunColor = sunColor;
-var extraLifeColor = "red";
-var powerColor;
 var throughTheFireAndFlames = [];
 var frozenHeart = [];
-var activePower;
 var isActive = false;
 var isGod = false;
 var isGoddess = false;
 var isDragon = false;
 var isShielded = false;
-var randPow;
 var outOfPower;
 var ninjaFrozen = false;
-var powerX;
-var powerY;
-var powerPos = `cell${powerX}_${powerY}`;
 var unfreeze;
 var sleet;
 var fireFlameFlow;
 var frozeLast;
-var godModeDuration = 7000;
-var dragonDuration = 15000;
-var shieldDuration = 30000;
-var khioneDuration = 15000;
 var powerLifetime = 45000;
 var diffPowerSpawning = 3000;
 var stasisTime = 5000;
@@ -169,13 +129,13 @@ var moveAmtT = 4;
 var moveAmtR = 4;
 var moveAmtB = 4;
 var moveAmtL = 4;
-var sunTEY = sunY - 2;
-var sunBEY = sunY + 2;
-var sunREX = sunX + 2;
-var sunLEX = sunX - 2;
-var sunTBLX = sunX - 1;
-var sunTBRX = sunX + 1;
-var sunLRTY = sunY - 1;
-var sunLRBY = sunY + 1;
-var sunHMX = sunX;
-var sunVMY = sunY;
+var sunTEY = sun.y - 2;
+var sunBEY = sun.y + 2;
+var sunREX = sun.x + 2;
+var sunLEX = sun.x - 2;
+var sunTBLX = sun.x - 1;
+var sunTBRX = sun.x + 1;
+var sunLRTY = sun.y - 1;
+var sunLRBY = sun.y + 1;
+var sunHMX = sun.x;
+var sunVMY = sun.y;

@@ -15,17 +15,13 @@ const uni = new Enemy("🦄", 3, 9, 40, 2000, uniMovement, "unicorn", undefined,
 const alien = new Enemy("👽", 24, 24, 600, 5000, alienMovement, "alien", undefined, "chartreuse");
 const robot = new Enemy("🤖", 14, 21, 400, 3000, robotMovement, "robot", undefined, "silver");
 const bee = new Enemy("🐝", 16, 8, 700, 1000, beeMovement, "bee", undefined, "#F3C622");
-const sun = "🔆";
 const invader = "👾";
-var p1 = invader;
 const bolt = "🔩";
 
-//powerup array*
-var powers = [dragon, miniSun, shield, khione, godMode, extraLife];
 
 //ninja variables*
-var disX = Math.abs(p1X - ninja.x);
-var disY = Math.abs(p1Y - ninja.y);
+var disX = Math.abs(player.x - ninja.x);
+var disY = Math.abs(player.y - ninja.y);
 
 
 //the gamestate shifts
@@ -60,7 +56,7 @@ function downOnTheKey(event) {
       if (event.keyCode == 16) {
         if (isDragon == true && snowOut == false) {
           snowOut = true;
-          let flame = new Projectile(fire, p1X, p1Y, lastDirection);
+          let flame = new Projectile(fire, player.x, player.y, player.lastDirection);
           reposition(flame);
           throughTheFireAndFlames.push(flame);
           contact = false;
@@ -68,7 +64,7 @@ function downOnTheKey(event) {
         }
         if (isGoddess == true && snowOut == false) {
           snowOut = true;
-          let stasis = new Projectile(snow, p1X, p1Y, lastDirection);
+          let stasis = new Projectile(snow, player.x, player.y, player.lastDirection);
           reposition(stasis);
           frozenHeart.push(stasis);
           frostbite = false;
@@ -76,41 +72,28 @@ function downOnTheKey(event) {
         }
       }
       //powerup pickup
-      if (powerX != undefined && powerY != undefined) {
-        if (charPos == powerPos) {
+      if (activePower.x != undefined && activePower.y != undefined) {
+        if (player.pos == activePower.pos) {
           isActive = true;
-          powerX = undefined;
-          powerY = undefined;
-          switch (activePower) {
-            case dragonItem:
-              dragon();
-              break;
-            case shieldItem:
-              shield();
-              break;
-            case extraLifeItem:
-              extraLife();
-              break;
-            case khioneItem:
-              khione();
-              break;
-            case godModeItem:
-              godMode();
-              break;
-            case miniSunItem:
-              miniSun();
-              break;
-            case randomItem:
-              randPow = Math.floor(Math.random() * powers.length);
-              powers[randPow]();
+          activePower.x = undefined;
+          activePower.y = undefined;
+          if(activePower == random){
+            randPow = Math.floor(Math.random()*powers.length);
+            random.effect = powers[randPow].effect;
+            activePower = random;
           }
+          activePower.effect();
         }
       }
-      //unicorn teleport and sun pickup
+      //unicorn teleport and sun/mini sun pickup
       teleport();
+      if(player.pos == miniSun.pos){
+        miniSun.effect();
+        miniSun.pos = undefined;
+        miniSun.x = undefined;
+        miniSun.y = undefined;
+      }
     }
-
-
     //collision functions for enemies and mines
     collision(ninja);
     collision(alien);
@@ -118,12 +101,12 @@ function downOnTheKey(event) {
     collision(uni);
     collision(robot);
     for (mineObj of minePositions) {
-      if (charPos == mineObj.pos && isGod == false) {
+      if (player.pos == mineObj.pos && isGod == false) {
         if (isShielded) {
           isShielded = false;
           isActive = false;
-          p1 = invader;
-          charColor = invaderColor;
+          player.img = invader;
+          player.color = invaderColor;
           break;
         }
         else {
@@ -135,12 +118,12 @@ function downOnTheKey(event) {
       }
     }
     for (boltObj of boltPositions) {
-      if (charPos == boltObj.pos && isGod == false) {
+      if (player.pos == boltObj.pos && isGod == false) {
         if (isShielded) {
           isShielded = false;
           isActive = false;
-          p1 = invader;
-          charColor = invaderColor;
+          player.img = invader;
+          player.color = invaderColor;
           break;
         }
         else {
@@ -202,27 +185,30 @@ function gameplay() {
       reposition(alien);
       reposition(bee);
       reposition(robot);
-      nonEnemRepos(sunPos, sunX, sunY, sunColor, sun);
-      nonEnemRepos(charPos, p1X, p1Y, charColor, p1);
+      reposition(sun);
+      reposition(player);
       for (frozen of frozenHeart) {
         colorify(frozen.pos, snowColor);
         get(frozen.pos).innerText = frozen.img;
       }
-      if (powerX != undefined && powerY != undefined && activePower != undefined) {
-        powerPos = `cell${powerX}_${powerY}`;
-        get(powerPos).innerText = activePower;
+      if(typeof activePower == "object" && activePower.x != undefined && activePower.y != undefined){
+        reposition(activePower);
       }
-
+      if(miniSun.pos != undefined && miniSun.x != undefined && miniSun.y != undefined){
+        reposition(miniSun);
+      }
       if (lives <= 0) {
         ded();
       }
       if (score >= alienSpeedSpawnThreshold) {
         if (theBrokenCounter == 0) {
           theBrokenCounter = 1;
-          var thisMAYbeBroken = window.setInterval(alien.move, 250);
+          thisMAYbeBroken = window.setInterval(alien.move, 250);
         }
       }
-
+      if(lives == 1 && ninja.speed != diffSecondAggression){
+        ninja.speed = diffSecondAggression;
+      }
       if (mineCap == diffMineCap) {
         window.clearInterval(moveyBoi);
       }

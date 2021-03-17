@@ -1,18 +1,27 @@
-function khione() {
-    p1 = playerKhione;
+function goddess() {
+    player.img = khione.playerImg;
     isGoddess = true;
-    charColor = khioneColor;
+    player.color = khione.color;
 
     outOfPower = window.setTimeout(function () {
-        p1 = invader;
+        player.img = invader;
         isGoddess = false;
         isActive = false;
-        charColor = invaderColor;
-    }, khioneDuration);
+        player.color = invaderColor;
+    }, khione.duration);
 }
 
 function breakout(mene, enemInterval) {
     window.clearInterval(enemInterval);
+    if(frozeLast == mene.name){
+        clearInterval(mene.idStorage);
+    }
+    if(mene == ninja && lives == 1){
+        mene.speed = diffSecondAggression;
+    }
+    else if(mene == ninja && lives == 2){
+        mene.speed = diffFirstAggression;
+    }
     enemInterval = window.setInterval(mene.move, mene.speed);
     style(mene.pos).transition = "none";
     mene.idStorage = enemInterval;
@@ -20,33 +29,35 @@ function breakout(mene, enemInterval) {
 }
 
 function encased(enem, enemInt, flake, allFlakes) {
-    frostbite = true;
-    window.clearInterval(enemInt);
-    enem.color = snowColor;
-    reposition(enem);
-    style(enem.pos).transition = "background-color 5000ms";
-    switch (enem) {
-        case uni:
-            enem.color = uniColor;
-            break;
-        case bee:
-            enem.color = beeColor;
-            break;
-        case ninja:
-            enem.color = ninjaColor;
-            break;
-        case alien:
-            enem.color = alienColor;
-            break;
-        case robot:
-            enem.color = roboColor;
-            break;
+    if(frostbite == false){
+        frostbite = true;
+        window.clearInterval(enemInt);
+        enem.color = snowColor;
+        reposition(enem);
+        style(enem.pos).transition = "background-color 5000ms";
+        switch (enem) {
+            case uni:
+                enem.color = uni.color;
+                break;
+            case bee:
+                enem.color = bee.color;
+                break;
+            case ninja:
+                enem.color = ninja.color;
+                break;
+            case alien:
+                enem.color = alien.color;
+                break;
+            case robot:
+                enem.color = robo.color;
+                break;
+        }
+        setTimeout(breakout, stasisTime - enem.speed, enem, enemInt);
+        get(flake.pos).innerText = "";
+        flake.x = undefined;
+        flake.y = undefined;
+        allFlakes.splice(allFlakes.indexOf(flake), 1);
     }
-    setTimeout(breakout, stasisTime - enem.speed, enem, enemInt);
-    get(flake.pos).innerText = "";
-    flake.x = undefined;
-    flake.y = undefined;
-    allFlakes.splice(allFlakes.indexOf(flake), 1);
 }
 
 function freezyFreeze(obj, objArr) {

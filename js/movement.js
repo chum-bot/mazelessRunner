@@ -2,47 +2,35 @@ function charMovement() {
   if (gamestate == whatsAnEnum.GAMEPLAY && lives > 0) {
     switch (event.keyCode) {
       case upKey:
-        if (p1Y != 0){
-          decolorify(charPos);
-          get(charPos).innerText = "";
-          p1Y--;
-          charPos = `cell${p1X}_${p1Y}`;
-          colorify(charPos, charColor);
-          get(charPos).innerText = p1;
-          lastDirection = "up";
+        if (player.y != 0){
+          deposition(player);
+          player.y--;
+          reposition(player);
+          player.lastDirection = "up";
         }
         break;
       case downKey:
-        if (p1Y != 24) {
-          decolorify(charPos);
-          get(charPos).innerText = "";
-          p1Y++;
-          charPos = `cell${p1X}_${p1Y}`;
-          colorify(charPos, charColor);
-          get(charPos).innerText = p1;
-          lastDirection = "down";
+        if (player.y != 24) {
+          deposition(player);
+          player.y++;
+          reposition(player);
+          player.lastDirection = "down";
         }
         break;
       case leftKey:
-        if (p1X != 0) {
-          decolorify(charPos);
-          get(charPos).innerText = "";
-          p1X--;
-          charPos = `cell${p1X}_${p1Y}`;
-          colorify(charPos, charColor);
-          get(charPos).innerText = p1;
-            lastDirection = "left";
+        if (player.x != 0) {
+          deposition(player);
+          player.x--;
+          reposition(player);
+            player.lastDirection = "left";
         }
         break;
       case rightKey:
-        if (p1X != 24) {
-          decolorify(charPos);
-          get(charPos).innerText = "";
-          p1X++;
-          charPos = `cell${p1X}_${p1Y}`;
-          colorify(charPos, charColor);
-          get(charPos).innerText = p1;
-            lastDirection = "right";
+        if (player.x != 24) {
+          deposition(player);
+          player.x++;
+          reposition(player);
+            player.lastDirection = "right";
         }
         break;
     }

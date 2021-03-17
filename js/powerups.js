@@ -1,64 +1,83 @@
+class Powerup{
+    constructor(x, y, duration, effect, img, playerImg, name, color){
+        this.x = x;
+        this.y = y;
+        this.duration = duration;
+        this.effect = effect;
+        this.img = img;
+        this.playerImg = playerImg;
+        this.name = name;
+        this.color = color;
+        this.pos = `cell${this.x}_${this.y}`;
+    }
+}
+
+var helios = new Powerup(undefined, undefined, 7000, godMode, "☀️", "🌞", "Helios", "gold");
+var khione = new Powerup(undefined, undefined, 15000, goddess, "🧊", "🌬️", "Khione", "skyblue");
+var dragon = new Powerup(undefined, undefined, 15000, lizard, "🐲", "🐉", "Dragon", "limegreen");
+var shield = new Powerup(undefined, undefined, 30000, guarded, "🛡️", "💂‍♂️", "Shield", "lightcoral");
+var heart = new Powerup(undefined, undefined, undefined, extraLife, "💖", undefined, "Heart", "red");
+var miniSun = new Powerup(undefined, undefined, undefined, minisun, "🔅", undefined, "Mini-Sun", "#ffe96f");
+var powers = [helios, khione, dragon, shield, heart];
+var randPow = Math.floor(Math.random()*powers.length);
+var random = new Powerup(undefined, undefined, undefined, powers[randPow].effect, "🎲", undefined, "Random", "gainsboro");
+var activePower = new Powerup();
+
 function powerups(){
     var rand = Math.random();
 
     if(rand <= 0.05){
-        powerColor = godModeColor;
-        spawn(godModeItem);
+        spawn(helios);
+        helios = activePower;
     }
-    else if(rand <= 0.1){
-        powerColor = extraLifeColor;
-        spawn(extraLifeItem);
+    else if(rand >= 0.9){
+        spawn(heart);
+        heart = activePower;
     }
     else if(rand <= 0.25){
-        powerColor = khioneColor;
-        spawn(khioneItem);
+        spawn(khione);
+        khione = activePower;
     }
-    else if(rand <= 0.3){
-        powerColor = shieldColor;
-        spawn(shieldItem);
+    else if(rand <= 0.55){
+        spawn(shield);
+        shield = activePower;
     }
-    else if(rand <= 0.5){
-        powerColor = miniSunColor;
-        spawn(miniSunItem);
-    }
-    else if(rand >= 0.75 && score >= 5000){
-        powerColor = dragonColor;
-        spawn(dragonItem);
+    else if(rand >= 0.7 && score >= 5000){
+        spawn(dragon);
+        dragon = activePower;
     }
     else{
-        powerColor = randomItemColor;
-        spawn(randomItem);
+        spawn(random);
+        random = activePower;
     }
 }
-function spawn(powerupItem){
-    if(powerX != undefined && powerY != undefined){
-        nonEnemDepos(powerPos);
+function spawn(power){
+    if(activePower.x != undefined && activePower.y != undefined){
+        deposition(activePower);
     }
-    powerX = Math.floor((Math.random() * 25));
-    powerY = Math.floor((Math.random() * 25));
-        switch(powerPos){
+    activePower = power;
+    activePower.x = Math.floor((Math.random() * 25));
+    activePower.y = Math.floor((Math.random() * 25));
+        switch(activePower.pos){
             case alien.pos:
             case bee.pos:
             case ninja.pos:
             case robot.pos:
-                powerX = Math.floor((Math.random() * 25));
-                powerY = Math.floor((Math.random() * 25));
+                activePower.x = Math.floor((Math.random() * 25));
+                activePower.y = Math.floor((Math.random() * 25));
                 break;
         }
         for (var objectOfMine of minePositions) {
-            if (powerPos == objectOfMine.pos) {
-                powerX = Math.floor((Math.random() * 25));
-                powerY = Math.floor((Math.random() * 25));
+            if (activePower.pos == objectOfMine.pos) {
+                activePower.x = Math.floor((Math.random() * 25));
+                activePower.y = Math.floor((Math.random() * 25));
             }
         }
         for (var bolted of boltPositions) {
-            if (powerPos == bolted.pos) {
-                powerX = Math.floor((Math.random() * 25));
-                powerY = Math.floor((Math.random() * 25));
+            if (activePower.pos == bolted.pos) {
+                activePower.x = Math.floor((Math.random() * 25));
+                activePower.y = Math.floor((Math.random() * 25));
             }
         }
-        activePower = powerupItem;
-        powerPos = `cell${powerX}_${powerY}`;
-        get(powerPos).innerText = activePower;
-        colorify(powerPos, powerColor);
+        reposition(activePower);
 }

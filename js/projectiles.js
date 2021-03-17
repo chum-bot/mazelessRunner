@@ -19,9 +19,9 @@ function projectileMovement(objectInMotion, objectInMotionArr, objectMoveSpeed) 
                     objectInMotion.y = undefined;
                     window.clearInterval(objectMoveSpeed);
                 }
-                else if (objectInMotion.y == p1Y) {
-                    colorify(objectInMotion.pos, charColor);
-                    get(objectInMotion.pos).innerText = p1;
+                else if (objectInMotion.y == player.y) {
+                    colorify(objectInMotion.pos, player.color);
+                    get(objectInMotion.pos).innerText = player.img;
                 }
                 else {
                     deposition(objectInMotion);
@@ -40,9 +40,9 @@ function projectileMovement(objectInMotion, objectInMotionArr, objectMoveSpeed) 
                     objectInMotion.y = undefined;
                     window.clearInterval(objectMoveSpeed);
                 }
-                else if (objectInMotion.y == p1Y) {
-                    colorify(objectInMotion.pos, charColor);
-                    get(objectInMotion.pos).innerText = p1;
+                else if (objectInMotion.y == player.y) {
+                    colorify(objectInMotion.pos, player.color);
+                    get(objectInMotion.pos).innerText = player.img;
                 }
                 else {
                     deposition(objectInMotion);
@@ -61,9 +61,9 @@ function projectileMovement(objectInMotion, objectInMotionArr, objectMoveSpeed) 
                     objectInMotion.y = undefined;
                     window.clearInterval(objectMoveSpeed);
                 }
-                else if (objectInMotion.x == p1X) {
-                    colorify(objectInMotion.pos, charColor);
-                    get(objectInMotion.pos).innerText = p1;
+                else if (objectInMotion.x == player.x) {
+                    colorify(objectInMotion.pos, player.color);
+                    get(objectInMotion.pos).innerText = player.img;
                 }
                 else {
                     deposition(objectInMotion);
@@ -83,9 +83,9 @@ function projectileMovement(objectInMotion, objectInMotionArr, objectMoveSpeed) 
                     objectInMotion.y = undefined;
                     window.clearInterval(objectMoveSpeed);
                 }
-                else if (objectInMotion.x == p1X) {
-                    colorify(objectInMotion.pos, charColor);
-                    get(objectInMotion.pos).innerText = p1;
+                else if (objectInMotion.x == player.x) {
+                    colorify(objectInMotion.pos, player.color);
+                    get(objectInMotion.pos).innerText = player.img;
                 }
                 else {
                     deposition(objectInMotion);

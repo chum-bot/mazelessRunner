@@ -1,28 +1,28 @@
-function shield(){
-    p1 = playerShield;
+function guarded(){
+    player.img = shield.playerImg;
     isShielded = true;
-    charColor = shieldColor;
+    player.color = shield.color;
 
     outOfPower = window.setTimeout(function(){
-        p1 = invader;
+        player.img = invader;
         isShielded = false;
         isActive = false;
-        charColor = invaderColor;
-    }, shieldDuration);
+        player.color = invaderColor;
+    }, shield.duration);
 }
 function godMode(){
-    p1 = playerGodMode;
+    player.img = helios.playerImg;
     isGod = true;
-    charColor = godModeColor;
+    player.color = helios.color;
 
     outOfPower = window.setTimeout(function(){
-        p1 = invader;
+        player.img = invader;
         isGod = false;
         isActive = false;
-        charColor = invaderColor;
-    }, godModeDuration);
+        player.color = invaderColor;
+    }, godMode.duration);
 }
-function miniSun(){
+function minisun(){
     score += scoreGained / 2;
     isActive = false;
 }

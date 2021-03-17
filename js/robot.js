@@ -33,7 +33,7 @@ function robotMovement() {
             get(robot.pos).innerText = midBolt.img;
             robot.x = Math.floor(Math.random() * 23) + 1;
             robot.y = Math.floor(Math.random() * 23) + 1;
-            if (robot.pos == sunPos) {
+            if (robot.pos == sun.pos) {
               robot.x = Math.floor(Math.random() * 23) + 1;
               robot.y = Math.floor(Math.random() * 23) + 1;
             }

@@ -2,7 +2,7 @@ function uniMovement() {
   if (gamestate == whatsAnEnum.GAMEPLAY) {
     if (score >= uni.threshold) {
       if (lives > 0) {
-        get(charPos).innerText = p1;
+        get(player.pos).innerText = player.img;
         if (moveAmtT == 0 && moveAmtR == 0 && moveAmtB == 0 && moveAmtL == 0) {
           moveAmtT = 4;
           moveAmtR = 4;

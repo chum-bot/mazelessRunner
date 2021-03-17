@@ -193,23 +193,23 @@ body {
 }
 #alien{
   width: 45%;
-  color: chartreuse;
+  color: #7fff00;
 }
 #ninja{
   width: 45%;
-  color: dimgray;
+  color: #696969;
 }
 #unicorn{
-  color: lightcyan;
+  color: #e0ffff;
 }
 #bee{
   color: #F3C622;
 }
 #robot{
-  color: silver;
+  color: #c0c0c0;
 }
 #godMode{
-  color: gold;
+  color: #ffd700;
 }
 #dragon{
   color: limegreen;

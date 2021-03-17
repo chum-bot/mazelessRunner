@@ -6,11 +6,11 @@ function alienMovement() {
         minePositions.push(mine);
         alien.x = Math.floor((Math.random() * 25));
         alien.y = Math.floor((Math.random() * 25));
-        if (alien.pos == sunPos) {
+        if (alien.pos == sun.pos) {
           alien.x = Math.floor((Math.random() * 25));
           alien.y = Math.floor((Math.random() * 25));
         }
-        if(alien.pos == charPos) {
+        if(alien.pos == player.pos) {
           alien.x = Math.floor((Math.random() * 25));
           alien.y = Math.floor((Math.random() * 25));
         }

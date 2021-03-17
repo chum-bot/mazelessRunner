@@ -49,9 +49,9 @@ function startup() {
     document.getElementsByClassName("cells")[i].style.fontSize = "65%";
   }
   reposition(uni);
-  nonEnemRepos(charPos, p1X, p1Y, charColor, p1);
+  reposition(player);
   reposition(ninja);
-  nonEnemRepos(sunPos, sunX, sunY, sunColor, sun);
+  reposition(sun);
   reposition(alien);
   reposition(robot);
   reposition(bee);
@@ -94,14 +94,15 @@ function ded() {
   window.clearInterval(uni.idStorage);
   window.clearInterval(ninja.idStorage);
   window.clearInterval(alien.idStorage);
+  window.clearInterval(thisMAYbeBroken);
   window.clearTimeout(timesUp);
   window.clearTimeout(unfreeze);
   window.clearInterval(sleet);
   window.clearInterval(fireFlameFlow);
   throughTheFireAndFlames.splice(0, throughTheFireAndFlames.length);
   frozenHeart.splice(0, frozenHeart.length);
-  p1 = invader;
-  charColor = invaderColor;
+  player.img = invader;
+  player.color = invaderColor;
   isActive = false;
   isGod = false;
   isGoddess = false;
@@ -135,24 +136,23 @@ function reset() {
   alien.y = 24;
   ninja.x = 8;
   ninja.y = 24;
-  sunX = 5;
-  sunY = 11;
-  p1X = 11;
-  p1Y = 11;
+  sun.x = 5;
+  sun.y = 11;
   robot.x = 14;
   robot.y = 21;
   uni.x = 3;
   uni.y = 9;
+  player.x = 11;
+  player.y = 11;
   uni.pos = `cell${uni.x}_${uni.y}`;
-  charPos = `cell${p1X}_${p1Y}`;
+  player.pos = `cell${player.x}_${player.y}`;
   ninja.pos = `cell${ninja.x}_${ninja.y}`;
-  sunPos = `cell${sunX}_${sunY}`;
+  sun.pos = `cell${sun.x}_${sun.y}`;
   alien.pos = `cell${alien.x}_${alien.y}`;
   robot.pos = `cell${robot.x}_${robot.y}`;
-  powerX = undefined;
-  powerY = undefined;
   minePositions = [];
   boltPositions = [];
+  activePower = new Powerup();
 }
 function pause() {
   switch (paused) {

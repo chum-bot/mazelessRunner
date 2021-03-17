@@ -35,12 +35,12 @@ function get(thingToGet) {
     get(pos).innerText = img;
   }
   function collision (enem) {
-    if (enem.pos == charPos && isGod == false) {
+    if (enem.pos == player.pos && isGod == false) {
         if (isShielded) {
             isShielded = false;
             isActive = false;
-            p1 = invader;
-            charColor = invaderColor;
+            player.img = invader;
+            player.color = invaderColor;
         }
         else {
             lives--;

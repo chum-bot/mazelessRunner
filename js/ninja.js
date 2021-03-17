@@ -2,36 +2,41 @@ function ninjaMovement() {
   if (gamestate == whatsAnEnum.GAMEPLAY) {
     if (lives <= 2) {
       // x movement
-      if (ninja.x < p1X) {
+      if (ninja.x < player.x) {
         deposition(ninja);
         ninja.x++;
         reposition(ninja);
-      } else if (ninja.x == p1X && ninja.y > p1Y) {
+      } else if (ninja.x == player.x && ninja.y > player.y) {
         deposition(ninja);
         ninja.y--;
         reposition(ninja);
-      } else if (ninja.x > p1X) {
+      } else if (ninja.x > player.x) {
         deposition(ninja);
         ninja.x--;
         reposition(ninja);
-      } else if (ninja.x == p1X && ninja.y < p1Y) {
+      } else if (ninja.x == player.x && ninja.y < player.y) {
         deposition(ninja);
         ninja.y++;
         reposition(ninja);
       }
     }
     collision(ninja);
-    if (lives === 1 && ninjaFrozen == false) {
-      window.clearInterval(aggression);
-      window.clearInterval(ninja.idStorage);
+    if (lives === 1) {
       ninja.speed = diffSecondAggression;
-      aggression = window.setInterval(ninja.move, ninja.speed);
+      if (ninjaFrozen == false) {
+        window.clearInterval(aggression);
+        window.clearInterval(ninja.idStorage);
+        aggression = window.setInterval(ninja.move, ninja.speed);
+      }
+
     }
-    if(lives === 2 && ninjaFrozen == false){
-      window.clearInterval(aggression);
-      window.clearInterval(ninja.idStorage);
+    if (lives === 2) {
       ninja.speed = diffFirstAggression;
-      aggression = window.setInterval(ninja.move, ninja.speed);
+      if (ninjaFrozen == false) {
+        window.clearInterval(aggression);
+        window.clearInterval(ninja.idStorage);
+        aggression = window.setInterval(ninja.move, ninja.speed);
+      }
     }
   }
 }

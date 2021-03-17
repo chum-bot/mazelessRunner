@@ -20,7 +20,7 @@ function instructions() {
       <div id = "robot" class = "infoText enemBoxes">
         <p id = "roboName" class = "infoText roboIntro">Robot</p>
         <p id = "roboImg" class = "infoText roboIntro imageText">🤖</p>
-        <p id = "roboDesc" class = "infoText roboIntro">Created by the alien as additional defense, this robot tracks your movement and reacts based upon it, spreading bolts 🔩 at its current location and relocating to a new one. It will react more often when you've collected more energy. The bolts rust over time and disappear, no longer posing a threat to you.</p>
+        <p id = "roboDesc" class = "infoText roboIntro">Created by the alien as additional defense, this robot tracks your movement and reacts based upon it, spreading bolts 🔩 at and around its current location and relocating to a new one. It will react more often when you've collected more energy. The bolts rust over time and disappear, no longer posing a threat to you.</p>
       </div>
       <div id = "alien" class = "infoText enemBoxes">
         <p id = "aliName" class = "infoText aliIntro">Alien</p>
@@ -71,6 +71,7 @@ function instructions() {
     get("info").style.fontFamily = "'Righteous', cursive";
     get("info").style.fontSize = "20px";
     get("info").style.display = "block";
+    get("earlierPatchNoteButton").style.display = "none";
 }
 function patchNotes() {
     get("info").innerHTML =
@@ -81,8 +82,8 @@ function patchNotes() {
         "<ul>" +
         "<li>Made the game board into a table instead of a 2D array</li>" +
         "<ul>" +
-        "<li>Characters are now inside of a table cell instead of replacing the square in a 2D array</li>" +
-        "<li>Each character also has their own color cell</li>" +
+        "<li>Characters and elements are now represented by the text inside of a table cell instead of replacing the text in a 2D array</li>" +
+        "<li>Each character and element also has its own color cell</li>" +
         "</ul>" +
         "<li>Most of the text is now the color of the sun's tile</li>" +
         "<li>Changed the color of the main menu background to midnight blue</li>" +
@@ -106,7 +107,16 @@ function patchNotes() {
         "<li>You can only fire one of each projectile at a time (no rapid fire, you can only fire if there are no other projectiles on the screen)</li>"+
         "<ul><li>This was in the last patch for the ice, but now it applies to the fire as well. This fixes an issue with the fire, which was when you fired more than one projectile and one would disappear, the other would just stay there, unable to be removed. Maybe I'll bring back rapid-fire in the future and fix this issue with it, but I'm not planning to.</li></ul>"+
         "<li>The shield powerup icon is now an actual shield and not an amulet</li>"+
-        "<li>When an enemy is frozen by Khione's ice, the cell they are on will turn into the ice's cell color and slowly fade back into the enemy's cell color as they thaw (because the unicorn moves when you collect the sun, the tile it was on rather than the new tile it goes to if it goes to one will continue to fade back into the unicorn's color if you collect the sun. the unicorn stays frozen, but the tile will stay as the unicorn's color until something goes onto it. minor issue but just letting you know)</li>"+
+        "<li>The mini-sun is no longer a powerup, but its own entity that has a flat 30% chance to spawn when you pick up the sun</li>"+
+        "<li>Speaking of chances...</li>"+
+        "<ul>"+
+        "<li>Powerup spawn rate actually didn't work properly for most of the powerups, so I fixed them, but also changed some.</li>"+
+        "<li>Decreased the dragon's spawn rate from 25% to 20%</li>"+
+        "<li>Decreased Khione's spawn rate from 25% to 20%</li>"+
+        "<li>Decreased Random's spawn rate from 30% to 15%</li>"+
+        "<li>Removed mini-sun from Random's spawn pool since it isn't a powerup</li>"+
+        "<li>All of these chances are on top of the 40% powerup spawn rate if you take into account the chance for any powerup to spawn. The chance I'm talking about is the chance for that powerup to spawn given that a powerup does spawn. (wait, hold on.)</li>"+
+        "<li>When an enemy is frozen by Khione's ice, the cell they are on will turn into the ice's cell color and slowly fade back into the enemy's cell color as they thaw</li>"+
         "<li>Fixed Khione's freeze time</li>"+
         "<ul>"+
         "<li>Before, enemies would be frozen for 5 seconds plus their interval time because of how JS handles intervals. Now they should be frozen for the proper 5 seconds.</li>"+
@@ -115,47 +125,57 @@ function patchNotes() {
         "<b>Enemies</b>"+
         "<ul>"+
         "<li>Changed the moon to an alien</li>"+
-        "<li>Changed the monkey to a robot (callback)</li>"+
+        "<li>Changed the monkey to a robot</li>"+
         "<li>Changed the bear to a ninja</li>"+
         "<li>Changed the bananas to screws/bolts/metal thingies</li>"+
         "<li>Changed the mini moons to vortexes</li>"+
         "<li>All functionality remains the same</li>"+
-        "<li>Lasts 12 seconds</li>"+
+        "<li>Fixed an issue where the alien would spawn mines insanely fast when reaching 5000 after reaching 10000 in the previous game (this was around for so long but i had never actually seen it in testing until now which is crazy)</li>"+
         "</ul>"+
         "<b>Code Edits</b>"+
         "<ul>"+
-        "<li>Renamed the enemy files to match their new identities</li>"+
-        "<li>Removed more variables that didn't do anything</li>"+
+        "<li>Renamed the enemy powerup files to match their new identities</li>"+
+        "<li>Removed more code that didn't do anything</li>"+
         "<li>Made more quality of life functions (mainly for the new stuff relating to the grid)</li>"+
-        "<li>Became sad as I saw that my methods didn't work with the switch to the grid and sadly made those into functions that acted on the objects</li>"+
-        "<li>Made objects for the player and the sun and proceeded to not use them</li>"+
+        "<li>Became sad as I saw that my methods didn't work with the switch to the grid and sadly made those into functions that acted on the objects instead</li>"+
+        "<li>Made objects for the player and the sun and used them</li>"+
+        "<li>Made powerups into objects</li>"+
+        "<li>Overhauled the way that powerups work in the code and was shocked that it didn't break</li>"+
         "<li>Changed code in the info section that let me format the stuff in HTML before putting in JS and quoting all of it (backticks ftw)</li>"+
-        "<li>Did some cool stuff with the enemy class constructor, giving each enemy a position based on its own x and y value right in the constructor (never done that before, it was cool)</li>"+
+        "<li>Did some cool stuff with all the class constructors, giving them a position based on the object's own x and y value right in the constructor (never done that before, it was cool)</li>"+
         "<li>Started to get more infuriated with JS intervals as I continued to learn how dumb they were</li>"+
         "<li>Abstracted some code</li>"+
         "<li>Saw that I had a function that acted the same as unity's update function, refreshing the screen every 10 milliseconds just so things would always be visible to the player</li>"+
         "<li>Realized just how unoptimized JS is for this sort of thing</li>"+
         "<li>Got excited for when I learn C# so I could make cooler and more optimized games</li>"+
         "</ul>"+
+        "<b>Known Issues</b>"+
+        "<ul>"+
+        "<li>Because the unicorn moves when you collect the sun, the tile it was on rather than the tile it goes to (if it goes to one) will fade back into the unicorn's color if you collect the sun. The unicorn stays frozen, but the tile will stay as the unicorn's color until something goes over it. Super minor issue but an issue regardless.</li>"+
+        "<li>Sometimes when shooting ice at an enemy, they'll pass right through it unfrozen. This happens when a character moves on the tile right behind the ice in the small timeframe between the ice's movements, so they're never actually on the same tile, and the freezing happens when they're on the same tile.</li>"+
+        "<li>Sometimes when you freeze an enemy and they move off of the tile right as they're frozen, the tile they were on would fade as if the enemy was on it, but the enemy wouldn't be frozen and instead start to move twice as fast. This is rare, and I found it when I shot the ninja and moved to the side, making it move right out of the way.</li>"+
+        "</ul>"+
         "<b>Other</b>"+
         "<ul>"+
-        "<li>Board optimized. Now I can put whatever I want in the cells without making the board weird. The player was originally going to be the guy running emoji, but it made the table look weird since it was so small so we settled on the bigger invader emoji.</li>"+
-        "<li>I'll be cleaning up the Discord soon in case anyone wants to join, as it's not in the best state rn</li>"+
+        "<li>Board optimized. Now I can put whatever I want in the cells without making the board weird. Fun fact: the player was originally going to be the guy running emoji, but it made the table look weird since it was so small so we settled on the bigger invader emoji. Since I've been using that for a bit, I've decided to keep it since then.</li>"+
+        "<li>I'll be cleaning up the Discord soon in case anyone wants to join, as it's not in the best state rn</li>"
         "<li>Still not ready for those unicorn/sun variables yet</li>"+
-        "<li>This may be the last update to the game for a while. There are a lot of things that I can fix, but I think the game's in a pretty good place for now. Also, I think I'll work on something else...</li>"+
+        "<li>I never realized how yellow normal mode was until I went back to it. That's part of the reason why I changed a lot of the characters</li>"+
+        "<li>Wanted to use a peacock instead of a robot to replace the monkey because I thought it would be cool if it spread its plumage and ran somewhere else, but the feather emoji doesn't exist on Microsoft yet, and it's an ugly brown</li>"+
+        "<li>This may be the last update to the game for a while. There are a lot of things that I can fix, but I think the game's in a pretty good place for now. Also, I'll be working on something else...</li>"+
         "</ul>"+
         "<b>Thanks for playing!</b>"+
         "</br>" +
         "</br>";
     get("info").style.fontFamily = "Source Sans Pro";
-    get("info").style.color = "aqua";
+    get("info").style.color = "rgb(224, 180, 255)";
     get("info").style.fontSize = "16px";
     get("info").style.display = "block";
     get("earlierPatchNoteButton").style.display = "block";
 }
 function earlierPatchNotes() {
     get("info").style.fontFamily = "Source Sans Pro";
-    get("info").style.color = "aqua";
+    get("info").style.color = "rgb(224, 180, 255)";
     get("info").style.fontSize = "16px";
     get("info").style.display = "block";
     get("earlierPatchNoteButton").style.display = "none";
