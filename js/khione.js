@@ -37,19 +37,19 @@ function encased(enem, enemInt, flake, allFlakes) {
         style(enem.pos).transition = "background-color 5000ms";
         switch (enem) {
             case uni:
-                enem.color = uni.color;
+                enem.color = uniColor;
                 break;
             case bee:
-                enem.color = bee.color;
+                enem.color = beeColor;
                 break;
             case ninja:
-                enem.color = ninja.color;
+                enem.color = ninjaColor;
                 break;
             case alien:
-                enem.color = alien.color;
+                enem.color = alienColor;
                 break;
             case robot:
-                enem.color = robot.color;
+                enem.color = roboColor;
                 break;
         }
         setTimeout(breakout, stasisTime - enem.speed, enem, enemInt);
