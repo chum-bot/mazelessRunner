@@ -49,7 +49,7 @@ function encased(enem, enemInt, flake, allFlakes) {
                 enem.color = alien.color;
                 break;
             case robot:
-                enem.color = robo.color;
+                enem.color = robot.color;
                 break;
         }
         setTimeout(breakout, stasisTime - enem.speed, enem, enemInt);
