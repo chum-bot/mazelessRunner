@@ -108,7 +108,7 @@ function patchNotes() {
         "<li>I'll revisit the game at some point most likely, but I don't really have any plans to (I never have...)</li>"+
         "<li>Might come back to fix those unicorn/sun variables, but probably not tbh</li>"+
         "<li>Version 3.0 won't be in JS.</li>"+
-        "<li>This game represents the height of my coding prowess with HTML, CSS, and JS so far, and I poured a lot of passion and time into it. This started as an end-of-year Coding League project, and has blossomed into what you see before you. While this isn't my first game (and it certainly won't be the last), but it's the most special to me. I just wanted to once again thank you for checking it out, for playing it, for simply scrolling down this far. It means a lot to me, really. Thank you.</li>"+
+        "<li>This game represents the height of my coding prowess with HTML, CSS, and JS so far, and I poured a lot of passion and time into it. This started as an end-of-year Coding League project, and has blossomed into what you see before you. While this isn't my first game (and it certainly won't be the last), it's the most special to me. I just wanted to once again thank you for checking it out, for playing it, for simply scrolling down this far. It means a lot to me, really. Thank you.</li>"+
         "</ul>"+
         "<b>Thanks for playing!</b>"+
         "</br>" +
