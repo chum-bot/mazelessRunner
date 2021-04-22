@@ -5,8 +5,7 @@ function startup() {
   removeElement("title_screen");
   removeElement("buttonDiv");
   removeElement("secondaryTitleScreen");
-  removeElement("wasdToggle");
-  removeElement("hiScore");
+  removeElement("diffScores");
   removeElement("userContainer");
   removeElement("difficultyMessage");
   removeElement("topScores");
@@ -42,6 +41,7 @@ function startup() {
   lives = difficultyLives;
   scoreGained = difficultyScoreGained;
   score = 0;
+  pulsingLifeColor();
   createBoard();
   for(i = 0; i < document.getElementsByClassName("cells").length; i++){
     document.getElementsByClassName("cells")[i].style.width = "15px";
@@ -76,7 +76,17 @@ function ded() {
     document.getElementsByClassName("cells")[i].style.height = "10px";
     document.getElementsByClassName("cells")[i].style.fontSize = "50%";
   }
-  scores.push(score);
+  switch(difficultySetting){
+    case "easy":
+      easyScores.push(score);
+      break;
+    case "normal":
+      scores.push(score);
+      break;
+    case "hard":
+      hardScores.push(score);
+      break;
+  }
   difficulties.push(difficultySetting);
   document.removeEventListener("keydown", downOnTheKey);
   ninja.speed = diffFirstAggression;
@@ -117,19 +127,46 @@ function reset() {
   get("info").innerHTML = "";
   displayFlex("buttonDiv");
   displayBlock("secondaryTitleScreen");
-  displayBlock("wasdToggle");
   displayBlock("discordLink");
   document.body.style.backgroundColor = "midnightblue";
   removeElement("game_over");
   displayBlock("difficultyMessage");
   removeElement("ur_dead");
+  prevHiScoreEz = highScoreEasy;
+  prevHiScoreNrml = highScore;
+  prevHiScoreHrd = highScoreHard;
+  highScoreEasy = Math.max.apply(null, easyScores);
   highScore = Math.max.apply(null, scores);
-  get("hiScore").innerText = `High Score: ${highScore} (${difficulties[scores.indexOf(highScore)]} mode)`;
-  displayBlock("hiScore");
+  highScoreHard = Math.max.apply(null, hardScores);
+  if(highScoreEasy > prevHiScoreEz){
+    style("hiScoreEasy").animation = "ezFlash 0.3s ease-in-out infinite alternate";
+  }
+  else{
+    style("hiScoreEasy").animation = "none";
+  }
+  if(highScore > prevHiScoreNrml){
+    style("hiScore").animation = "nrmlFlash 0.3s ease-in-out infinite alternate";
+  }
+  else{
+    style("hiScore").animation = "none";
+  }
+  if(highScoreHard > prevHiScoreHrd){
+    style("hiScoreHard").animation = "hrdFlash 0.3s ease-in-out infinite alternate";
+  }
+  else{
+    style("hiScoreHard").animation = "none";
+  }
+  get("hiScoreEasy").innerText = `Easy Mode High Score: ${highScoreEasy}`;
+  get("hiScore").innerText = `Normal Mode High Score: ${highScore}`;
+  get("hiScoreHard").innerText = `Hard Mode High Score: ${highScoreHard}`;
+  displayBlock("hiScoreEasy");
+  displayBlock("diffScores");
+  displayBlock("hiScoreHard");
   displayBlock("userContainer");
   get("everything").style.backgroundImage = "";
   get("output_holder").style.opacity = "100";
   removeElement("output_holder");
+  get("score").innerText = `Previous Score: ${score}`;
   bee.x = 16;
   bee.y = 8;
   alien.x = 24;
@@ -199,7 +236,7 @@ function difficultySwitch() {
       diffSecondAggression = 325;
       diffMineCap = 60;
       diffExpirationDate = 20000;
-      get("difficultyMessage").innerHTML = "The game is on <span id='easy'>EASY</span> mode. The enemies are more tame, you gain score faster, and you have 5 lives.";
+      get("difficultyMessage").innerHTML = "Difficulty: <span id='easy'>EASY</span>";
       
       break;
     case difficultyEnum.EZMODE:
@@ -224,7 +261,7 @@ function difficultySwitch() {
       diffSecondAggression = 245;
       diffMineCap = 75;
       diffExpirationDate = 30000;
-      get("difficultyMessage").innerHTML = "The game is on <span id='normal'>NORMAL</span> mode. The enemies are normal, you gain score at a normal rate, and you have 3 lives.";
+      get("difficultyMessage").innerHTML = "Difficulty: <span id='normal'>NORMAL</span>";
       break;
     case difficultyEnum.NORMALMODE:
       difficultySetting = difficultyEnum.HARDMODE;
@@ -247,7 +284,7 @@ function difficultySwitch() {
       diffSecondAggression = 250;
       diffMineCap = 90;
       diffExpirationDate = 40000;
-      get("difficultyMessage").innerHTML = "The game is on <span id='hard'>HARD</span> mode. The enemies are more aggressive, you gain score slower, and you have only one life. Good luck.";
+      get("difficultyMessage").innerHTML = "Difficulty: <span id='hard'>HARD</span>";
       break;
   }
 }

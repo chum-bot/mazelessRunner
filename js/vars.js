@@ -2,15 +2,18 @@
 var score = 0;
 var lives = 3;
 var scoreGained = 250;
-var scores = [];
+var easyScores = [0];
+var scores = [0];
+var hardScores = [0];
+var highScoreEasy = 0;
 var highScore = 0;
+var highScoreHard = 0;
 var difficultyScoreGained = 250;
 var difficultyLives = 3;
 var pulseSpeed = 500;
-
-//random variables that i used due to lack of skill
-var why = 1;
-var dontKnowSetTimeoutLol = true;
+var prevHiScoreEz = 0;
+var prevHiScoreNrml = 0;
+var prevHiScoreHrd = 0;
 
 //player, enemy intervals, and the sun itself (intervals and positions)
 var buzz;
@@ -86,13 +89,6 @@ var tlBolt;
 var trBolt;
 var blBolt;
 var brBolt;
-
-//wasd toggle
-var upKey = 38;
-var downKey = 40;
-var leftKey = 37;
-var rightKey = 39;
-var wasdCheck = false;
 
 //the board
 var blankColor = "#383838";

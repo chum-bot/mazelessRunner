@@ -4,7 +4,7 @@ var database = firebase.database().ref();
 /**
  * Updates the database with the username and message.
  */
-function updateDB(event){
+function updateDB(event, diff){
     event.preventDefault();
     const username = get("username").value;
     
@@ -12,16 +12,42 @@ function updateDB(event){
     const messageObj = {
         USERNAME: username,
         HIGHSCORE: highScore,
-        DIFFICULTY: difficulties[scores.indexOf(highScore)]
+        DIFFICULTY: "normal"
+    }
+    const easyMessageObj = {
+        USERNAME: username,
+        HIGHSCORE: highScoreEasy,
+        DIFFICULTY: "easy"
+    }
+    const hardMessageObj = {
+        USERNAME: username,
+        HIGHSCORE: highScoreHard,
+        DIFFICULTY: "hard"
     }
     if(username == ""){
         alert("You didn't put a name. Please enter a name.");
     }
-    else if(highScore == 0 || highScore == undefined){
-        alert("Play a game first and get a score to submit it.")
+    else if(highScore == 0 && diff == "normal"){
+        alert("Play a game on normal mode first and get a score to submit it.");
+    }
+    else if(highScore == 0 && diff == "easy"){
+        alert("Play a game on easy mode first and get a score to submit it.");
+    }
+    else if(highScore == 0 && diff == "hard"){
+        alert("Play a game on normal mode first and get a score to submit it.");
     }
     else{
-    database.push(messageObj);
+        switch(diff){
+            case "easy":
+                database.push(easyMessageObj);
+                break;
+            case "normal":
+                database.push(messageObj);
+                break;
+            case "hard":
+                database.push(hardMessageObj);
+                break;
+        }
     removeElement("userContainer");
     displayBlock("submitted");
     orderScores();

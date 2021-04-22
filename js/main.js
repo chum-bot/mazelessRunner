@@ -1,5 +1,10 @@
 //leaderboard update for button
-get("submitButton").addEventListener("click", updateDB);
+get("submitButtonEasy").addEventListener("click", function(event){
+  updateDB(event, "easy")});
+get("submitButton").addEventListener("click", function(event){
+  updateDB(event, "normal")});
+get("submitButtonHard").addEventListener("click", function(event){
+  updateDB(event, "hard")});
 
 //it does what it says
 createBoard();
@@ -159,9 +164,6 @@ function gameplay() {
   //robot
   oohOoh = window.setInterval(robot.move, robot.speed);
 
-  //life color change
-  initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
-
   //the thing that runs unity update
   cdsAndResps = window.setInterval(cooldownsAndRespawns, maybeFramerate);
 
@@ -217,16 +219,6 @@ function gameplay() {
       }
       get("score").innerHTML = `Score: ${score}`;
       get("lives").innerHTML = `Lives: ${lives}`;
-      if (lives === 2) {
-        window.clearInterval(initPulse);
-        let pulseSpeed = 500;
-        initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
-    }
-    if (lives === 1) {
-        window.clearInterval(initPulse);
-        let pulseSpeed = 250;
-        initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
-    }
     }
   }
 }

@@ -40,7 +40,6 @@
   <script src="js/vars.js"></script>
   <script src="js/lbForm.js"></script>
   <script src="js/leaderboard.js"></script>
-  <script src="js/wasd.js"></script>
   <script src="js/movement.js"></script>
   <script src="js/bee.js"></script>
   <script src="js/robot.js"></script>
@@ -71,9 +70,6 @@
     <button onclick="instructions()" id="infobutton">
       How to play
     </button>
-    <button onclick="wasd()" id="wasdbutton">
-      Toggle WASD controls
-    </button>
     <button onclick="leaderboard()" id="leaderboardButton">
       Leaderboard
     </button>
@@ -81,9 +77,13 @@
       Select difficulty
     </button>
   </div>
-  <div id="hiScore">High Score: 0</div>
-  <p id="wasdToggle"></p>
-  <p id="difficultyMessage">The game is on <span id="normal">NORMAL</span> mode. The enemies are normal, you gain score at a normal rate, and you have 3 lives.</p>
+  <div id="diffScores">
+  <div id="hiScoreEasy"></div>
+  <div id="hiScore">No scores yet!</div>
+  <div id="hiScoreHard"></div>
+  </div>
+  
+  <p id="difficultyMessage">Difficulty: <span id="normal">NORMAL</span></p>
     <div id="discordBox">
       <a href="https://discord.gg/HT6z9Et" id="discordLink" target="_blank"><img src="https://lh3.googleusercontent.com/_4zBNFjA8S9yjNB_ONwqBvxTvyXYdC7Nh1jYZ2x6YEcldBr2fyijdjM2J5EoVdTpnkA"></a>
     </div>
@@ -96,7 +96,9 @@
           <input type="text" id="username">
         </div>
       </div>
-      <button id="submitButton">Submit high score</button>
+      <button id="submitButtonEasy">Submit easy high score</button>
+      <button id="submitButton">Submit normal high score</button>
+      <button id="submitButtonHard">Submit hard high score</button>
     </form>
   </div>
 

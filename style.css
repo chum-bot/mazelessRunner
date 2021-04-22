@@ -42,6 +42,19 @@
     text-shadow: 0 0 20px #fff, 0 0 30px white, 0 0 40px lemonchiffon, 0 0 50px lemonchiffon, 0 0 60px lemonchiffon, 0 0 70px lemonchiffon, 0 0 80px lemonchiffon;
   }
 }
+@keyframes ezFlash {
+  from {color: #ffe96f}
+  to{color: springgreen}
+}
+@keyframes nrmlFlash {
+  from {color: #ffe96f}
+  to{color: rgb(224, 180, 255)}
+}
+@keyframes hrdFlash {
+  from {color: #ffe96f}
+  to{color: red}
+}
+
 #secondaryTitleScreen{
   font-family: 'Fredoka One', cursive;
   color: #ffe96f;
@@ -86,16 +99,34 @@ body {
   margin: auto;
 }
 
+#hiScoreEasy{
+  color: springgreen;
+  display: none;
+  text-align: left;
+  font-family: 'Righteous', cursive;
+  font-size: 20px;
+  margin: auto;
+}
 #hiScore{
-  color: #ffe96f;
+  color: rgb(224, 180, 255);
   display: block;
   text-align: left;
   font-family: 'Righteous', cursive;
-  font-size: 25px;
+  font-size: 20px;
   margin: auto;
-  margin-top: 25px;
 }
-
+#hiScoreHard{
+  color: red;
+  display: none;
+  text-align: left;
+  font-family: 'Righteous', cursive;
+  font-size: 20px;
+  margin: auto;
+}
+#diffScores{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 #topScores{
   display: none;
   color: #ffe96f;
@@ -159,12 +190,6 @@ body {
   font-family: 'Righteous', cursive;
   font-size: 25px;
   margin: auto;
-}
-
-#wasdToggle {
-  color: #ffe96f;
-  font-family: "Righteous", cursive;
-  font-size: 20px;
 }
 
 #game_over {
@@ -322,3 +347,64 @@ button:active{
   transition: 0ms;
 }
 
+
+#submitButtonEasy{
+  border-color: springgreen;
+  color: springgreen;
+}
+#submitButtonEasy:hover{
+  border: 3px solid midnightblue;
+  background-color: springgreen;
+  color: midnightblue;
+}
+#submitButtonEasy:focus{
+  border: 3px solid midnightblue;
+  background-color: springgreen;
+  color: midnightblue;
+}
+#submitButtonEasy:active{
+  border: 3px solid rgb(25,25, 60);
+  background-color: rgb(0, 203, 101);
+  color: rgb(25, 25, 60);
+  transition: 0ms;
+}
+#submitButton{
+  border-color: rgb(224, 180, 255);
+  color: rgb(224, 180, 255);
+}
+#submitButton:hover{
+  border: 3px solid midnightblue;
+  background-color: rgb(224, 180, 255);
+  color: midnightblue;
+}
+#submitButton:focus{
+  border: 3px solid midnightblue;
+  background-color:rgb(224, 180, 255);
+  color: midnightblue;
+}
+#submitButton:active{
+  border: 3px solid rgb(25,25, 60);
+  background-color: rgb(171, 138, 194);
+  color: rgb(25, 25, 60);
+  transition: 0ms;
+}
+#submitButtonHard{
+  border-color: red;
+  color: red;
+}
+#submitButtonHard:hover{
+  border: 3px solid midnightblue;
+  background-color: red;
+  color: midnightblue;
+}
+#submitButtonHard:focus{
+  border: 3px solid midnightblue;
+  background-color: red;
+  color: midnightblue;
+}
+#submitButtonHard:active{
+  border: 3px solid rgb(25,25, 60);
+  background-color:rgb(203, 0, 0);
+  color: rgb(25, 25, 60);
+  transition: 0ms;
+}

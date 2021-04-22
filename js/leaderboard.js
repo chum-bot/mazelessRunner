@@ -5,7 +5,6 @@ function leaderboard(){
     removeElement("everything");
     removeElement("userContainer");
     removeElement("secondaryTitleScreen");
-    removeElement("wasdToggle");
     get("info").innerText = "";
     displayBlock("topScores");
     displayBlock("easyScores");
@@ -33,7 +32,6 @@ function backToMenu(){
     removeElement("normalScores");
     removeElement("hardScores");
     removeElement("scoreDiffText");
-    displayBlock("wasdToggle");
     displayBlock("difficultyMessage");
     removeElement("topScores");
     removeElement("backToMenu");

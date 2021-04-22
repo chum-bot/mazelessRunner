@@ -11,28 +11,30 @@ function pulsingLifeColor() {
                 get("lives").style.color = "greenyellow";
                 break;
             case 2:
-                switch (dontKnowSetTimeoutLol) {
-                    case true:
-                        get("lives").style.color = "orange";
-                        dontKnowSetTimeoutLol = false;
-                        break;
-                    case false:
-                        get("lives").style.color = "yellow";
-                        dontKnowSetTimeoutLol = true;
-                        break;
-                }
-                break;
+                window.clearInterval(initPulse);
+                pulseSpeed = 500;
+                style("lives").color = "orange";
+                initPulse = window.setInterval(function (){
+                    if(style("lives").color == "orange"){
+                       style("lives").color = "yellow"; 
+                    }
+                    else if(style("lives").color == "yellow"){
+                        style("lives").color = "orange"; 
+                     }
+                }, pulseSpeed);
+                break;                
             case 1:
-                switch (dontKnowSetTimeoutLol) {
-                    case true:
-                        get("lives").style.color = "white";
-                        dontKnowSetTimeoutLol = false;
-                        break;
-                    case false:
-                        get("lives").style.color = "red";
-                        dontKnowSetTimeoutLol = true;
-                        break;
-                }
+                window.clearInterval(initPulse);
+                pulseSpeed = 250;
+                style("lives").color = "red";
+                initPulse = window.setInterval(function (){
+                    if(style("lives").color == "red"){
+                       style("lives").color = "white"; 
+                    }
+                    else if(style("lives").color == "white"){
+                        style("lives").color = "red"; 
+                     }
+                }, pulseSpeed);
                 break;
         }
     }

@@ -75,7 +75,58 @@ function instructions() {
 }
 function patchNotes() {
     get("info").innerHTML =
-        "<b>Mazeless Runner Version 2.8 Patch Notes</b>" +
+        "<b>Mazeless Runner Version 2.8.1 Patch Notes</b>" +
+        "</br>" +
+        "</br>" +
+        "<b>General</b>" +
+        "<ul>" +
+        "<li>Another leaderboard update</li>" +
+        "<ul>" +
+        "<li>Made it possible to see your high scores on all difficulties</li>" +
+        "<li>Added more submit buttons to let you submit scores to the different difficulty leaderboards</li>" +
+        "</ul>" +
+        "<li>Changed difficulty text</li>" +
+        "<li>Changed initial high score text</li>" +
+        "<li>Changed the score that shows up at the bottom of the screen after you play a game to say 'Previous Score'</li>" +
+        "<li>Removed the WASD toggle; you can now use either one at any time without having to toggle it</li>" +
+        "<li>After a game, if you get a new high score in any of the difficulties, the score for that difficulty will pulse with gold</li>"+
+        "</ul>"+
+        "<b>Code Edits</b>"+
+        "<ul>"+
+        "<li>Got rid of the random variables I used due to lack of skill</li>"+
+        "<li>Removed some more code that didn't do anything</li>"+
+        "<li>Changed up the pulsing life color function so it works much more efficiently now</li>"+
+        "<li>Encountered more JS limitations</li>"+
+        "<li>Extended existing movement switch case to work with WASD by... just adding the cases right after the original ones, which was actually simpler than what I did before...</li>"+
+        "<li>Felt great about myself as I perfectly got CSS keyframes down on the first try with no errors</li>"+
+        "<li>Looked back at older code and once again realized just how far I'd come</li>"+
+        "<li>C# is my favorite musical note</li>"+
+        "</ul>"+
+        "<b>Other</b>"+
+        "<ul>"+
+        "<li>Really minor update this time around, but also a pretty important one for score keeping.</li>"+
+        "<li>I'll revisit the game at some point most likely, but I don't really have any plans to (I never have...)</li>"+
+        "<li>Might come back to fix those unicorn/sun variables, but probably not tbh</li>"+
+        "<li>Version 3.0 won't be in JS.</li>"+
+        "<li>This game represents the height of my coding prowess with HTML, CSS, and JS so far, and I poured a lot of passion and time into it. This started as an end-of-year Coding League project, and has blossomed into what you see before you. While this isn't my first game (and it certainly won't be the last), but it's the most special to me. I just wanted to once again thank you for checking it out, for playing it, for simply scrolling down this far. It means a lot to me, really. Thank you.</li>"+
+        "</ul>"+
+        "<b>Thanks for playing!</b>"+
+        "</br>" +
+        "</br>";
+    get("info").style.fontFamily = "Source Sans Pro";
+    get("info").style.color = "rgb(224, 180, 255)";
+    get("info").style.fontSize = "16px";
+    get("info").style.display = "block";
+    get("earlierPatchNoteButton").style.display = "block";
+}
+function earlierPatchNotes() {
+    get("info").style.fontFamily = "Source Sans Pro";
+    get("info").style.color = "rgb(224, 180, 255)";
+    get("info").style.fontSize = "16px";
+    get("info").style.display = "block";
+    get("earlierPatchNoteButton").style.display = "none";
+    get("info").innerHTML +=
+    "<b>Mazeless Runner Version 2.8 Patch Notes</b>" +
         "</br>" +
         "</br>" +
         "<b>General</b>" +
@@ -122,6 +173,7 @@ function patchNotes() {
         "<li>Before, enemies would be frozen for 5 seconds plus their interval time because of how JS handles intervals. Now they should be frozen for the proper 5 seconds.</li>"+
         "</ul>"+
         "</ul>"+
+        "</ul>"+
         "<b>Enemies</b>"+
         "<ul>"+
         "<li>Changed the moon to an alien</li>"+
@@ -158,7 +210,7 @@ function patchNotes() {
         "<b>Other</b>"+
         "<ul>"+
         "<li>Board optimized. Now I can put whatever I want in the cells without making the board weird. Fun fact: the player was originally going to be the guy running emoji, but it made the table look weird since it was so small so we settled on the bigger invader emoji. Since I've been using that for a bit, I've decided to keep it since then.</li>"+
-        "<li>I'll be cleaning up the Discord soon in case anyone wants to join, as it's not in the best state rn</li>"
+        "<li>I'll be cleaning up the Discord soon in case anyone wants to join, as it's not in the best state rn</li>"+
         "<li>Still not ready for those unicorn/sun variables yet</li>"+
         "<li>I never realized how yellow normal mode was until I went back to it. That's part of the reason why I changed a lot of the characters</li>"+
         "<li>Wanted to use a peacock instead of a robot to replace the monkey because I thought it would be cool if it spread its plumage and ran somewhere else, but the feather emoji doesn't exist on Microsoft yet, and it's an ugly brown</li>"+
@@ -166,20 +218,7 @@ function patchNotes() {
         "</ul>"+
         "<b>Thanks for playing!</b>"+
         "</br>" +
-        "</br>";
-    get("info").style.fontFamily = "Source Sans Pro";
-    get("info").style.color = "rgb(224, 180, 255)";
-    get("info").style.fontSize = "16px";
-    get("info").style.display = "block";
-    get("earlierPatchNoteButton").style.display = "block";
-}
-function earlierPatchNotes() {
-    get("info").style.fontFamily = "Source Sans Pro";
-    get("info").style.color = "rgb(224, 180, 255)";
-    get("info").style.fontSize = "16px";
-    get("info").style.display = "block";
-    get("earlierPatchNoteButton").style.display = "none";
-    get("info").innerHTML +=
+        "</br>"+
     "<b>Mazeless Runner Version 2.7 Patch Notes</b>" +
         "</br>" +
         "</br>" +

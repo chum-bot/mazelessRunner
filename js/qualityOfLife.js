@@ -47,16 +47,6 @@ function get(thingToGet) {
             get("lives").innerHTML = " Lives: " + lives;
             pulsingLifeColor();
         }
-        if (lives === 2) {
-            window.clearInterval(initPulse);
-            let pulseSpeed = 500;
-            initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
-        }
-        if (lives === 1) {
-            window.clearInterval(initPulse);
-            let pulseSpeed = 250;
-            initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
-        }
         if(lives <= 0){
           ded();
         }

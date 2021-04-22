@@ -97,3 +97,4 @@ function projectileMovement(objectInMotion, objectInMotionArr, objectMoveSpeed) 
             }
         }
     }
+

@@ -29,10 +29,5 @@ function minisun(){
 function extraLife(){
     lives++;
     pulsingLifeColor();
-    if(lives === 2){
-        window.clearInterval(initPulse);
-        let pulseSpeed = 500;
-        initPulse = window.setInterval(pulsingLifeColor, pulseSpeed);
-          }
     isActive = false;
 }
